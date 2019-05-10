@@ -1,0 +1,387 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: May 10, 2019 at 03:48 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `Vehicle_Rental_Platform`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `CUSTOMERS`
+--
+
+CREATE TABLE `CUSTOMERS` (
+  `CUSTOMER_ID` bigint(20) NOT NULL,
+  `CONTACT_NAME` varchar(255) NOT NULL,
+  `ADDRESS` varchar(250) NOT NULL,
+  `EMAIL_ADDRESS` varchar(255) NOT NULL,
+  `CONTACT_NUMBER` varchar(20) NOT NULL,
+  `PASSWORD` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `CUSTOMERS`
+--
+
+INSERT INTO `CUSTOMERS` (`CUSTOMER_ID`, `CONTACT_NAME`, `ADDRESS`, `EMAIL_ADDRESS`, `CONTACT_NUMBER`, `PASSWORD`) VALUES
+(1123001, 'SAMPLE', 'sAMPLE', 'sample', '01', '123456'),
+(1123031, 'SAM MANYARD', 'HARROW ROAD', 'sam@hotmail.co.uk', '07724526856', '123456'),
+(1123032, 'PARAMJEET SINGH', 'MELBORNE ROAD', 'prabs@outlook.co.uk', '07724526858', '123456'),
+(1123033, 'ASWAD KHAN', 'DARLSTON ROAD', 'aswad@yahoo.co.uk', '07744526858', '123456'),
+(1123034, 'GEORGE BAILEY', 'WALTON AVENUE', 'gb@yahoo.com', '07744566858', '123456'),
+(1123035, 'GREGG PLAMERS', 'TRINITY AVENUE', 'gp1980@live.com', '07744566858', '123456'),
+(1123036, 'MATTHEW GONSALVES', 'RIDLEY ROAD', 'mt97@gmail.com', '07744567858', '123456'),
+(1123037, 'ANDREW PETERS', 'UXBRIDGE ROAD', 'apt@gmail.com', '07794567858', '123456'),
+(1123038, 'TOM PETRAN', 'DARTFORD ROAD', 'tpt@outlook.co.uk', '07794587858', '123456'),
+(1123039, 'RORRY SHAUN WILLIAMS', 'SOTHEY ROAD', 'rorrysw@outlook.co.uk', '07794587958', '123456'),
+(1123040, 'PAUL STERON', 'GRIFFITS ROAD', 'steron@outlook.co.uk', '07494587958', '123456'),
+(1123043, 'Jawad Siddiqui', 'London', 'example@example.com', '01800000000', '123456');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `LICENSE`
+--
+
+CREATE TABLE `LICENSE` (
+  `ID` int(11) NOT NULL,
+  `TYPE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `LICENSE`
+--
+
+INSERT INTO `LICENSE` (`ID`, `TYPE`) VALUES
+(1, 'FULL'),
+(2, 'PCV'),
+(3, 'CPC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `PROMOTION`
+--
+
+CREATE TABLE `PROMOTION` (
+  `PROMOTION_ID` int(11) NOT NULL,
+  `DISCOUNT_AMOUNT` double NOT NULL,
+  `EXPIRY_DATE` date NOT NULL,
+  `MODEL_ID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `PROMOTION`
+--
+
+INSERT INTO `PROMOTION` (`PROMOTION_ID`, `DISCOUNT_AMOUNT`, `EXPIRY_DATE`, `MODEL_ID`) VALUES
+(4, 26, '2019-02-22', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `VEHICLE`
+--
+
+CREATE TABLE `VEHICLE` (
+  `VEHICLE_ID` int(11) NOT NULL,
+  `MAKE_ID` int(11) DEFAULT NULL,
+  `MODEL_ID` int(11) DEFAULT NULL,
+  `DAILY_RATE` double(10,2) NOT NULL,
+  `IMAGE` varchar(255) DEFAULT NULL,
+  `LICENSE_REQUIRED` int(11) DEFAULT NULL,
+  `MAX_CAPACITY` int(11) DEFAULT NULL,
+  `COMPANY_ID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `VEHICLE`
+--
+
+INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `LICENSE_REQUIRED`, `MAX_CAPACITY`, `COMPANY_ID`) VALUES
+(98716, 1, 2, 85.23, 'volvo.jpg', 1, 22, 1),
+(98717, 2, 1, 70.00, 'mercedes.jpg', 1, 16, 1),
+(98718, 2, 4, 80.00, 'mercedes.jpg', 1, 24, 1),
+(98719, 2, 1, 120.00, 'mercedes.jpg', 1, 33, 1),
+(98720, 2, 1, 130.00, 'mercedes.jpg', 1, 49, 1),
+(98721, 2, 1, 150.00, 'mercedes.jpg', 1, 73, 1),
+(98722, 3, 1, 140.00, 'scania.jpg', 1, 72, 1),
+(98723, 3, 1, 90.00, 'scania.jpg', 1, 16, 1),
+(98724, 3, 1, 100.00, 'scania.jpg', 1, 24, 1),
+(98725, 3, 1, 140.00, 'scania.jpg', 1, 49, 1),
+(98730, 1, 1, 12.00, 'default.jpg', 1, 12, 1),
+(98731, 1, 1, 123.00, 'default.jpg', 1, 123, 1),
+(98732, 1, 1, 111.00, 'default.jpg', 1, 111, 1),
+(98733, 1, 1, 123.00, 'default.jpg', 3, 223, 1),
+(98734, 1, 1, 145.00, 'default.jpg', 1, 155, 1),
+(98735, 1, 1, 145.00, 'default.jpg', 1, 200, 1),
+(98736, 1, 1, 145.00, 'default.jpg', 1, 220, 1),
+(98737, 1, 1, 149.00, 'default.jpg', 1, 10, 1),
+(98738, 1, 1, 145.00, 'default.jpg', 3, 20, 1),
+(98739, 1, 1, 145.00, 'default.jpg', 1, 220, 1),
+(98740, 1, 1, 145.00, 'default.jpg', 1, 222, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `VEHICLE_COMPANY`
+--
+
+CREATE TABLE `VEHICLE_COMPANY` (
+  `COMPANY_ID` int(11) NOT NULL,
+  `COMPANY_NAME` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `VEHICLE_COMPANY`
+--
+
+INSERT INTO `VEHICLE_COMPANY` (`COMPANY_ID`, `COMPANY_NAME`) VALUES
+(1, 'AZ Autos'),
+(2, 'NR Corporation'),
+(3, 'Shuvo Enterprise'),
+(4, 'Shakil Enterprise');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `VEHICLE_MAKE`
+--
+
+CREATE TABLE `VEHICLE_MAKE` (
+  `MAKE_ID` int(11) NOT NULL,
+  `MAKE_NAME` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `VEHICLE_MAKE`
+--
+
+INSERT INTO `VEHICLE_MAKE` (`MAKE_ID`, `MAKE_NAME`) VALUES
+(1, 'VOLVO'),
+(2, 'MERCEDES BENZ'),
+(3, 'SCANIA'),
+(5, 'TOYOTA'),
+(6, 'BMW'),
+(7, 'Rolls Royce'),
+(8, 'Wayne corporation'),
+(9, 'Wayne2'),
+(10, 'Wayne3'),
+(11, 'Wayn4'),
+(12, 'Wayn4'),
+(13, 'Wayne5 '),
+(14, 'Audi'),
+(15, 'AUdi2'),
+(16, 'Audi3'),
+(17, 'Audi4'),
+(18, 'AUDI5'),
+(19, 'TATA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `VEHICLE_MODEL`
+--
+
+CREATE TABLE `VEHICLE_MODEL` (
+  `MODEL_ID` int(11) NOT NULL,
+  `MODEL_NAME` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `VEHICLE_MODEL`
+--
+
+INSERT INTO `VEHICLE_MODEL` (`MODEL_ID`, `MODEL_NAME`) VALUES
+(1, 'Sedan'),
+(2, 'Hatchback'),
+(3, 'Minivan'),
+(4, 'SUV'),
+(5, 'Pickup'),
+(6, 'Convertible'),
+(7, 'Micro Bus'),
+(14, 'Coupe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `VEHICLE_ORDER`
+--
+
+CREATE TABLE `VEHICLE_ORDER` (
+  `ORDER_ID` int(11) NOT NULL,
+  `CUSTOMER_ID` bigint(20) DEFAULT NULL,
+  `VEHICLE_ID` int(11) NOT NULL,
+  `BOOKING_DATE` date NOT NULL,
+  `RENT_FROM` date NOT NULL,
+  `RENT_TO` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `VEHICLE_ORDER`
+--
+
+INSERT INTO `VEHICLE_ORDER` (`ORDER_ID`, `CUSTOMER_ID`, `VEHICLE_ID`, `BOOKING_DATE`, `RENT_FROM`, `RENT_TO`) VALUES
+(1, 1123031, 98721, '2019-02-28', '0000-00-00', '0000-00-00'),
+(2, 1123031, 98736, '2019-02-28', '0000-00-00', '0000-00-00'),
+(3, 1123031, 98737, '2019-02-28', '0000-00-00', '0000-00-00'),
+(4, 1123031, 98721, '2019-02-28', '0000-00-00', '0000-00-00'),
+(5, 1123031, 98722, '2019-02-28', '0000-00-00', '0000-00-00');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `CUSTOMERS`
+--
+ALTER TABLE `CUSTOMERS`
+  ADD PRIMARY KEY (`CUSTOMER_ID`);
+
+--
+-- Indexes for table `LICENSE`
+--
+ALTER TABLE `LICENSE`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `PROMOTION`
+--
+ALTER TABLE `PROMOTION`
+  ADD PRIMARY KEY (`PROMOTION_ID`),
+  ADD KEY `promotionModel` (`MODEL_ID`);
+
+--
+-- Indexes for table `VEHICLE`
+--
+ALTER TABLE `VEHICLE`
+  ADD PRIMARY KEY (`VEHICLE_ID`),
+  ADD KEY `FK_LICENSE_ID` (`LICENSE_REQUIRED`),
+  ADD KEY `COMPANY_ID` (`COMPANY_ID`),
+  ADD KEY `FK_MODEL` (`MODEL_ID`);
+
+--
+-- Indexes for table `VEHICLE_COMPANY`
+--
+ALTER TABLE `VEHICLE_COMPANY`
+  ADD PRIMARY KEY (`COMPANY_ID`);
+
+--
+-- Indexes for table `VEHICLE_MAKE`
+--
+ALTER TABLE `VEHICLE_MAKE`
+  ADD PRIMARY KEY (`MAKE_ID`);
+
+--
+-- Indexes for table `VEHICLE_MODEL`
+--
+ALTER TABLE `VEHICLE_MODEL`
+  ADD PRIMARY KEY (`MODEL_ID`);
+
+--
+-- Indexes for table `VEHICLE_ORDER`
+--
+ALTER TABLE `VEHICLE_ORDER`
+  ADD PRIMARY KEY (`ORDER_ID`),
+  ADD KEY `ORDER_VEHICLE_FK` (`VEHICLE_ID`),
+  ADD KEY `ORDER_CUSTOMER_FK` (`CUSTOMER_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `CUSTOMERS`
+--
+ALTER TABLE `CUSTOMERS`
+  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123044;
+
+--
+-- AUTO_INCREMENT for table `LICENSE`
+--
+ALTER TABLE `LICENSE`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `PROMOTION`
+--
+ALTER TABLE `PROMOTION`
+  MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `VEHICLE`
+--
+ALTER TABLE `VEHICLE`
+  MODIFY `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98741;
+
+--
+-- AUTO_INCREMENT for table `VEHICLE_COMPANY`
+--
+ALTER TABLE `VEHICLE_COMPANY`
+  MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `VEHICLE_MAKE`
+--
+ALTER TABLE `VEHICLE_MAKE`
+  MODIFY `MAKE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `VEHICLE_MODEL`
+--
+ALTER TABLE `VEHICLE_MODEL`
+  MODIFY `MODEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `VEHICLE_ORDER`
+--
+ALTER TABLE `VEHICLE_ORDER`
+  MODIFY `ORDER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `PROMOTION`
+--
+ALTER TABLE `PROMOTION`
+  ADD CONSTRAINT `promotionModel` FOREIGN KEY (`MODEL_ID`) REFERENCES `VEHICLE_MODEL` (`MODEL_ID`);
+
+--
+-- Constraints for table `VEHICLE`
+--
+ALTER TABLE `VEHICLE`
+  ADD CONSTRAINT `FK_COMPANY` FOREIGN KEY (`COMPANY_ID`) REFERENCES `VEHICLE_COMPANY` (`COMPANY_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_LICENSE_ID` FOREIGN KEY (`LICENSE_REQUIRED`) REFERENCES `LICENSE` (`ID`),
+  ADD CONSTRAINT `FK_MODEL` FOREIGN KEY (`MODEL_ID`) REFERENCES `VEHICLE_MODEL` (`MODEL_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `VEHICLE_ORDER`
+--
+ALTER TABLE `VEHICLE_ORDER`
+  ADD CONSTRAINT `ORDER_CUSTOMER_FK` FOREIGN KEY (`CUSTOMER_ID`) REFERENCES `CUSTOMERS` (`CUSTOMER_ID`) ON DELETE CASCADE ON UPDATE SET NULL,
+  ADD CONSTRAINT `ORDER_VEHICLE_FK` FOREIGN KEY (`VEHICLE_ID`) REFERENCES `VEHICLE` (`VEHICLE_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
