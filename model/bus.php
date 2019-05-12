@@ -8,7 +8,6 @@ class Bus {
     private $VEHICLE_ID;
     private $MAKE_NAME;
     private $MODEL_ID;
-    private $COLOUR;
     private $DAILY_RATE;
     private $TOTAL_NUMBER_OF_VEHICLES;
     private $IMAGE;
