@@ -9,12 +9,17 @@ class DAO
 
     private static $daoObject;
 
+    public static function getInstance() {
+        if(!isset(self::$daoObject)){
+            self::$daoObject =  new DAO();
+        }
+        return self::$daoObject;
+    }
 
     private function __construct()
     {
 
     }
-
 
 
     public function getAllBuses()
