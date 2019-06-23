@@ -31,7 +31,7 @@ require_once "../controller/register_contoller.php";
   <link rel="stylesheet" href="../css/style.css">
 
 
-  <title>BERWYN LTD.</title>
+  <title>MUS HIRE LTD.</title>
 </head>
 
 
@@ -46,8 +46,8 @@ require_once "../controller/register_contoller.php";
 
 <form class="form-signin" action="" method="post">
 
-    <img class="mb-4" src="../images/favicon.png" alt="Company Logo" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Berwyn Ltd</h1>
+    <img class="mb-4" src="../images/favicon.png" alt="Company Logo" width="200">
+    <h1 class="h3 mb-3 font-weight-normal">MUS HIRE Ltd</h1>
     <p class="h3 mb-3 font-weight-normal">Register your account</p>
 
     <label for="inputName" class="sr-only">Name</label>
