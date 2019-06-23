@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
-    <title>Berwyn Ltd</title>
+    <title>MUS Ltd</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../css/landing-page.css">
@@ -40,9 +40,9 @@
 <div class="jumbotron">
     <div class="container">
         <div class="card text-white text-center bg-dark mb-3" >
-            <div class="card-header">Berwyn Buses Hire Ltd</div>
+            <div class="card-header">MUS Rental</div>
             <div class="card-body">
-                <p class="card-text">HIRE OUR BUS AND TRAVEL ANYWHERE</p>
+                <p class="card-text">HIRE OUR VEHICLE AND TRAVEL ANYWHERE</p>
                 <h5 class="card-title">Select your criteria</h5>
                 <form action="" method="get">
                     <div class="form-row">
