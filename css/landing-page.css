@@ -1,0 +1,40 @@
+
+
+@media screen and (min-width: 1200px) {
+
+    .jumbotron {
+        background-image: url("../images/bus-mod.jpg") ;
+        -webkit-background-size: 100% 100%;
+        -moz-background-size: 100% 100%;
+        -o-background-size: 100% 100%;
+        /*background-size: 100% 100%;*/
+        /* Add the blur effect */
+        /*filter: blur(8px);*/
+        /*-webkit-filter: blur(8px);*/
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /*padding-top: 20%;*/
+        padding-bottom: 10%;
+    }
+
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    .jumbotron {
+        background-image: url("../images/thumb-1920-317196.jpg");
+        -webkit-background-size: 100% 100%;
+        -moz-background-size: 100% 100%;
+        -o-background-size: 100% 100%;
+        background-size: 100% 100%;
+        /* Add the blur effect */
+        /*filter: blur(8px);*/
+        /*-webkit-filter: blur(8px);*/
+    }
+
+}
+
+
