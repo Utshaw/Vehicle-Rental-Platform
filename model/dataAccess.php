@@ -7,6 +7,31 @@ $pdo = $connection->connect();
 class DAO
 {
 
+
+    public function getSearchedBus($bus)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM JOIN LICENSE AS L JOIN VEHICLE_MAKE AS VMK  ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID AND V.LICENSE_REQUIRED = L.ID WHERE L.TYPE = :license AND DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE BOOKING_DATE = :booking_date)";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':license', $bus->LICENSE_REQUIRED, PDO::PARAM_STR);
+        $statement->bindValue(':rate_min', $bus->MIN_COST, PDO::PARAM_INT);
+        $statement->bindValue(':rate_max', $bus->MAX_COST, PDO::PARAM_INT);
+        $statement->bindValue(':cap', $bus->MAX_CAPACITY, PDO::PARAM_INT);
+        $statement->bindValue(':booking_date', $bus->DATE_REQUIRED, PDO::PARAM_INT);
+
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
+
+
+
+        return $results;
+
+    }
+
+
     public function loginAttempt($cust)
     {
 
@@ -62,6 +87,7 @@ class DAO
 
         return $results;
     }
+
 
 
     public function addCustomer($customer)
