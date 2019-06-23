@@ -64,6 +64,28 @@ class DAO
     }
 
 
+    public function addCustomer($customer)
+    {
+
+        global $pdo;
+        $sql = "INSERT INTO CUSTOMERS(CONTACT_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, PASSWORD) VALUES(:c_name, :address, :email, :phone, :password)";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':c_name', $customer->CONTACT_NAME, PDO::PARAM_STR);
+        $statement->bindValue(':address', $customer->ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':email', $customer->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':phone', $customer->CONTACT_NUMBER, PDO::PARAM_STR);
+        $statement->bindValue(':password', $customer->PASSWORD, PDO::PARAM_STR);
+
+        $statement->execute();
+
+
+        return $id = $pdo->lastInsertId();
+
+    }
+
+
+
 
 
 }
