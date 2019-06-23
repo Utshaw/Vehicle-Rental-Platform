@@ -48,6 +48,20 @@ class DAO
         return $results;
     }
 
+    public function checkEmailValidity($customer) {
+
+
+        global $pdo;
+        $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $customer->EMAIL_ADDRESS, PDO::PARAM_STR);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
+
+        return $results;
+    }
 
 
 
