@@ -7,6 +7,22 @@ $pdo = $connection->connect();
 class DAO
 {
 
+    public function loginAttempt($cust)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':password', $cust->PASSWORD, PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
+
+        return $results;
+
+    }
+
     private static $daoObject;
 
     public static function getInstance() {
