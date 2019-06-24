@@ -7,12 +7,25 @@ $pdo = $connection->connect();
 class DAO
 {
 
-
-    public function getSearchedBus($bus)
+    public function getAllCompanies()
     {
 
         global $pdo;
-        $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK  ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
+        $sql = "SELECT * FROM VEHICLE_COMPANY";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'VehicleCompany');
+
+        return $results;
+    }
+
+    public function getSearchedBusAllCompany($bus)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
         VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_required BETWEEN RENT_FROM AND RENT_TO)";
 
         $statement = $pdo->prepare($sql);
@@ -28,7 +41,29 @@ class DAO
 
 
         return $results;
+    }
 
+    public function getSearchedBus($bus)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
+        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_required BETWEEN RENT_FROM AND RENT_TO) AND V.COMPANY_ID = :company_id";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':rate_min', $bus->MIN_COST, PDO::PARAM_INT);
+        $statement->bindValue(':rate_max', $bus->MAX_COST, PDO::PARAM_INT);
+        $statement->bindValue(':cap', $bus->MAX_CAPACITY, PDO::PARAM_INT);
+        $statement->bindValue(':date_required', $bus->DATE_REQUIRED, PDO::PARAM_INT);
+        $statement->bindValue(':company_id', $bus->COMPANY_ID, PDO::PARAM_INT);
+
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
+
+
+
+        return $results;
     }
 
 
@@ -45,22 +80,20 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
 
         return $results;
-
     }
 
     private static $daoObject;
 
-    public static function getInstance() {
-        if(!isset(self::$daoObject)){
+    public static function getInstance()
+    {
+        if (!isset(self::$daoObject)) {
             self::$daoObject =  new DAO();
         }
         return self::$daoObject;
     }
 
     private function __construct()
-    {
-
-    }
+    { }
 
 
     public function getAllBuses()
@@ -73,7 +106,8 @@ class DAO
         return $results;
     }
 
-    public function checkEmailValidity($customer) {
+    public function checkEmailValidity($customer)
+    {
 
 
         global $pdo;
@@ -107,11 +141,5 @@ class DAO
 
 
         return $id = $pdo->lastInsertId();
-
     }
-
-
-
-
-
 }
