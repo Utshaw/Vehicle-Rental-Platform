@@ -47,21 +47,13 @@
                 <form action="" method="get">
                     <div class="form-row">
 
-                        <div class="col-md-6 mb-3   ">
+                        <div class="col-md-12 mb-3   ">
                             <input name="num_passengers" type="number" class="form-control" id="validationDefault01" value="" required placeholder="Number of passengers">
                         </div>
 
 
 
-                        <div class="form-group col-md-6 mb-3 ">
-                            <select name="license" class="custom-select" required>
-                                <option value="">Requried Driving license</option>
-                                <option value="FULL">Full driver license</option>
-                                <option value="PCV">PCV</option>
-                                <option value="CPC">CPC</option>
-                            </select>
-                            <div class="invalid-feedback">Example invalid custom select feedback</div>
-                        </div>
+
 
                     </div>
                     <div class="form-row">
