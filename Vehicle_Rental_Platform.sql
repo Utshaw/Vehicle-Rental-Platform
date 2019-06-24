@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 10, 2019 at 03:48 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Jun 24, 2019 at 06:13 AM
+-- Server version: 10.3.15-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,27 +53,8 @@ INSERT INTO `CUSTOMERS` (`CUSTOMER_ID`, `CONTACT_NAME`, `ADDRESS`, `EMAIL_ADDRES
 (1123038, 'TOM PETRAN', 'DARTFORD ROAD', 'tpt@outlook.co.uk', '07794587858', '123456'),
 (1123039, 'RORRY SHAUN WILLIAMS', 'SOTHEY ROAD', 'rorrysw@outlook.co.uk', '07794587958', '123456'),
 (1123040, 'PAUL STERON', 'GRIFFITS ROAD', 'steron@outlook.co.uk', '07494587958', '123456'),
-(1123043, 'Jawad Siddiqui', 'London', 'example@example.com', '01800000000', '123456');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `LICENSE`
---
-
-CREATE TABLE `LICENSE` (
-  `ID` int(11) NOT NULL,
-  `TYPE` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `LICENSE`
---
-
-INSERT INTO `LICENSE` (`ID`, `TYPE`) VALUES
-(1, 'FULL'),
-(2, 'PCV'),
-(3, 'CPC');
+(1123043, 'Jawad Siddiqui', 'London', 'example@example.com', '01800000000', '123456'),
+(1123044, 'mush', 'mush', 'foo@gmail.com', '01800000000', '123456');
 
 -- --------------------------------------------------------
 
@@ -107,7 +88,6 @@ CREATE TABLE `VEHICLE` (
   `MODEL_ID` int(11) DEFAULT NULL,
   `DAILY_RATE` double(10,2) NOT NULL,
   `IMAGE` varchar(255) DEFAULT NULL,
-  `LICENSE_REQUIRED` int(11) DEFAULT NULL,
   `MAX_CAPACITY` int(11) DEFAULT NULL,
   `COMPANY_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -116,28 +96,28 @@ CREATE TABLE `VEHICLE` (
 -- Dumping data for table `VEHICLE`
 --
 
-INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `LICENSE_REQUIRED`, `MAX_CAPACITY`, `COMPANY_ID`) VALUES
-(98716, 1, 2, 85.23, 'volvo.jpg', 1, 22, 1),
-(98717, 2, 1, 70.00, 'mercedes.jpg', 1, 16, 1),
-(98718, 2, 4, 80.00, 'mercedes.jpg', 1, 24, 1),
-(98719, 2, 1, 120.00, 'mercedes.jpg', 1, 33, 1),
-(98720, 2, 1, 130.00, 'mercedes.jpg', 1, 49, 1),
-(98721, 2, 1, 150.00, 'mercedes.jpg', 1, 73, 1),
-(98722, 3, 1, 140.00, 'scania.jpg', 1, 72, 1),
-(98723, 3, 1, 90.00, 'scania.jpg', 1, 16, 1),
-(98724, 3, 1, 100.00, 'scania.jpg', 1, 24, 1),
-(98725, 3, 1, 140.00, 'scania.jpg', 1, 49, 1),
-(98730, 1, 1, 12.00, 'default.jpg', 1, 12, 1),
-(98731, 1, 1, 123.00, 'default.jpg', 1, 123, 1),
-(98732, 1, 1, 111.00, 'default.jpg', 1, 111, 1),
-(98733, 1, 1, 123.00, 'default.jpg', 3, 223, 1),
-(98734, 1, 1, 145.00, 'default.jpg', 1, 155, 1),
-(98735, 1, 1, 145.00, 'default.jpg', 1, 200, 1),
-(98736, 1, 1, 145.00, 'default.jpg', 1, 220, 1),
-(98737, 1, 1, 149.00, 'default.jpg', 1, 10, 1),
-(98738, 1, 1, 145.00, 'default.jpg', 3, 20, 1),
-(98739, 1, 1, 145.00, 'default.jpg', 1, 220, 1),
-(98740, 1, 1, 145.00, 'default.jpg', 1, 222, 1);
+INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `MAX_CAPACITY`, `COMPANY_ID`) VALUES
+(98716, 1, 2, 85.23, 'volvo.jpg', 22, 1),
+(98717, 2, 1, 70.00, 'mercedes.jpg', 16, 1),
+(98718, 2, 4, 80.00, 'mercedes.jpg', 24, 1),
+(98719, 2, 1, 120.00, 'mercedes.jpg', 33, 1),
+(98720, 2, 1, 130.00, 'mercedes.jpg', 49, 1),
+(98721, 2, 1, 150.00, 'mercedes.jpg', 73, 1),
+(98722, 3, 1, 140.00, 'scania.jpg', 72, 1),
+(98723, 3, 1, 90.00, 'scania.jpg', 16, 1),
+(98724, 3, 1, 100.00, 'scania.jpg', 24, 1),
+(98725, 3, 1, 140.00, 'scania.jpg', 49, 1),
+(98730, 1, 1, 12.00, 'default.jpg', 12, 1),
+(98731, 1, 1, 123.00, 'default.jpg', 123, 1),
+(98732, 1, 1, 111.00, 'default.jpg', 111, 1),
+(98733, 1, 1, 123.00, 'default.jpg', 223, 1),
+(98734, 1, 1, 145.00, 'default.jpg', 155, 1),
+(98735, 1, 1, 145.00, 'default.jpg', 200, 1),
+(98736, 1, 1, 145.00, 'default.jpg', 220, 1),
+(98737, 1, 1, 149.00, 'default.jpg', 10, 1),
+(98738, 1, 1, 145.00, 'default.jpg', 20, 1),
+(98739, 1, 1, 145.00, 'default.jpg', 220, 1),
+(98740, 1, 1, 145.00, 'default.jpg', 222, 1);
 
 -- --------------------------------------------------------
 
@@ -257,12 +237,6 @@ ALTER TABLE `CUSTOMERS`
   ADD PRIMARY KEY (`CUSTOMER_ID`);
 
 --
--- Indexes for table `LICENSE`
---
-ALTER TABLE `LICENSE`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `PROMOTION`
 --
 ALTER TABLE `PROMOTION`
@@ -274,7 +248,6 @@ ALTER TABLE `PROMOTION`
 --
 ALTER TABLE `VEHICLE`
   ADD PRIMARY KEY (`VEHICLE_ID`),
-  ADD KEY `FK_LICENSE_ID` (`LICENSE_REQUIRED`),
   ADD KEY `COMPANY_ID` (`COMPANY_ID`),
   ADD KEY `FK_MODEL` (`MODEL_ID`);
 
@@ -312,13 +285,7 @@ ALTER TABLE `VEHICLE_ORDER`
 -- AUTO_INCREMENT for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
-  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123044;
-
---
--- AUTO_INCREMENT for table `LICENSE`
---
-ALTER TABLE `LICENSE`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123045;
 
 --
 -- AUTO_INCREMENT for table `PROMOTION`
@@ -371,7 +338,6 @@ ALTER TABLE `PROMOTION`
 --
 ALTER TABLE `VEHICLE`
   ADD CONSTRAINT `FK_COMPANY` FOREIGN KEY (`COMPANY_ID`) REFERENCES `VEHICLE_COMPANY` (`COMPANY_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_LICENSE_ID` FOREIGN KEY (`LICENSE_REQUIRED`) REFERENCES `LICENSE` (`ID`),
   ADD CONSTRAINT `FK_MODEL` FOREIGN KEY (`MODEL_ID`) REFERENCES `VEHICLE_MODEL` (`MODEL_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
