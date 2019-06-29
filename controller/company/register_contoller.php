@@ -15,7 +15,7 @@ $daoObject = DAO::getInstance();
 
 
 
-if(isset($_SESSION["customer_id"])){
+if(isset($_SESSION["company_id"])){
     header("location:index.php");
 
 }else{
@@ -34,13 +34,13 @@ if(isset($_SESSION["customer_id"])){
         }else{
 
 
-            $customer = new Customer();
-            $customer->CONTACT_NAME = $name;
-            $customer->ADDRESS = $address;
-            $customer->CONTACT_NUMBER = $phone;
-            $customer->EMAIL_ADDRESS = $email;
-            $customer->PASSWORD = $password;
-            $results  = $daoObject->checkEmailValidity($customer);
+            $company = new Company();
+            $company->COMPANY_NAME = $name;
+            $company->ADDRESS = $address;
+            $company->CONTACT_NUMBER = $phone;
+            $company->EMAIL_ADDRESS = $email;
+            $company->PASSWORD = $password;
+            $results  = $daoObject->checkEmailValidityCompany($company);
 
 
             if(count($results) != 0){
@@ -49,11 +49,11 @@ if(isset($_SESSION["customer_id"])){
 
             }else{
 
-                $last_id = $daoObject->addCustomer($customer);
+                $last_id = $daoObject->addCompany($company);
 
-                $_SESSION["customer_name"] = $name;
-                $_SESSION["customer_id"] = $last_id;
-                header("location:index.php");
+                $_SESSION["company_name"] = $name;
+                $_SESSION["company_id"] = $last_id;
+                header("location:../../view/company/dashboard.php");
             }
 
 

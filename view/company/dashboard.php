@@ -18,7 +18,7 @@
     <h1>Company Dashboard</h1>
 
     <?php if(isset($session_company_id)): ?>
-                <a class="nav-link" href="./logout.php" > Sign Out (<?=$session_company_email?>)</a>
+                <a class="nav-link" href="./logout.php" > Sign Out (<?=$session_company_name?>)</a>
     <? endif ?>
 
 </body>
