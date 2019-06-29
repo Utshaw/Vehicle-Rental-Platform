@@ -31,7 +31,7 @@ class DAO
         $statement = $pdo->prepare($sql);
 
         $statement->execute();
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'VehicleCompany');
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
 
         return $results;
     }

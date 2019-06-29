@@ -29,7 +29,7 @@ if(isset($_SESSION["company_id"])){
 
 
             if(count($results) > 0){
-                $company_id = $results[0]->company_ID;
+                $company_id = $results[0]->COMPANY_ID;
                 $company_email = $results[0]->EMAIL_ADDRESS;
 
                 $_SESSION["company_email"] = $company_email;

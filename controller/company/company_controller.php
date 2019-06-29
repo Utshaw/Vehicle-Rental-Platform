@@ -8,7 +8,7 @@ $companies = [];
 
 
 
-$vehicleCompany = new VehicleCompany();
+$vehicleCompany = new Company();
 
 $daoObject = DAO::getInstance();
 
