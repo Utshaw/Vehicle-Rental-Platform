@@ -1,14 +1,10 @@
 <?php
 
 
-class Customer {
+class Admin {
 
-    private $CUSTOMER_ID;
-    private $CONTACT_NAME;
-    private $COMPANY_NAME;
-    private $ADDRESS;
+    private $ADMIN_ID;
     private $EMAIL_ADDRESS;
-    private $CONTACT_NUMBER;
     private $PASSWORD;
 
 
@@ -23,9 +19,6 @@ class Customer {
     {
         $this->$name = $value;
     }
-
-
-
 
 
 }

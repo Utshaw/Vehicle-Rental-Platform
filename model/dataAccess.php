@@ -7,6 +7,21 @@ $pdo = $connection->connect();
 class DAO
 {
 
+
+    public function getAllAdmins()
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM ADMIN";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Admin');
+
+        return $results;
+    }
+
     public function getAllCompanies()
     {
 
@@ -78,6 +93,36 @@ class DAO
         $statement->bindValue(':password', $cust->PASSWORD, PDO::PARAM_STR);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
+
+        return $results;
+    }
+
+    public function companyLoginAttempt($cust)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_COMPANY WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':password', $cust->PASSWORD, PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
+
+    public function adminLoginAttempt($cust)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM ADMIN WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':password', $cust->PASSWORD, PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Admin');
 
         return $results;
     }
