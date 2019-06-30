@@ -87,13 +87,20 @@
 
 
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="date_from">Booking date</label>
-                                <input name="date" type="date" class="form-control" id="date_from" placeholder="Date required" value="" required>
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="date_from">Rent date from</label>
+                                <input name="date_from" type="date" class="form-control" id="date_from" placeholder="Date required" value="" required>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-3">
+                                <label for="date_from">Rent date upto</label>
+                                <input name="date_to" type="date" class="form-control" id="date_to" placeholder="Date required" value="" required>
                             </div>
 
                         </div>
 
+
+       
 
 
                         <input class="btn btn-primary " name="submit_search" type="submit" value="Search_for_bus" />
