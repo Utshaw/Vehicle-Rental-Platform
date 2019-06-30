@@ -8,14 +8,16 @@ $results = [];
 
 
 if(isset($_GET['num_passengers'])
-    && isset($_GET['date'])
+    && isset($_GET['date_from'])
+    && isset($_GET['date_to'])
     && isset($_GET['company'])
     && isset($_GET['min_cost'])
     && isset($_GET['max_cost'])){
 
     $bus = new Bus();
     $num_passengers = $_GET['num_passengers'];
-    $date= $_GET['date'];
+    $date_from= $_GET['date_from'];
+    $date_to= $_GET['date_to'];
     $min_cost= $_GET['min_cost'];
     $max_cost= $_GET['max_cost'];
     $company = $_GET['company'];
@@ -23,7 +25,8 @@ if(isset($_GET['num_passengers'])
     $bus->MIN_COST = $min_cost;
     $bus->MAX_COST = $max_cost;
     $bus->MAX_CAPACITY = $num_passengers;
-    $bus->DATE_REQUIRED = $date;
+    $bus->DATE_REQUIRED = $date_from;
+    $bus->DATE_TO = $date_to;
     $bus->COMPANY_ID = $company;
 
     $daoObject = DAO::getInstance();
