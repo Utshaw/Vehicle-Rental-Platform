@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Berwyn Ltd</title>
+    <title>MUS HIRE Ltd</title>
 
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -51,7 +51,12 @@
             <ul class="nav navbar-nav side-nav">
 
                 <li>
-                    <a href="../controller/admin_bus_list.php?"><i class="fa fa-fw fa fa-dashboard"></i>  All vehicles</a>
+                    <a href="./dashboard.php?"><i class="fa fa-fw fa fa-dashboard"></i>  All vehicles</a>
+                </li>
+
+
+                <li>
+                    <a href="./orders.php?"><i class="fa fa-fw fa fa-dashboard"></i>  All customer orders</a>
                 </li>
 
                 <li>
@@ -74,8 +79,10 @@
 
 
                 <?php if(isset($session_admin_id)): ?>
+                <li>
                 <a class="nav-link" href="./logout.php" > Sign Out (<?=$session_admin_email?>)</a>
-        <? endif ?>
+                </li>
+                <? endif ?>
 
 
 
