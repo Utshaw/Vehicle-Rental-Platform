@@ -36,7 +36,7 @@ $(document).ready(function() {
                 var stotal = parseFloat (value.price);
                 cartItemCount+=1;
                 total += stotal;
-                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.reqdate  + '</td><td> \u00A3 ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.reqdate  + '</td><td> &#2547;' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
                 checkoutArray.push({
 
                     id: value.id,
@@ -47,7 +47,7 @@ $(document).ready(function() {
 
             });
 
-            holderHTML2 += '<tr><td colspan="4" class="text-xs-right">Total</td><td class="text-xs-right">\u00A3 ' + total + '</td></tr>';
+            holderHTML2 += '<tr><td colspan="4" class="text-xs-right">Total</td><td class="text-xs-right">&#2547;' + total + '</td></tr>';
             $('#cart_output_checklist').html(holderHTML2);
 
             $('#cart_output_modal').html(holderHTML2);
@@ -95,7 +95,7 @@ $(document).ready(function() {
                             var stotal = parseFloat(value.price);
                             cartItemCount+=1;
                             total += stotal;
-                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.reqdate  + '</td><td>\u00A3 ' + value.price  +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.reqdate  + '</td><td>&#2547;' + value.price  +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
                             checkoutArray.push({
 
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
                         });
 
-                        holderHTML2 += '<tr><td colspan="4" class="text-xs-right">Total</td><td class="text-xs-right">\u00A3 ' + total + '</td></tr>';
+                        holderHTML2 += '<tr><td colspan="4" class="text-xs-right">Total</td><td class="text-xs-right">&#2547;' + total + '</td></tr>';
                         $('#cart_output_checklist').html(holderHTML2);
 
                         $('#cart_output_modal').html(holderHTML2);
