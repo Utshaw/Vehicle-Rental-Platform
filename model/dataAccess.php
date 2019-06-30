@@ -96,8 +96,7 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
 
         return $results;
-<<<<<<< HEAD
-=======
+
     }
 
     public function companyLoginAttempt($cust)
@@ -128,7 +127,6 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Admin');
 
         return $results;
->>>>>>> 6f54995b3225a4b991cf8515675b34d61badfbef
     }
 
     private static $daoObject;
@@ -205,8 +203,7 @@ class DAO
 
         return $id = $pdo->lastInsertId();
     }
-<<<<<<< HEAD
-=======
+
 
     public function addCompany($company)
     {
@@ -226,5 +223,4 @@ class DAO
 
         return $id = $pdo->lastInsertId();
     }
->>>>>>> 6f54995b3225a4b991cf8515675b34d61badfbef
 }
