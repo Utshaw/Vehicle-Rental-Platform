@@ -37,6 +37,51 @@ class DAO
         return $results;
     }
 
+
+    public function getMyAllBooking($vehicle_order) {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_ORDER AS VOR JOIN `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM JOIN  VEHICLE_MAKE AS VMK  ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID AND VOR.VEHICLE_ID = V.VEHICLE_ID WHERE VOR.CUSTOMER_ID = :customer_id ORDER BY VOR.BOOKING_DATE DESC";
+
+
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $vehicle_order->CUSTOMER_ID, PDO::PARAM_INT);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
+
+
+
+        return $results;
+
+    }
+
+
+
+
+    public function getAllBooking() {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_ORDER AS VOR JOIN `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM JOIN  VEHICLE_MAKE AS VMK JOIN CUSTOMERS AS C  ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID AND VOR.VEHICLE_ID = V.VEHICLE_ID AND C.CUSTOMER_ID = VOR.CUSTOMER_ID ORDER BY VOR.BOOKING_DATE DESC";
+
+
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
+
+
+
+        return $results;
+
+    }
+
+
+
+
+
     public function getSearchedBusAllCompany($bus)
     {
 
