@@ -38,6 +38,39 @@ class DAO
     }
 
 
+    public function removeAllCartItemsOfCustomer($customer) {
+
+        global $pdo;
+
+        $sql = "DELETE FROM CART WHERE CUSTOMER_ID = :customer_id";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
+
+
+        $statement->execute();
+
+    }
+
+
+    public function addVehicleOrder($orderObj)
+    {
+
+        global $pdo;
+
+        $sql = "INSERT INTO VEHICLE_ORDER(CUSTOMER_ID, VEHICLE_ID, BOOKING_DATE) VALUES(:customer_id, :vehicle_id, :booking_date)";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $orderObj->CUSTOMER_ID, PDO::PARAM_INT);
+        $statement->bindValue(':vehicle_id', $orderObj->VEHICLE_ID, PDO::PARAM_INT);
+        $statement->bindValue(':booking_date', $orderObj->BOOKING_DATE);
+
+        return $statement->execute();
+
+
+    }
+
+
     public function getMyAllBooking($vehicle_order) {
 
         global $pdo;
@@ -87,13 +120,17 @@ class DAO
 
         global $pdo;
         $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
-        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_required BETWEEN RENT_FROM AND RENT_TO)";
+        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_from BETWEEN RENT_FROM AND RENT_TO)
+        AND
+        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_to BETWEEN RENT_FROM AND RENT_TO)";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':rate_min', $bus->MIN_COST, PDO::PARAM_INT);
         $statement->bindValue(':rate_max', $bus->MAX_COST, PDO::PARAM_INT);
         $statement->bindValue(':cap', $bus->MAX_CAPACITY, PDO::PARAM_INT);
-        $statement->bindValue(':date_required', $bus->DATE_REQUIRED, PDO::PARAM_INT);
+        $statement->bindValue(':date_from', $bus->DATE_FROM, PDO::PARAM_INT);
+        $statement->bindValue(':date_to', $bus->DATE_TO, PDO::PARAM_INT);
+
 
 
         $statement->execute();
@@ -109,13 +146,16 @@ class DAO
 
         global $pdo;
         $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
-        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_required BETWEEN RENT_FROM AND RENT_TO) AND V.COMPANY_ID = :company_id";
+        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_from BETWEEN RENT_FROM AND RENT_TO) AND V.COMPANY_ID = :company_id
+        AND
+        VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_to BETWEEN RENT_FROM AND RENT_TO) AND V.COMPANY_ID = :company_id";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':rate_min', $bus->MIN_COST, PDO::PARAM_INT);
         $statement->bindValue(':rate_max', $bus->MAX_COST, PDO::PARAM_INT);
         $statement->bindValue(':cap', $bus->MAX_CAPACITY, PDO::PARAM_INT);
-        $statement->bindValue(':date_required', $bus->DATE_REQUIRED, PDO::PARAM_INT);
+        $statement->bindValue(':date_from', $bus->DATE_FROM, PDO::PARAM_INT);
+        $statement->bindValue(':date_to', $bus->DATE_TO, PDO::PARAM_INT);
         $statement->bindValue(':company_id', $bus->COMPANY_ID, PDO::PARAM_INT);
 
 

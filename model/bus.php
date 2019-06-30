@@ -17,6 +17,8 @@ class Bus {
     private $MAX_COST;
     private $DATE_REQUIRED;
     private $COMPANY_ID;
+    private $DATE_FROM;
+    private $DATE_TO;
 
     public function __get($name)
     {
