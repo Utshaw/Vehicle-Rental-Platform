@@ -24,7 +24,8 @@
 
 
     <?php require_once "header.php" ?>
-    <?php require_once "../controller/vehicle_company_controller.php" ?>
+
+    <?php require_once "../controller/company/company_controller.php" ?>
 
     <div class="alert alert-success alert-dismissable" id="home_promo_div">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -165,4 +166,8 @@
 
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 6f54995b3225a4b991cf8515675b34d61badfbef

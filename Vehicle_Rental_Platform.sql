@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 24, 2019 at 06:13 AM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Jun 29, 2019 at 07:21 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `Vehicle_Rental_Platform`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ADMIN`
+--
+
+CREATE TABLE `ADMIN` (
+  `ADMIN_ID` int(11) NOT NULL,
+  `EMAIL_ADDRESS` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ADMIN`
+--
+
+INSERT INTO `ADMIN` (`ADMIN_ID`, `EMAIL_ADDRESS`, `PASSWORD`) VALUES
+(1, 'utshaw105@gmail.com', '123456');
 
 -- --------------------------------------------------------
 
@@ -127,18 +146,24 @@ INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE
 
 CREATE TABLE `VEHICLE_COMPANY` (
   `COMPANY_ID` int(11) NOT NULL,
-  `COMPANY_NAME` varchar(255) NOT NULL
+  `COMPANY_NAME` varchar(255) NOT NULL,
+  `EMAIL_ADDRESS` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `ADDRESS` varchar(100) NOT NULL,
+  `CONTACT_NUMBER` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `VEHICLE_COMPANY`
 --
 
-INSERT INTO `VEHICLE_COMPANY` (`COMPANY_ID`, `COMPANY_NAME`) VALUES
-(1, 'AZ Autos'),
-(2, 'NR Corporation'),
-(3, 'Shuvo Enterprise'),
-(4, 'Shakil Enterprise');
+INSERT INTO `VEHICLE_COMPANY` (`COMPANY_ID`, `COMPANY_NAME`, `EMAIL_ADDRESS`, `PASSWORD`, `ADDRESS`, `CONTACT_NUMBER`) VALUES
+(1, 'AZ Autos', 'utshaw105@gmail.com', '123456', 'dhaka', '1521332156'),
+(2, 'NR Corporation', '0', '0', '0', '0'),
+(3, 'Shuvo Enterprise', '0', '0', '0', '0'),
+(4, 'Shakil Enterprise', '0', '0', '0', '0'),
+(5, 'masfiq', 'masfiq15@gmail.com', '123456', 'dhaka', '2147483647'),
+(6, 'sakib', 'sakib@gmail.com', '123456', 'Dhaka', '1521332155');
 
 -- --------------------------------------------------------
 
@@ -231,6 +256,12 @@ INSERT INTO `VEHICLE_ORDER` (`ORDER_ID`, `CUSTOMER_ID`, `VEHICLE_ID`, `BOOKING_D
 --
 
 --
+-- Indexes for table `ADMIN`
+--
+ALTER TABLE `ADMIN`
+  ADD PRIMARY KEY (`ADMIN_ID`);
+
+--
 -- Indexes for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
@@ -282,6 +313,12 @@ ALTER TABLE `VEHICLE_ORDER`
 --
 
 --
+-- AUTO_INCREMENT for table `ADMIN`
+--
+ALTER TABLE `ADMIN`
+  MODIFY `ADMIN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
@@ -303,7 +340,7 @@ ALTER TABLE `VEHICLE`
 -- AUTO_INCREMENT for table `VEHICLE_COMPANY`
 --
 ALTER TABLE `VEHICLE_COMPANY`
-  MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `VEHICLE_MAKE`

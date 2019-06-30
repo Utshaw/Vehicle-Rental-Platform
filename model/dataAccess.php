@@ -7,6 +7,21 @@ $pdo = $connection->connect();
 class DAO
 {
 
+
+    public function getAllAdmins()
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM ADMIN";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Admin');
+
+        return $results;
+    }
+
     public function getAllCompanies()
     {
 
@@ -16,7 +31,8 @@ class DAO
         $statement = $pdo->prepare($sql);
 
         $statement->execute();
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'VehicleCompany');
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
 
         return $results;
     }
@@ -80,6 +96,39 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
 
         return $results;
+<<<<<<< HEAD
+=======
+    }
+
+    public function companyLoginAttempt($cust)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_COMPANY WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':password', $cust->PASSWORD, PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
+
+    public function adminLoginAttempt($cust)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM ADMIN WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':password', $cust->PASSWORD, PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Admin');
+
+        return $results;
+>>>>>>> 6f54995b3225a4b991cf8515675b34d61badfbef
     }
 
     private static $daoObject;
@@ -122,7 +171,21 @@ class DAO
         return $results;
     }
 
+    public function checkEmailValidityCompany($company)
+    {
 
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_COMPANY WHERE EMAIL_ADDRESS = :email";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':email', $company->EMAIL_ADDRESS, PDO::PARAM_STR);
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
 
     public function addCustomer($customer)
     {
@@ -142,4 +205,26 @@ class DAO
 
         return $id = $pdo->lastInsertId();
     }
+<<<<<<< HEAD
+=======
+
+    public function addCompany($company)
+    {
+
+        global $pdo;
+        $sql = "INSERT INTO VEHICLE_COMPANY(COMPANY_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, PASSWORD) VALUES(:c_name, :address, :email, :phone, :password)";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':c_name', $company->COMPANY_NAME, PDO::PARAM_STR);
+        $statement->bindValue(':address', $company->ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':email', $company->EMAIL_ADDRESS, PDO::PARAM_STR);
+        $statement->bindValue(':phone', $company->CONTACT_NUMBER, PDO::PARAM_STR);
+        $statement->bindValue(':password', $company->PASSWORD, PDO::PARAM_STR);
+
+        $statement->execute();
+
+
+        return $id = $pdo->lastInsertId();
+    }
+>>>>>>> 6f54995b3225a4b991cf8515675b34d61badfbef
 }

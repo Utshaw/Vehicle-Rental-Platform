@@ -1,5 +1,7 @@
 
 
+
+
 <div class="content">
     <!-- content changes on each page -->
     <div class="container" id="searched_buses">
@@ -35,7 +37,8 @@
                     <h5 class="card-title"><?= $bus->MAKE_NAME ?></h5>
                     <p class="card-text">DAILY RATE: &#2547; <?= $bus->DAILY_RATE ?></p>
                     <p>CAPACITY: <?=$bus->MAX_CAPACITY?></p>
-                    
+
+                    <p>COMPANY: <?=$bus->COMPANY_NAME?></p>
                     <p><button class="cartitem btn btn-primary" data-reqdate="<?=$date?>" data-id="<?=$bus->VEHICLE_ID?>" data-make="<?=$bus->MAKE_NAME?>" data-model="<?= $bus->MODEL_NAME ?>" data-price="<?= $bus->DAILY_RATE ?>">Add to cart</button></p>
                 </div>
                 <div class="card-footer">
