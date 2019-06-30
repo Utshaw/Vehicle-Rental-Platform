@@ -30,9 +30,9 @@ if(isset($_SESSION["company_id"])){
 
             if(count($results) > 0){
                 $company_id = $results[0]->COMPANY_ID;
-                $company_email = $results[0]->EMAIL_ADDRESS;
+                $company_email = $results[0]->COMPANY_NAME;
 
-                $_SESSION["company_email"] = $company_email;
+                $_SESSION["company_name"] = $company_email;
                 $_SESSION["company_id"] = $company_id;
                 header("location:dashboard.php");
 
