@@ -59,7 +59,7 @@ require_once "../../controller/company/company_login_controller.php";
 
 
 
-
+    <a href="./register.php" class="register">Register</a>
     <p class="mt-5 mb-3 login_fail" ><?=$message?></p>
 
 

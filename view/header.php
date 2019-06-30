@@ -37,9 +37,17 @@
                     <a class="nav-link" href="./logout.php" > Sign Out (<?=$session_customer_name?>)</a>
                 <?php else: ?>
                     <a class="nav-link" href="./login.php" > Sign In</a>
+
+                    
                 <?php endif ?>
             </li>
 
+            <li class="nav-item" >
+            <?php if(!isset($session_customer_id)): ?>
+                <a class="nav-link" href="./company/login.php" > Company registration</a>
+
+            <?php endif?>
+            </li>
 
         </ul>
 
