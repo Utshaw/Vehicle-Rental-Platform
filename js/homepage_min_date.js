@@ -15,6 +15,7 @@ if(month<10){
 today = year+'-'+month+'-'+day;
 
 document.getElementById("date_from").setAttribute("min", today);
+document.getElementById("date_to").setAttribute("min", today);
 
 
 
