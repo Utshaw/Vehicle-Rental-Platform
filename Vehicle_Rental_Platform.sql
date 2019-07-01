@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2019 at 08:54 পূর্বাহ্ণ
+-- Generation Time: Jul 01, 2019 at 10:05 পূর্বাহ্ণ
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Vehicle-Rental-Platform`
+-- Database: `Vehicle_Rental_Platform`
 --
 
 -- --------------------------------------------------------
@@ -115,26 +115,26 @@ CREATE TABLE `VEHICLE` (
 
 INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `MAX_CAPACITY`, `COMPANY_ID`) VALUES
 (98716, 1, 2, 85.23, 'VOLVO_Hatchback.jpg', 22, 1),
-(98717, 2, 1, 70.00, 'MERCEDES BENZ_Sedan.jpg', 16, 1),
-(98718, 2, 4, 80.00, 'MERCEDES BENZ_SUV.jpg', 24, 1),
-(98719, 2, 1, 120.00, 'MERCEDES BENZ_Sedan.jpg', 33, 1),
-(98720, 2, 1, 130.00, 'MERCEDES BENZ_Sedan.jpg', 49, 1),
-(98721, 2, 1, 150.00, 'MERCEDES BENZ_Sedan.jpg', 73, 1),
+(98717, 2, 1, 70.00, 'MERCEDES BENZ_Sedan1.jpg', 16, 1),
+(98718, 2, 4, 80.00, 'suv merc black.jpeg', 24, 1),
+(98719, 2, 1, 120.00, 'suv merc red.jpeg', 33, 1),
+(98720, 2, 1, 130.00, 'suv merc white.jpeg', 49, 1),
+(98721, 2, 1, 150.00, 'merceds_benz_sedan2.jpg', 73, 1),
 (98722, 3, 7, 140.00, 'SCANIA_Micro Bus.jpg', 72, 1),
-(98723, 3, 7, 90.00, 'SCANIA_Micro Bus.jpg', 16, 1),
-(98724, 3, 7, 100.00, 'SCANIA_Micro Bus.jpg', 24, 1),
-(98725, 3, 7, 140.00, 'SCANIA_Micro Bus.jpg', 49, 1),
+(98723, 3, 7, 90.00, 'mini scania black double.jpeg', 16, 1),
+(98724, 3, 7, 100.00, 'mini scania green .jpg', 24, 1),
+(98725, 3, 7, 140.00, 'mini scania white .jpeg', 49, 1),
 (98730, 1, 1, 12.00, 'VOLVO_Sedan.jpg', 12, 1),
-(98731, 1, 1, 123.00, 'VOLVO_Sedan.jpg', 123, 1),
-(98732, 1, 1, 111.00, 'VOLVO_Sedan.jpg', 111, 1),
-(98733, 1, 1, 123.00, 'VOLVO_Sedan.jpg', 223, 1),
-(98734, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 155, 1),
-(98735, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 200, 1),
-(98736, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 220, 1),
-(98737, 1, 1, 149.00, 'VOLVO_Sedan.jpg', 10, 1),
-(98738, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 20, 1),
-(98739, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 220, 1),
-(98740, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 222, 1);
+(98731, 1, 1, 123.00, 'sedan volvo ash.jpeg', 123, 1),
+(98732, 1, 1, 111.00, 'sedan volvo black.jpeg', 111, 1),
+(98733, 1, 1, 123.00, 'sedan volvo blue.jpeg', 223, 1),
+(98734, 1, 1, 145.00, 'sedan volvo red.jpeg', 155, 1),
+(98735, 1, 1, 145.00, 'volvo_sedan1.jpg', 200, 1),
+(98736, 1, 1, 145.00, 'volvo_sedan2.jpg', 220, 1),
+(98737, 1, 1, 149.00, 'volvo_sedan3.jpg', 10, 1),
+(98738, 1, 1, 145.00, 'volvo_sedan4.jpg', 20, 1),
+(98739, 1, 1, 145.00, 'volvo_sedan5.jpg', 220, 1),
+(98740, 1, 1, 145.00, 'volvo_sedan6.jpg', 222, 1);
 
 -- --------------------------------------------------------
 
