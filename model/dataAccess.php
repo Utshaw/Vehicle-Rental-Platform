@@ -53,6 +53,39 @@ class DAO
     }
 
 
+    public function addVehicle($v)
+    {
+
+        global $pdo;
+
+        $mkid = $v->MAKE_ID;
+        $mid = $v->MODEL_ID;
+        $rate = $v->DAILY_RATE;
+        $im = $v->IMAGE;
+        $mcap = $v->MAX_CAPACITY;
+        $company_id = $v->COMPANY_ID;
+
+
+        $sql = "INSERT INTO VEHICLE (MAKE_ID, MODEL_ID, DAILY_RATE, IMAGE, MAX_CAPACITY, COMPANY_ID) VALUES(:mkid, :mid, :rate, :im, :mcap, :company_id)";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->bindValue(':mkid', $mkid, PDO::PARAM_INT);
+        $statement->bindValue(':mid', $mid, PDO::PARAM_INT);
+        $statement->bindValue(':rate', $rate);
+        $statement->bindValue(':im', $im, PDO::PARAM_STR);
+        $statement->bindValue(':mcap', $mcap, PDO::PARAM_INT);
+        $statement->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+
+        
+//    $statement->debugDumpParams();
+        $statement->execute();
+
+        return $id = $pdo->lastInsertId();
+
+    }
+
+
     public function addVehicleOrder($orderObj)
     {
 
@@ -92,6 +125,34 @@ class DAO
 
     }
 
+
+    public function getAllMakes()
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_MAKE ORDER BY MAKE_ID DESC";
+
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Make');
+
+//    print_r($results);
+        return $results;
+    }
+
+    public function getAllModels()
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE_MODEL ORDER BY MODEL_ID DESC";
+
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Model');
+
+//    print_r($results);
+        return $results;
+    }
 
 
 

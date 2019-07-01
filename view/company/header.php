@@ -55,25 +55,10 @@
                 </li>
 
 
-          
-
                 <li>
-                    <a href="../controller/admin_add_make.php?"><i class="fa fa-bus" ></i>  Add manufacturer (Make)</a>
+                    <a href="./vehicle_add.php?"><i class="fa fa-bus"></i>  Add new vehicle</a>
                 </li>
 
-
-                <li>
-                    <a href="../controller/admin_add_model.php?"><i class="fa fa-bus"></i>  Add model</a>
-                </li>
-
-                <li>
-                    <a href="../controller/admin_vehicle_submit.php?"><i class="fa fa-bus"></i>  Add new vehicle</a>
-                </li>
-
-
-                <li>
-                    <a href="../controller/admin_promotion.php?"><i class="fa fa-money"></i>  Add promotion</a>
-                </li>
 
 
                 <?php if(isset($session_company_id)): ?>
