@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2019 at 10:05 পূর্বাহ্ণ
+-- Generation Time: Jul 01, 2019 at 10:14 পূর্বাহ্ণ
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -129,11 +129,11 @@ INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE
 (98732, 1, 1, 111.00, 'sedan volvo black.jpeg', 111, 1),
 (98733, 1, 1, 123.00, 'sedan volvo blue.jpeg', 223, 1),
 (98734, 1, 1, 145.00, 'sedan volvo red.jpeg', 155, 1),
-(98735, 1, 1, 145.00, 'volvo_sedan1.jpg', 200, 1),
-(98736, 1, 1, 145.00, 'volvo_sedan2.jpg', 220, 1),
-(98737, 1, 1, 149.00, 'volvo_sedan3.jpg', 10, 1),
-(98738, 1, 1, 145.00, 'volvo_sedan4.jpg', 20, 1),
-(98739, 1, 1, 145.00, 'volvo_sedan5.jpg', 220, 1),
+(98735, 1, 1, 145.00, 'volvo_sedan1.jpeg', 200, 1),
+(98736, 1, 1, 145.00, 'volvo_sedan2.jpeg', 220, 1),
+(98737, 1, 1, 149.00, 'volvo_sedan3.jpeg', 10, 1),
+(98738, 1, 1, 145.00, 'volvo_sedan4.jpeg', 20, 1),
+(98739, 1, 1, 145.00, 'volvo_sedan5.jpeg', 220, 1),
 (98740, 1, 1, 145.00, 'volvo_sedan6.jpg', 222, 1);
 
 -- --------------------------------------------------------
