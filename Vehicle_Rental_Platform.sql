@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 29, 2019 at 07:21 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jul 01, 2019 at 08:14 পূর্বাহ্ণ
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Vehicle_Rental_Platform`
+-- Database: `Vehicle-Rental-Platform`
 --
 
 -- --------------------------------------------------------
@@ -116,27 +114,27 @@ CREATE TABLE `VEHICLE` (
 --
 
 INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `MAX_CAPACITY`, `COMPANY_ID`) VALUES
-(98716, 1, 2, 85.23, 'volvo.jpg', 22, 1),
-(98717, 2, 1, 70.00, 'mercedes.jpg', 16, 1),
-(98718, 2, 4, 80.00, 'mercedes.jpg', 24, 1),
-(98719, 2, 1, 120.00, 'mercedes.jpg', 33, 1),
-(98720, 2, 1, 130.00, 'mercedes.jpg', 49, 1),
-(98721, 2, 1, 150.00, 'mercedes.jpg', 73, 1),
-(98722, 3, 1, 140.00, 'scania.jpg', 72, 1),
-(98723, 3, 1, 90.00, 'scania.jpg', 16, 1),
-(98724, 3, 1, 100.00, 'scania.jpg', 24, 1),
-(98725, 3, 1, 140.00, 'scania.jpg', 49, 1),
-(98730, 1, 1, 12.00, 'default.jpg', 12, 1),
-(98731, 1, 1, 123.00, 'default.jpg', 123, 1),
-(98732, 1, 1, 111.00, 'default.jpg', 111, 1),
-(98733, 1, 1, 123.00, 'default.jpg', 223, 1),
-(98734, 1, 1, 145.00, 'default.jpg', 155, 1),
-(98735, 1, 1, 145.00, 'default.jpg', 200, 1),
-(98736, 1, 1, 145.00, 'default.jpg', 220, 1),
-(98737, 1, 1, 149.00, 'default.jpg', 10, 1),
-(98738, 1, 1, 145.00, 'default.jpg', 20, 1),
-(98739, 1, 1, 145.00, 'default.jpg', 220, 1),
-(98740, 1, 1, 145.00, 'default.jpg', 222, 1);
+(98716, 1, 2, 85.23, 'VOLVO_Hatchback.jpg', 22, 1),
+(98717, 2, 1, 70.00, 'MERCEDES BENZ_Sedan.jpg', 16, 1),
+(98718, 2, 4, 80.00, 'MERCEDES BENZ_SUV.jpg', 24, 1),
+(98719, 2, 1, 120.00, 'MERCEDES BENZ_Sedan.jpg', 33, 1),
+(98720, 2, 1, 130.00, 'MERCEDES BENZ_Sedan.jpg', 49, 1),
+(98721, 2, 1, 150.00, 'MERCEDES BENZ_Sedan.jpg', 73, 1),
+(98722, 3, 7, 140.00, 'SCANIA_Micro Bus.jpg', 72, 1),
+(98723, 3, 7, 90.00, 'SCANIA_Micro Bus.jpg', 16, 1),
+(98724, 3, 7, 100.00, 'SCANIA_Micro Bus.jpg', 24, 1),
+(98725, 3, 7, 140.00, 'SCANIA_Micro Bus.jpg', 49, 1),
+(98730, 1, 1, 12.00, 'VOLVO_Sedan.jpg', 12, 1),
+(98731, 1, 1, 123.00, 'VOLVO_Sedan.jpg', 123, 1),
+(98732, 1, 1, 111.00, 'VOLVO_Sedan.jpg', 111, 1),
+(98733, 1, 1, 123.00, 'VOLVO_Sedan.jpg', 223, 1),
+(98734, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 155, 1),
+(98735, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 200, 1),
+(98736, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 220, 1),
+(98737, 1, 1, 149.00, 'VOLVO_Sedan.jpg', 10, 1),
+(98738, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 20, 1),
+(98739, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 220, 1),
+(98740, 1, 1, 145.00, 'VOLVO_Sedan.jpg', 222, 1);
 
 -- --------------------------------------------------------
 
@@ -317,49 +315,41 @@ ALTER TABLE `VEHICLE_ORDER`
 --
 ALTER TABLE `ADMIN`
   MODIFY `ADMIN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
   MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123045;
-
 --
 -- AUTO_INCREMENT for table `PROMOTION`
 --
 ALTER TABLE `PROMOTION`
   MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE`
 --
 ALTER TABLE `VEHICLE`
   MODIFY `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98741;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_COMPANY`
 --
 ALTER TABLE `VEHICLE_COMPANY`
   MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_MAKE`
 --
 ALTER TABLE `VEHICLE_MAKE`
   MODIFY `MAKE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_MODEL`
 --
 ALTER TABLE `VEHICLE_MODEL`
   MODIFY `MODEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_ORDER`
 --
 ALTER TABLE `VEHICLE_ORDER`
   MODIFY `ORDER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- Constraints for dumped tables
 --
@@ -383,7 +373,6 @@ ALTER TABLE `VEHICLE`
 ALTER TABLE `VEHICLE_ORDER`
   ADD CONSTRAINT `ORDER_CUSTOMER_FK` FOREIGN KEY (`CUSTOMER_ID`) REFERENCES `CUSTOMERS` (`CUSTOMER_ID`) ON DELETE CASCADE ON UPDATE SET NULL,
   ADD CONSTRAINT `ORDER_VEHICLE_FK` FOREIGN KEY (`VEHICLE_ID`) REFERENCES `VEHICLE` (`VEHICLE_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
