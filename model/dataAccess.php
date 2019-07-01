@@ -58,12 +58,14 @@ class DAO
 
         global $pdo;
 
-        $sql = "INSERT INTO VEHICLE_ORDER(CUSTOMER_ID, VEHICLE_ID, BOOKING_DATE) VALUES(:customer_id, :vehicle_id, :booking_date)";
+        $sql = "INSERT INTO VEHICLE_ORDER(CUSTOMER_ID, VEHICLE_ID, BOOKING_DATE, RENT_FROM,  RENT_TO) VALUES(:customer_id, :vehicle_id, :booking_date, :date_from, :date_to)";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':customer_id', $orderObj->CUSTOMER_ID, PDO::PARAM_INT);
         $statement->bindValue(':vehicle_id', $orderObj->VEHICLE_ID, PDO::PARAM_INT);
         $statement->bindValue(':booking_date', $orderObj->BOOKING_DATE);
+        $statement->bindValue(':date_from', $orderObj->DATE_FROM);
+        $statement->bindValue(':date_to', $orderObj->DATE_TO);
 
         return $statement->execute();
 
@@ -156,6 +158,28 @@ class DAO
         $statement->bindValue(':cap', $bus->MAX_CAPACITY, PDO::PARAM_INT);
         $statement->bindValue(':date_from', $bus->DATE_FROM, PDO::PARAM_INT);
         $statement->bindValue(':date_to', $bus->DATE_TO, PDO::PARAM_INT);
+        $statement->bindValue(':company_id', $bus->COMPANY_ID, PDO::PARAM_INT);
+
+
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
+
+
+
+        return $results;
+    }
+
+
+
+
+    public function getBusOfCompany($bus)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  
+        V.COMPANY_ID = :company_id";
+
+        $statement = $pdo->prepare($sql);
         $statement->bindValue(':company_id', $bus->COMPANY_ID, PDO::PARAM_INT);
 
 

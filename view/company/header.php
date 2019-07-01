@@ -55,9 +55,7 @@
                 </li>
 
 
-                <li>
-                    <a href="./orders.php?"><i class="fa fa-fw fa fa-dashboard"></i>  All customer orders</a>
-                </li>
+          
 
                 <li>
                     <a href="../controller/admin_add_make.php?"><i class="fa fa-bus" ></i>  Add manufacturer (Make)</a>
@@ -78,9 +76,9 @@
                 </li>
 
 
-                <?php if(isset($session_admin_id)): ?>
+                <?php if(isset($session_company_id)): ?>
                 <li>
-                <a class="nav-link" href="./logout.php" > Sign Out (<?=$session_admin_email?>)</a>
+                <a class="nav-link" href="./logout.php" > Sign Out (<?=$session_company_name?>)</a>
                 </li>
                 <? endif ?>
 
