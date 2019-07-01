@@ -39,7 +39,7 @@
                     <p>CAPACITY: <?=$bus->MAX_CAPACITY?></p>
 
                     <p>COMPANY: <?=$bus->COMPANY_NAME?></p>
-                    <p><button class="cartitem btn btn-primary" data-reqdate="<?=$date?>" data-id="<?=$bus->VEHICLE_ID?>" data-make="<?=$bus->MAKE_NAME?>" data-model="<?= $bus->MODEL_NAME ?>" data-price="<?= $bus->DAILY_RATE ?>">Add to cart</button></p>
+                    <p><button class="cartitem btn btn-primary" data-date_from="<?=$date_from?>" data-date_to="<?=$date_to?>"  data-reqdate="<?=$date?>" data-id="<?=$bus->VEHICLE_ID?>" data-make="<?=$bus->MAKE_NAME?>" data-model="<?= $bus->MODEL_NAME ?>" data-price="<?= $bus->DAILY_RATE ?>">Add to cart</button></p>
                 </div>
                 <div class="card-footer">
                     <small><?=$bus->COMPANY_NAME?></small> <br>

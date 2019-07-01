@@ -96,7 +96,8 @@ require_once "../controller/login_check.php";
                         <th>#</th>
                         <th>Vehicle</th>
                         <th>Model</th>
-                        <th>Booking date</th>
+                        <th>Date From</th>
+                        <th>Date To</th>
                         <th>Cost</th>
                         <th>Remove</th>
                     </tr>
