@@ -36,11 +36,13 @@ $(document).ready(function() {
                 var stotal = parseFloat (value.price);
                 cartItemCount+=1;
                 total += stotal;
-                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.date_from  + '</td><td> &#2547;' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.date_from  + '</td><td>' + value.date_to +  '</td><td> &#2547;' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
                 checkoutArray.push({
 
                     id: value.id,
-                    date: value.date_from
+                    date: value.booking_date,
+                    date_from: value.date_from,
+                    date_to: value.date_to
                 });
 
 
@@ -76,7 +78,7 @@ $(document).ready(function() {
                                 id: results2[i].VEHICLE_ID,
                                 make: results2[i].MAKE_NAME,
                                 model: results2[i].MODEL_NAME,
-                                reqdate: results2[i].BOOKING_DATE,
+                                booking_date: results2[i].BOOKING_DATE,
                                 price: results2[i].DAILY_RATE,
                                 date_from:results2[i].DATE_FROM,
                                 date_to:results2[i].DATE_TO
@@ -97,12 +99,14 @@ $(document).ready(function() {
                             var stotal = parseFloat(value.price);
                             cartItemCount+=1;
                             total += stotal;
-                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.date_from  + '</td><td>&#2547;' + value.price  +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.date_from  +  '</td><td>' + value.date_to + '</td><td>&#2547;' + value.price  +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
                             checkoutArray.push({
 
                                 id: value.id,
-                                date: value.date_from
+                                date: value.booking_date,
+                                date_from: value.date_from,
+                                date_to: value.date_to
                             });
 
 

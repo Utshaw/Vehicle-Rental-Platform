@@ -16,6 +16,7 @@ if(isset($_GET['num_passengers'])
 
     $bus = new Bus();
     $num_passengers = $_GET['num_passengers'];
+    $booking_date = date("Y-m-d") ;
     $date_from= $_GET['date_from'];
     $date_to= $_GET['date_to'];
     $min_cost= $_GET['min_cost'];

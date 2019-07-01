@@ -33,7 +33,9 @@ $(document).ready(function () {
                     cartArray.push({
 
                         id: value.id,
-                        date: value.date_from
+                        date: value.booking_date,
+                        date_from: value.date_from,
+                        date_to: value.date_to
                     });
 
                     cartArray.push(
@@ -101,7 +103,9 @@ $(document).ready(function () {
                     cartArray.push({
 
                         id: iteminfo.id,
-                        date: iteminfo.date_from
+                        date: iteminfo.booking_date,
+                        date_from: iteminfo.date_from,
+                        date_to: iteminfo.date_to
                     });
 
                     cartArray.push(
@@ -151,7 +155,7 @@ $(document).ready(function () {
                 var stotal = parseFloat(value.price);
                 cartItemCount += 1;
                 total += stotal;
-                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from +  '</td><td>' + value.date_to + '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
             });
 
@@ -191,7 +195,7 @@ $(document).ready(function () {
                             var stotal = parseFloat(value.price);
                             cartItemCount += 1;
                             total += stotal;
-                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from +  '</td><td>' + value.date_to +  '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
                         });
 

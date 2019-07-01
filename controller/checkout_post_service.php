@@ -21,11 +21,15 @@ if(isset($_POST['checkout_arr'])){
     for($i = 0; $i < count($checkoutArr) - 1; $i++){
         $vehicle_id = $checkoutArr[$i]['id'];
         $booking_date = $checkoutArr[$i]['date'];
+        $date_from = $checkoutArr[$i]['date_from'];
+        $date_to = $checkoutArr[$i]['date_to'];
 
         $order = new VehicleOrder();
         $order->CUSTOMER_ID =  htmlentities($customer_id);
         $order->VEHICLE_ID =  htmlentities($vehicle_id);
         $order->BOOKING_DATE =  htmlentities($booking_date);
+        $order->DATE_FROM =  htmlentities($date_from);
+        $order->DATE_TO =  htmlentities($date_to);
 
         $rslt =  $daoObject->addVehicleOrder($order);
 
@@ -37,10 +41,10 @@ if(isset($_POST['checkout_arr'])){
     $customer = new Customer();
     $customer->CUSTOMER_ID = $customer_id;
 
-    if($retVal == true){
+    // if($retVal == true){
 
-        $daoObject->removeAllCartItemsOfCustomer($customer);
-    }
+    //     $daoObject->removeAllCartItemsOfCustomer($customer);
+    // }
 
 
     /*This echo is for communication channel with the client side*/echo $retVal;
