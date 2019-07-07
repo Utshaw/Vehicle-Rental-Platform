@@ -7,6 +7,35 @@ $pdo = $connection->connect();
 class DAO
 {
 
+    public function getCustomerWithVerificationCode($customer)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM CUSTOMERS WHERE CUSTOMER_ID = :customer_id AND VERIFICATION_CODE = :verification_code";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
+        $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
+        return $results;
+    }
+
+
+    public function setCustomerVerificationCodeNull($customer)
+    {
+
+        global $pdo;
+        $sql = "UPDATE CUSTOMERS SET VERIFICATION_CODE = :verification_code WHERE CUSTOMER_ID = :customer_id  ";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
+        $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+
 
     public function getAllAdmins()
     {
@@ -38,7 +67,8 @@ class DAO
     }
 
 
-    public function removeAllCartItemsOfCustomer($customer) {
+    public function removeAllCartItemsOfCustomer($customer)
+    {
 
         global $pdo;
 
@@ -49,7 +79,6 @@ class DAO
 
 
         $statement->execute();
-
     }
 
 
@@ -77,12 +106,11 @@ class DAO
         $statement->bindValue(':mcap', $mcap, PDO::PARAM_INT);
         $statement->bindValue(':company_id', $company_id, PDO::PARAM_INT);
 
-        
-//    $statement->debugDumpParams();
+
+        //    $statement->debugDumpParams();
         $statement->execute();
 
         return $id = $pdo->lastInsertId();
-
     }
 
 
@@ -101,12 +129,11 @@ class DAO
         $statement->bindValue(':date_to', $orderObj->DATE_TO);
 
         return $statement->execute();
-
-
     }
 
 
-    public function getMyAllBooking($vehicle_order) {
+    public function getMyAllBooking($vehicle_order)
+    {
 
         global $pdo;
         $sql = "SELECT * FROM VEHICLE_ORDER AS VOR JOIN `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM JOIN  VEHICLE_MAKE AS VMK  ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID AND VOR.VEHICLE_ID = V.VEHICLE_ID WHERE VOR.CUSTOMER_ID = :customer_id ORDER BY VOR.BOOKING_DATE DESC";
@@ -122,7 +149,6 @@ class DAO
 
 
         return $results;
-
     }
 
 
@@ -136,7 +162,7 @@ class DAO
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Make');
 
-//    print_r($results);
+        //    print_r($results);
         return $results;
     }
 
@@ -150,13 +176,14 @@ class DAO
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Model');
 
-//    print_r($results);
+        //    print_r($results);
         return $results;
     }
 
 
 
-    public function getAllBooking() {
+    public function getAllBooking()
+    {
 
         global $pdo;
         $sql = "SELECT * FROM VEHICLE_ORDER AS VOR JOIN `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM JOIN  VEHICLE_MAKE AS VMK JOIN CUSTOMERS AS C  ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID AND VOR.VEHICLE_ID = V.VEHICLE_ID AND C.CUSTOMER_ID = VOR.CUSTOMER_ID ORDER BY VOR.BOOKING_DATE DESC";
@@ -171,7 +198,6 @@ class DAO
 
 
         return $results;
-
     }
 
 
@@ -257,7 +283,7 @@ class DAO
     {
 
         global $pdo;
-        $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password";
+        $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password AND VERIFICATION_CODE IS NULL";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
@@ -266,7 +292,6 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
 
         return $results;
-
     }
 
     public function companyLoginAttempt($cust)
@@ -354,11 +379,19 @@ class DAO
         return $results;
     }
 
+    public function sendEmail($customer)
+    {
+        
+        $email = new Email($customer->CUSTOMER_ID, $customer->EMAIL_ADDRESS, $customer->VERIFICATION_CODE);
+        // var_dump($email);
+        $email->sendEmail();
+    }
+
     public function addCustomer($customer)
     {
 
         global $pdo;
-        $sql = "INSERT INTO CUSTOMERS(CONTACT_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, PASSWORD) VALUES(:c_name, :address, :email, :phone, :password)";
+        $sql = "INSERT INTO CUSTOMERS(CONTACT_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, PASSWORD, VERIFICATION_CODE) VALUES(:c_name, :address, :email, :phone, :password, :verification_code)";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':c_name', $customer->CONTACT_NAME, PDO::PARAM_STR);
@@ -366,11 +399,17 @@ class DAO
         $statement->bindValue(':email', $customer->EMAIL_ADDRESS, PDO::PARAM_STR);
         $statement->bindValue(':phone', $customer->CONTACT_NUMBER, PDO::PARAM_STR);
         $statement->bindValue(':password', $customer->PASSWORD, PDO::PARAM_STR);
+        $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
+
 
         $statement->execute();
 
 
-        return $id = $pdo->lastInsertId();
+
+        $id = $pdo->lastInsertId();
+        $customer->CUSTOMER_ID = $id ;
+        $this->sendEmail($customer);
+        return $id;
     }
 
 

@@ -37,7 +37,7 @@ if(isset($_SESSION["customer_id"])){
                 header("location:index.php");
 
             }else{
-                $message = "Incorrect email or password!";
+                $message = "Incorrect email or password! Otherwise, unregistered account";
             }
 
 
