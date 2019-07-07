@@ -6,6 +6,7 @@
 require_once  "./header.php" ;
 
 require_once "../../controller/company/vehicle_submit.php";
+// require_once "../../controller/company/image_upload.php";
 
 
 
@@ -35,7 +36,7 @@ require_once "../../controller/company/vehicle_submit.php";
             </div>
 
             <div class="panel-body">
-                <form class="form-horizontal row-border" action="" method="post">
+                <form class="form-horizontal row-border" action="" method="post" enctype="multipart/form-data">
 
 
                     <div class="form-group">
