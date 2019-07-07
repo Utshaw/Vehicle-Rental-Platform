@@ -11,7 +11,7 @@ class DAO
     {
 
         global $pdo;
-        $sql = "SELECT * FROM CUSTOMERS WHERE CUSTOMER_ID = :customer_id AND VERIFICATION_CODE = :verification_code";
+        $sql = "SELECT * FROM CUSTOMERS WHERE CUSTOMER_ID = :customer_id AND VERIFICATION_CODE = :verification_code AND BLOCKED = 0";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
@@ -27,11 +27,26 @@ class DAO
     {
 
         global $pdo;
-        $sql = "UPDATE CUSTOMERS SET VERIFICATION_CODE = :verification_code WHERE CUSTOMER_ID = :customer_id  ";
+        $sql = "UPDATE CUSTOMERS SET VERIFICATION_CODE = NULL WHERE CUSTOMER_ID = :customer_id  ";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
-        $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
+        // $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+
+
+    public function changeCustomerBlockValue($customer)
+    {
+
+        global $pdo;
+        $sql = "UPDATE CUSTOMERS SET BLOCKED = :block_value WHERE CUSTOMER_ID = :customer_id  ";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
+        $statement->bindValue(':block_value', $customer->BLOCKED, PDO::PARAM_INT);
+        // $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
         $statement->execute();
     }
 
@@ -62,6 +77,22 @@ class DAO
         $statement->execute();
 
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
+
+
+    public function getAllCustomers()
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM CUSTOMERS";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
 
         return $results;
     }
@@ -283,7 +314,7 @@ class DAO
     {
 
         global $pdo;
-        $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password AND VERIFICATION_CODE IS NULL";
+        $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email AND PASSWORD = :password AND VERIFICATION_CODE IS NULL AND BLOCKED = 0";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':email', $cust->EMAIL_ADDRESS, PDO::PARAM_STR);
