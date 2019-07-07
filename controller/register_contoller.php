@@ -2,8 +2,8 @@
 
 
 
-session_start();
-
+// session_start();
+require_once "../model/email.php";
 
 
 
@@ -29,7 +29,7 @@ if(isset($_SESSION["customer_id"])){
         if(empty($email) || empty($password) || empty($name)  || empty($address)  || empty($phone) ){
 
 
-            $message = "Please fill up email and password";
+            $message = "Please fill up all of the fields";
         }else{
 
 
@@ -47,12 +47,17 @@ if(isset($_SESSION["customer_id"])){
                 $message = "This email is already used for another account";
 
             }else{
-
+                $verification_code = md5(uniqid(rand(), true));
+                $customer->VERIFICATION_CODE = $verification_code;
                 $last_id = $daoObject->addCustomer($customer);
 
-                $_SESSION["customer_name"] = $name;
-                $_SESSION["customer_id"] = $last_id;
-                header("location:index.php");
+                
+
+                $message = "Check your email for verification";
+
+                // $_SESSION["customer_name"] = $name;
+                // $_SESSION["customer_id"] = $last_id;
+                // header("location:index.php");
             }
 
 
