@@ -43,7 +43,7 @@
     <div class="jumbotron">
         <div class="container">
             <div class="card text-white text-center bg-dark mb-3">
-                <div class="card-header">MUS Rental</div>
+                <div class="card-header">MUS HIRE LTD</div>
                 <div class="card-body">
                     <p class="card-text">HIRE OUR VEHICLE AND TRAVEL ANYWHERE</p>
                     <h5 class="card-title">Select your criteria</h5>

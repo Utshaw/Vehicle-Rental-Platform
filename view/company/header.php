@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../../controller/admin_bus_list.php">
+            <a class="navbar-brand" href="../../view/company/dashboard.php">
                 <img  width="121" src="../../images/logo-berwynbus-white.png" alt="Comapny Logo"">
             </a>
         </div>

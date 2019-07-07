@@ -2,11 +2,14 @@
 
 // require_once "../../controller/company/vehicle_submit.php";
 
+
+require_once  "./header.php" ;
+
 require_once "../../controller/company/vehicle_submit.php";
 
 
 
-require_once  "./header.php" ;
+
 
 ?>
 

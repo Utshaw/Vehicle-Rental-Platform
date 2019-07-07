@@ -44,7 +44,7 @@
 
             <li class="nav-item" >
             <?php if(!isset($session_customer_id)): ?>
-                <a class="nav-link" href="./company/login.php" > Company registration</a>
+                <a class="nav-link" href="./company/login.php" > Company sign in/ registration</a>
 
             <?php endif?>
             </li>

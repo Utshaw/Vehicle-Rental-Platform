@@ -4,8 +4,7 @@
 
 session_start();
 
-require_once '../../model/dbconnection.php';
-require_once '../../model/dataAccess.php';
+
 
 
 
