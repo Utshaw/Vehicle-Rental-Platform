@@ -32,7 +32,8 @@ if(isset($_SESSION["customer_id"])){
             if(count($results) > 0){
                 
                 $daoObject->setCustomerVerificationCodeNull($customer);
-                $_SESSION["customer_name"] = $results ->CONTACT_NAME;
+                // var_dump($results);
+                $_SESSION["customer_name"] = $results[0]->CONTACT_NAME;
                 $_SESSION["customer_id"] = $customer_id;
                 header("location:index.php");
 
