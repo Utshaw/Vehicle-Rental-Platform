@@ -83,9 +83,20 @@ require_once "../../controller/company/vehicle_submit.php";
 
 
                     <div class="form-group">
+                        <label class="col-md-1 control-label">Select Image</label>
+                        <div class="col-md-11">
+                            <input type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
                         <div class="col-md-1">
                             <span></span>
                         </div>
+
+                    
                         <div class="col-md-11">
 
 

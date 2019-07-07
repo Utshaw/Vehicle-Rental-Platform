@@ -326,7 +326,6 @@ class DAO
     public function checkEmailValidity($customer)
     {
 
-
         global $pdo;
         $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email";
 
