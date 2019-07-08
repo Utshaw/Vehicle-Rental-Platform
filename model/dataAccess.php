@@ -175,9 +175,25 @@ class DAO
         //    $statement->debugDumpParams();
         $statement->execute();
 
-        return $id = $pdo->lastInsertId();
-    }
+        $id = $pdo->lastInsertId();
+        
 
+        return $id;
+    }
+    public function updateVehicleImage($v){
+        global $pdo;
+
+        $sql = "UPDATE VEHICLE SET IMAGE=:image WHERE VEHICLE_ID=:vehicle_id";
+
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->bindValue(':vehicle_id', $v->VEHICLE_ID, PDO::PARAM_INT);
+        $statement->bindValue(':image', $v->IMAGE, PDO::PARAM_INT);
+       
+        //    $statement->debugDumpParams();
+        $statement->execute();        
+    }
 
     public function addVehicleOrder($orderObj)
     {
@@ -416,7 +432,6 @@ class DAO
     public function checkEmailValidity($customer)
     {
 
-
         global $pdo;
         $sql = "SELECT * FROM CUSTOMERS WHERE EMAIL_ADDRESS = :email";
 
@@ -473,6 +488,9 @@ class DAO
 
 
         $id = $pdo->lastInsertId();
+
+
+
         $customer->CUSTOMER_ID = $id ;
         $this->sendEmail($customer);
         return $id;

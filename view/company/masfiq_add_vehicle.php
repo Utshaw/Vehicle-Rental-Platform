@@ -4,7 +4,7 @@
 require_once '../../model/dbconnection.php';
 require_once '../../model/dataAccess.php';
 
-require_once "../../controller/company/upload.php";
+require_once "../../controller/company/image_upload.php";
 
 
 ?>

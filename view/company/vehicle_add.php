@@ -6,6 +6,7 @@
 require_once  "./header.php" ;
 
 require_once "../../controller/company/vehicle_submit.php";
+// require_once "../../controller/company/image_upload.php";
 
 
 
@@ -35,7 +36,7 @@ require_once "../../controller/company/vehicle_submit.php";
             </div>
 
             <div class="panel-body">
-                <form class="form-horizontal row-border" action="" method="post">
+                <form class="form-horizontal row-border" action="" method="post" enctype="multipart/form-data">
 
 
                     <div class="form-group">
@@ -83,9 +84,20 @@ require_once "../../controller/company/vehicle_submit.php";
 
 
                     <div class="form-group">
+                        <label class="col-md-1 control-label">Select Image</label>
+                        <div class="col-md-11">
+                            <input type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
                         <div class="col-md-1">
                             <span></span>
                         </div>
+
+                    
                         <div class="col-md-11">
 
 
