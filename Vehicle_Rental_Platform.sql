@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 07, 2019 at 06:40 PM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Jul 08, 2019 at 08:33 পূর্বাহ্ণ
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -55,7 +53,7 @@ CREATE TABLE `CUSTOMERS` (
   `CONTACT_NUMBER` varchar(20) NOT NULL,
   `PASSWORD` varchar(1000) DEFAULT NULL,
   `VERIFICATION_CODE` varchar(50) DEFAULT NULL,
-  `BLOCKED` tinyint(4) NOT NULL DEFAULT 0
+  `BLOCKED` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -120,28 +118,28 @@ CREATE TABLE `VEHICLE` (
 --
 
 INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `MAX_CAPACITY`, `COMPANY_ID`) VALUES
-(98716, 1, 2, 85.23, 'VOLVO_Hatchback.jpg', 22, 1),
-(98717, 2, 1, 70.00, 'MERCEDES BENZ_Sedan1.jpg', 16, 1),
-(98718, 2, 4, 80.00, 'suv merc black.jpeg', 24, 1),
-(98719, 2, 1, 120.00, 'suv merc red.jpeg', 33, 1),
-(98720, 2, 1, 130.00, 'suv merc white.jpeg', 49, 1),
-(98721, 2, 1, 150.00, 'merceds_benz_sedan2.jpg', 73, 1),
-(98722, 3, 7, 140.00, 'SCANIA_Micro Bus.jpg', 72, 1),
-(98723, 3, 7, 90.00, 'mini scania black double.jpeg', 16, 1),
-(98724, 3, 7, 100.00, 'mini scania green .jpg', 24, 1),
-(98725, 3, 7, 140.00, 'mini scania white .jpeg', 49, 1),
-(98730, 1, 1, 12.00, 'VOLVO_Sedan.jpg', 12, 1),
-(98731, 1, 1, 123.00, 'sedan volvo ash.jpeg', 123, 1),
-(98732, 1, 1, 111.00, 'sedan volvo black.jpeg', 111, 1),
-(98733, 1, 1, 123.00, 'sedan volvo blue.jpeg', 223, 1),
-(98734, 1, 1, 145.00, 'sedan volvo red.jpeg', 155, 1),
-(98735, 1, 1, 145.00, 'volvo_sedan1.jpeg', 200, 1),
-(98736, 1, 1, 145.00, 'volvo_sedan2.jpeg', 220, 1),
-(98737, 1, 1, 149.00, 'volvo_sedan3.jpeg', 10, 1),
-(98738, 1, 1, 145.00, 'volvo_sedan4.jpeg', 20, 1),
-(98739, 1, 1, 145.00, 'volvo_sedan5.jpeg', 220, 1),
-(98740, 1, 1, 145.00, 'volvo_sedan6.jpg', 222, 1),
-(98741, 19, 14, 333.00, 'default.jpg', 333, 1);
+(98716, 1, 2, 2888.00, 'VOLVO_Hatchback.jpg', 22, 1),
+(98717, 2, 1, 2702.00, 'MERCEDES BENZ_Sedan1.jpg', 16, 1),
+(98718, 2, 4, 2845.00, 'suv merc black.jpeg', 24, 1),
+(98719, 2, 1, 2116.00, 'suv merc red.jpeg', 33, 1),
+(98720, 2, 1, 2050.00, 'suv merc white.jpeg', 49, 1),
+(98721, 2, 1, 2901.00, 'merceds_benz_sedan2.jpg', 73, 1),
+(98722, 3, 7, 3000.00, 'SCANIA_Micro Bus.jpg', 72, 1),
+(98723, 3, 7, 2069.00, 'mini scania black double.jpeg', 16, 1),
+(98724, 3, 7, 2282.00, 'mini scania green .jpg', 24, 1),
+(98725, 3, 7, 2202.00, 'mini scania white .jpeg', 49, 1),
+(98730, 1, 1, 2165.00, 'VOLVO_Sedan.jpg', 12, 1),
+(98731, 1, 1, 2219.00, 'sedan volvo ash.jpeg', 123, 1),
+(98732, 1, 1, 2599.00, 'sedan volvo black.jpeg', 111, 1),
+(98733, 1, 1, 2340.00, 'sedan volvo blue.jpeg', 223, 1),
+(98734, 1, 1, 2903.00, 'sedan volvo red.jpeg', 155, 1),
+(98735, 1, 1, 2492.00, 'volvo_sedan1.jpeg', 200, 1),
+(98736, 1, 1, 2754.00, 'volvo_sedan2.jpeg', 220, 1),
+(98737, 1, 1, 2293.00, 'volvo_sedan3.jpeg', 10, 1),
+(98738, 1, 1, 2203.00, 'volvo_sedan4.jpeg', 20, 1),
+(98739, 1, 1, 2139.00, 'volvo_sedan5.jpeg', 220, 1),
+(98740, 1, 1, 2083.00, 'volvo_sedan6.jpg', 222, 1),
+(98743, 19, 4, 2001.00, '98743.jpg', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -328,49 +326,41 @@ ALTER TABLE `VEHICLE_ORDER`
 --
 ALTER TABLE `ADMIN`
   MODIFY `ADMIN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
   MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123069;
-
 --
 -- AUTO_INCREMENT for table `PROMOTION`
 --
 ALTER TABLE `PROMOTION`
   MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE`
 --
 ALTER TABLE `VEHICLE`
-  MODIFY `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98743;
-
+  MODIFY `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98744;
 --
 -- AUTO_INCREMENT for table `VEHICLE_COMPANY`
 --
 ALTER TABLE `VEHICLE_COMPANY`
-  MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `VEHICLE_MAKE`
 --
 ALTER TABLE `VEHICLE_MAKE`
   MODIFY `MAKE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_MODEL`
 --
 ALTER TABLE `VEHICLE_MODEL`
   MODIFY `MODEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_ORDER`
 --
 ALTER TABLE `VEHICLE_ORDER`
   MODIFY `ORDER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- Constraints for dumped tables
 --
@@ -394,7 +384,6 @@ ALTER TABLE `VEHICLE`
 ALTER TABLE `VEHICLE_ORDER`
   ADD CONSTRAINT `ORDER_CUSTOMER_FK` FOREIGN KEY (`CUSTOMER_ID`) REFERENCES `CUSTOMERS` (`CUSTOMER_ID`) ON DELETE CASCADE ON UPDATE SET NULL,
   ADD CONSTRAINT `ORDER_VEHICLE_FK` FOREIGN KEY (`VEHICLE_ID`) REFERENCES `VEHICLE` (`VEHICLE_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
