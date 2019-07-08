@@ -4,9 +4,9 @@
 session_start();
 
 
-require_once '../model/dbconnection.php';
-require_once '../model/dataAccess.php';
-require_once '../model/company.php';
+require_once '../../model/dbconnection.php';
+require_once '../../model/dataAccess.php';
+require_once '../../model/company.php';
 
 $message = "";
 
@@ -25,17 +25,21 @@ if(isset($_SESSION["company_id"])){
 
         }else{
             $company = new company();
-            $company->company_ID = htmlentities($company_id);
+            $company->COMPANY_ID = htmlentities($company_id);
             $company->VERIFICATION_CODE = htmlentities($code);
             
             $results  = $daoObject->getCompanyWithVerificationCode($company);
+
+            var_dump($results );
+
+            
             if(count($results) > 0){
                 
                 $daoObject->setCompanyVerificationCodeNull($company);
                 // var_dump($results);
                 $_SESSION["company_name"] = $results[0]->COMPANY_NAME;
                 $_SESSION["company_id"] = $company_id;
-                header("location:index.php");
+                header("location:dashboard.php");
 
             }else{
                 $message = "Incorrect registration format";
