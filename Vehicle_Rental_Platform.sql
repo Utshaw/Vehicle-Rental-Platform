@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 08, 2019 at 09:13 AM
+-- Generation Time: Jul 08, 2019 at 10:32 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -77,7 +77,8 @@ INSERT INTO `CUSTOMERS` (`CUSTOMER_ID`, `CONTACT_NAME`, `ADDRESS`, `EMAIL_ADDRES
 (1123043, 'Jawad Siddiqui', 'London', 'example@example.com', '01800000000', '123456', NULL, 0),
 (1123044, 'mush', 'mush', 'foo@gmail.com', '01800000000', '123456', NULL, 0),
 (1123045, 'Test', 'Test', 'test@hotmail.co.uk', '01800000000', '123456', NULL, 0),
-(1123068, 'Farhan Utshaw', 'Dhaka', 'farhan.tanvir.utshaw@gmail.com', '01811563457', '123456', NULL, 1);
+(1123071, 'Farhan Utshaw', 'north Mirpur , Dhaka', 'farhan.tanvir.utshaw@gmail.com', '1800000000', '123456', NULL, 0),
+(1123072, 'Sadat Faruque', 'north Mirpur , Dhaka', 'sadatfaruque005@gmail.com', '1800000000', '123456', '8b420c3e4c8b9231cc2864308f04b27b', 0);
 
 -- --------------------------------------------------------
 
@@ -336,7 +337,7 @@ ALTER TABLE `ADMIN`
 -- AUTO_INCREMENT for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
-  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123069;
+  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123073;
 
 --
 -- AUTO_INCREMENT for table `PROMOTION`
