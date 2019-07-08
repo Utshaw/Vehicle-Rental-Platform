@@ -7,6 +7,35 @@ $pdo = $connection->connect();
 class DAO
 {
 
+    public function getCompanyWithVerificationCode($company)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM COMPANY WHERE COMPANY_ID = :company_id AND VERIFICATION_CODE = :verification_code AND BLOCKED = 0";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':company_id', $company->COMPANY_ID, PDO::PARAM_INT);
+        $statement->bindValue(':verification_code', $company->VERIFICATION_CODE, PDO::PARAM_STR);
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+        return $results;
+    }
+
+
+    public function setCompanyVerificationCodeNull($customer)
+    {
+
+        global $pdo;
+        $sql = "UPDATE VEHICLE_COMPANY SET VERIFICATION_CODE = NULL WHERE COMPANY_ID = :company_id  ";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':company_id', $company->COMPANY_ID, PDO::PARAM_INT);
+        // $statement->bindValue(':verification_code', $customer->VERIFICATION_CODE, PDO::PARAM_STR);
+        $statement->execute();
+    }
+    
+
     public function getCustomerWithVerificationCode($customer)
     {
 
@@ -21,6 +50,11 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
         return $results;
     }
+
+
+    
+
+
 
 
     public function setCustomerVerificationCodeNull($customer)

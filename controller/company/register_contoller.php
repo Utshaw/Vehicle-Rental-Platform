@@ -49,8 +49,12 @@ if(isset($_SESSION["company_id"])){
 
             }else{
 
+                $verification_code = md5(uniqid(rand(), true));
+                $company->VERIFICATION_CODE = $verification_code;
                 $last_id = $daoObject->addCompany($company);
 
+                $message = "Check your email for verification";
+                
                 $_SESSION["company_name"] = $name;
                 $_SESSION["company_id"] = $last_id;
                 header("location:../../view/company/dashboard.php");
