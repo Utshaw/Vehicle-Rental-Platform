@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../controller/verification_controller.php';
+require_once '../../controller/company/verification_controller.php';
 
 ?>
 
