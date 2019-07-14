@@ -50,7 +50,7 @@ if(isset($_SESSION["customer_id"])){
                 $verification_code = md5(uniqid(rand(), true));
                 $customer->VERIFICATION_CODE = $verification_code;
                 $last_id = $daoObject->addCustomer($customer);
-
+                
                 
 
                 $message = "Check your email for verification";

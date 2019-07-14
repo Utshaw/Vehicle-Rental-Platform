@@ -6,7 +6,7 @@ session_start();
 
 require_once '../../model/dbconnection.php';
 require_once '../../model/dataAccess.php';
-
+require_once "../../model/email.php";
 
 
 $message = "";
@@ -49,11 +49,15 @@ if(isset($_SESSION["company_id"])){
 
             }else{
 
+                $verification_code = md5(uniqid(rand(), true));
+                $company->VERIFICATION_CODE = $verification_code;
                 $last_id = $daoObject->addCompany($company);
 
-                $_SESSION["company_name"] = $name;
-                $_SESSION["company_id"] = $last_id;
-                header("location:../../view/company/dashboard.php");
+                $message = "Check your email for verification";
+                
+                // $_SESSION["company_name"] = $name;
+                // $_SESSION["company_id"] = $last_id;
+                // header("location:../../view/company/dashboard.php");
             }
 
 

@@ -1,41 +1,52 @@
 <?php
 class Email
 {
-    private $email_subject;
-    private $customer_id;
-    private $verification_code;
-    private $message_date;
-    private $message_time;
-    private $email_body;
-    private $url;
-    private $url_params;
-    private $verification_link;
-    private $message_title;
-    private $customer_email;
+  private $email_subject;
+  private $customer_id;
+  private $verification_code;
+  private $message_date;
+  private $message_time;
+  private $email_body;
+  private $url;
+  private $url_params;
+  private $verification_link;
+  private $message_title;
+  private $customer_email;
+  private $isCustomer;
 
-    function __construct($c_id, $c_email, $code)
-    {
-        $this->customer_id = $c_id;
-        $this->customer_email = $c_email;
-        $this->verification_code = $code;
-
-        date_default_timezone_set("Asia/Dhaka");
-
-        $this->message_date = date("Y-m-d");
-        $this->message_time = date("H:i:s a");
-        $this->email_subject = "Account verification for your account with MUS Hire Ltd";
-        $this->message_title = "Account verification";
+  function __construct($c_id, $c_email, $code, $isCustomer)
+  {
+    $this->customer_id = $c_id;
+    $this->customer_email = $c_email;
+    $this->verification_code = $code;
 
 
 
-        $this->url = "http://localhost/VRP/view/verification.php";
-        $this->url_params =  array(
-            'customer_id' => $this->customer_id,
-            'code' => $this->verification_code
-        );
-        $this->verification_link = $this->url . "?" . http_build_query($this->url_params);
+    date_default_timezone_set("Asia/Dhaka");
 
-        $this->email_body = "<html xmlns=\"http://www.w3.org/1999/xhtml\">
+    $this->message_date = date("Y-m-d");
+    $this->message_time = date("H:i:s a");
+    $this->email_subject = "Account verification for your account with MUS Hire Ltd";
+    $this->message_title = "Account verification";
+
+
+    if ($isCustomer == 1) {
+      $this->url = "http://localhost/VRP/view/verification.php";
+      $this->url_params =  array(
+        'customer_id' => $this->customer_id,
+        'code' => $this->verification_code
+      );
+    } else {
+      $this->url = "http://localhost/VRP/view/company/verification.php";
+      $this->url_params =  array(
+        'company_id' => $this->customer_id,
+        'code' => $this->verification_code
+      );
+    }
+
+    $this->verification_link = $this->url . "?" . http_build_query($this->url_params);
+
+    $this->email_body = "<html xmlns=\"http://www.w3.org/1999/xhtml\">
         <head>
         <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
         <title>Untitled Document</title>
@@ -178,23 +189,21 @@ class Email
         </body>
         </html>
         ";
-    }
+  }
 
-    function sendEmail()
-    {
-        // To send HTML mail, the Content-type header must be set
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+  function sendEmail()
+  {
+    // To send HTML mail, the Content-type header must be set
+    $headers[] = 'MIME-Version: 1.0';
+    $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
-        // Additional headers
-        // $headers[] = 'To: Utshaw <farhan.tanvir.utshaw@gmail.com>';
-        // $headers[] = 'From: Birthday Reminder <birthday@example.com>';
-        // $headers[] = 'Cc: birthdayarchive@example.com';
-        // $headers[] = 'Bcc: birthdaycheck@example.com';
+    // Additional headers
+    // $headers[] = 'To: Utshaw <farhan.tanvir.utshaw@gmail.com>';
+    // $headers[] = 'From: Birthday Reminder <birthday@example.com>';
+    // $headers[] = 'Cc: birthdayarchive@example.com';
+    // $headers[] = 'Bcc: birthdaycheck@example.com';
 
-        // Mail it
-        mail($this->customer_email, $this->email_subject, $this->email_body, implode("\r\n", $headers));
-    }
+    // Mail it
+    mail($this->customer_email, $this->email_subject, $this->email_body, implode("\r\n", $headers));
+  }
 }
-
-
