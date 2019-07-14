@@ -41,6 +41,7 @@
         <th scope="col">BUS MODEL</th>
         <th scope="col">BOOKING DATE</th>
         <th scope="col">CAPACITY</th>
+        <th scope="col">REVIEW</th>
     </tr>
     </thead>
     <tbody>
@@ -56,7 +57,7 @@
             <th scope="row"><?=$vehicleOrder->MODEL_NAME?></th>
             <th scope="row"><?=$vehicleOrder->BOOKING_DATE?></th>
             <th scope="row"><?=$vehicleOrder->MAX_CAPACITY?></th>
-
+            <th scope="row"></th>
         </tr>
 
     <?php endforeach; ?>
