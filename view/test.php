@@ -1,6 +1,6 @@
 <?php
 // Multiple recipients
-$to = 'farhan.tanvir.utshaw@gmail.com'; // note the comma
+$to = 'masfiq15@gmail.com'; // note the comma
 
 $message_date = date("Y-m-d");  
 date_default_timezone_set("Asia/Dhaka");

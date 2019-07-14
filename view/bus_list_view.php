@@ -34,7 +34,7 @@
             <div class="card card text-white bg-dark mb-3">
                 <img class="card-img-top" src="../images/<?= $bus->IMAGE ?>  " alt="Image of the bus" height="150">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $bus->MAKE_NAME ?></h5>
+                    <a target="_blank" href="http://localhost/VRP/view/bus.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><h5 class="card-title"><?= $bus->MAKE_NAME ?></h5></a>
                     <p class="card-text">DAILY RATE: &#2547; <?= $bus->DAILY_RATE ?></p>
                     <p>CAPACITY: <?=$bus->MAX_CAPACITY?></p>
 
