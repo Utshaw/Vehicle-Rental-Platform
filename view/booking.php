@@ -26,43 +26,7 @@
 
 
 
-<<<<<<< HEAD
-<?php  require_once "header.php"?>
-
-<div class="jumbotron">
-<h2 style="text-align: center">My All Booking history</h2>
-</div>
-
-
-<table class="table table-hover" id="promotion_result">
-    <thead>
-    <tr>
-        <th scope="col">BOOKING_ID</th>
-        <th scope="col">BUS MANUFACTURER</th>
-        <th scope="col">BUS MODEL</th>
-        <th scope="col">BOOKING DATE</th>
-        <th scope="col">CAPACITY</th>
-        <th scope="col">REVIEW</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <?php foreach ($results
-
-                   as $vehicleOrder):
-
-        ?>
-        <tr>
-            <th scope="row"><?=$vehicleOrder->ORDER_ID?></th>
-            <th scope="row"><?=$vehicleOrder->MAKE_NAME?></th>
-            <th scope="row"><?=$vehicleOrder->MODEL_NAME?></th>
-            <th scope="row"><?=$vehicleOrder->BOOKING_DATE?></th>
-            <th scope="row"><?=$vehicleOrder->MAX_CAPACITY?></th>
-            <th scope="row"></th>
-        </tr>
-=======
     <?php require_once "header.php" ?>
->>>>>>> 1657dab8682ebbd800272ecb49a7e89e85451831
 
     <div class="jumbotron">
         <h2 style="text-align: center">My All Booking history</h2>
