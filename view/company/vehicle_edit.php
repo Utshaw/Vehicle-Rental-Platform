@@ -31,7 +31,14 @@ require_once "../../controller/company/bus_edit_controller.php";
                         <label class="col-md-1 control-label">Image</label>
                         <div class="col-md-11">
 
-                            <img src="../../images/<?= $result->IMAGE ?>" width="250px" />
+                            <input type="file" id="imgupload" name="imgupload" style="display:none" onchange="readURL(this);" />
+
+                            <img id="OpenImgUpload" src="../../images/<?= $result->IMAGE ?>" width="250px" />
+
+                            <!-- <button >Image Upload</button> -->
+
+
+
                         </div>
                     </div>
 
@@ -107,7 +114,30 @@ require_once "../../controller/company/bus_edit_controller.php";
     </div>
 </div>
 <!-- Row end -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<script>
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#OpenImgUpload')
+                    .attr('src', e.target.result)
+                    // .width(150)
+                    // .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#OpenImgUpload').click(function() {
+
+        $('#imgupload').trigger('click');
+        console.log("Utshaw");
+    });
+</script>
 
 <?php require_once  "footer.php"; ?>

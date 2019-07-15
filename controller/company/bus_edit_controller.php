@@ -27,6 +27,13 @@ if(isset($_POST['make']) && isset($_POST['model']) && isset($_POST['rate']) && i
 
     $daoObject->editVehicle($v);
 
+    if($_POST["fileToUpload"]){
+        $daoObject->updateVehicleImage($v);
+        //uploadImage($v->VEHICLE_ID);
+
+    }
+    
+
 
 
     header("location:./dashboard.php?alert_header=Notice&alert_body="."Vehicle with id: ". $vid . " updated");
