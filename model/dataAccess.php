@@ -177,6 +177,17 @@ class DAO
 
     }
 
+    public function deleteVehicle($vehicle) {
+
+        global $pdo;
+        $sql = "DELETE FROM VEHICLE WHERE VEHICLE_ID=:vehicle_id";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':vehicle_id', $vehicle->VEHICLE_ID, PDO::PARAM_INT);
+        $statement->execute();
+
+    }
+
     
     public function getVehicleOrders($vehicle)
     {
@@ -253,8 +264,7 @@ class DAO
         $statement = $pdo->prepare($sql);
 
         $statement->bindValue(':vehicle_id', $v->VEHICLE_ID, PDO::PARAM_INT);
-        $statement->bindValue(':image', $v->IMAGE, PDO::PARAM_INT);
-       
+        $statement->bindValue(':image', $v->IMAGE, PDO::PARAM_STR);
         //    $statement->debugDumpParams();
         $statement->execute();        
     }

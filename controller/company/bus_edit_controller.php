@@ -10,7 +10,8 @@ require_once '../../model/dataAccess.php';
 
 $daoObject = DAO::getInstance();
 
-if(isset($_POST['make']) && isset($_POST['model']) && isset($_POST['rate']) && isset($_POST['mcap'])  && isset($_POST['vid'])){
+
+if( !isset($_POST['v_delete_id']) && isset($_POST['make']) && isset($_POST['model']) && isset($_POST['rate']) && isset($_POST['mcap'])  && isset($_POST['vid'])){
 
     $make_id = htmlentities($_POST['make']);
     $model_id =  htmlentities($_POST['model']);

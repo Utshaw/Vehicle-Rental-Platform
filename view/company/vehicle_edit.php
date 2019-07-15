@@ -1,4 +1,5 @@
 <?php require_once  "./header.php";
+require_once "../../controller/company/bus_delete_controller.php";
 require_once "../../controller/company/bus_edit_controller.php";
 ?>
 
@@ -92,6 +93,7 @@ require_once "../../controller/company/bus_edit_controller.php";
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
 
                             <form action="" method="post">
+                                <input type="hidden" name="v_delete_id" value="<?= $result->VEHICLE_ID ?>">
                                 <button type="submit" class="btn btn-danger btn-lg btn-block">Delete vehicle</button>
                             </form>
 

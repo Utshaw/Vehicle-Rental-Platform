@@ -26,12 +26,12 @@ if(isset($_POST['make'])) {
     $v->MODEL_ID = $model_id;
     $v->DAILY_RATE = $rate;
     $v->IMAGE = "default.jpg";
-    $v->LICENSE_REQUIRED = $license_id;
     $v->MAX_CAPACITY = $max_capacity;
     $v->COMPANY_ID = $_SESSION['company_id'];
     
 
     $lastId = $daoObject->addVehicle($v);
+
     $v->IMAGE = $lastId.".jpg";
     $v->VEHICLE_ID = $lastId;
     $daoObject->updateVehicleImage($v);
