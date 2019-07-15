@@ -55,9 +55,9 @@
                 <th scope="row"><?=$bus->DAILY_RATE?></th>
                 <th scope="row"><?=$bus->MAX_CAPACITY?></th>
 
-                <th scope="row"><a href="../controller/admin_vehicle_orders.php?vehicle_id=<?=$bus->VEHICLE_ID?>">All bookings</a></th>
-                <th scope="row"><a href="../controller/admin_bus_edit.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><i class="fa fa-edit" style="font-size:24px"></i></a> </th>
-
+                <th scope="row"><a href="../../view/company/vehicle_orders.php?vehicle_id=<?=$bus->VEHICLE_ID?>">All bookings</a></th>
+                <th scope="row"><a href="../../view/company/vehicle_edit.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><i class="fa fa-edit" style="font-size:24px"></i></a> </th>
+            
 
             </tr>
 

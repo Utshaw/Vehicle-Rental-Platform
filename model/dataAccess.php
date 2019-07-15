@@ -147,6 +147,70 @@ class DAO
     }
 
 
+    public function editVehicle($v)
+    {
+
+        global $pdo;
+        $vid = $v->VEHICLE_ID;
+        $mkid = $v->MAKE_ID;
+        $mid = $v->MODEL_ID;
+        $rate = $v->DAILY_RATE;
+        $im = $v->IMAGE;
+        $license = $v->LICENSE_REQUIRED;
+        $mcap = $v->MAX_CAPACITY;
+
+
+        $sql = "UPDATE VEHICLE SET MAKE_ID = :mkid, MODEL_ID = :mid, DAILY_RATE = :rate  , MAX_CAPACITY = :mcap WHERE VEHICLE_ID = :vid";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':vid', $vid, PDO::PARAM_INT);
+        $statement->bindValue(':mkid', $mkid, PDO::PARAM_INT);
+        $statement->bindValue(':mid', $mid, PDO::PARAM_INT);
+        $statement->bindValue(':rate', $rate);
+        $statement->bindValue(':mcap', $mcap, PDO::PARAM_INT);
+//    $statement->debugDumpParams();
+
+        $statement->execute();
+
+
+//    $results = $statement->fetchAll(PDO::FETCH_CLASS, 'License');
+
+    }
+
+    
+    public function getVehicleOrders($vehicle)
+    {
+
+        global $pdo;
+        $sql = "SELECT CONTACT_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, BOOKING_DATE, RENT_FROM, RENT_TO FROM CUSTOMERS AS C JOIN VEHICLE_ORDER AS VOR ON C.CUSTOMER_ID = VOR.CUSTOMER_ID WHERE VEHICLE_ID = :vehicle_id ORDER BY BOOKING_DATE DESC";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':vehicle_id', $vehicle->VEHICLE_ID, PDO::PARAM_INT);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'VehicleOrder');
+
+        return $results;
+
+    }
+
+    public function getSingleBus($b)
+    {
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE AS V JOIN VEHICLE_MODEL AS VM JOIN VEHICLE_MAKE AS VMK ON V.MAKE_ID = VMK.MAKE_ID AND VM.MODEL_ID = V.MODEL_ID WHERE VEHICLE_ID = :vid";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':vid', $b->VEHICLE_ID, PDO::PARAM_INT);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
+
+        return $results;
+
+
+    }
+
+
+
     public function addVehicle($v)
     {
 
