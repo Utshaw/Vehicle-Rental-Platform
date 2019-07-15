@@ -19,5 +19,7 @@ if (isset($_POST['v_delete_id'])) {
 
     $daoObject->deleteVehicle($v);
 
-    header("location:./dashboard.php?alert_header=Notice&alert_body=" . "Vehicle with id: " . $v_delete_id . " deleted");
+    header("location:../../view/company/dashboard.php?alert_header=Notice&alert_body=" . "Vehicle with id: " . $v_delete_id . " deleted");
+}else{
+    
 }

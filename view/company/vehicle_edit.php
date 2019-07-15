@@ -1,5 +1,5 @@
 <?php require_once  "./header.php";
-require_once "../../controller/company/bus_delete_controller.php";
+// require_once "../../controller/company/bus_delete_controller.php";
 require_once "../../controller/company/bus_edit_controller.php";
 ?>
 
@@ -25,7 +25,7 @@ require_once "../../controller/company/bus_edit_controller.php";
             </div>
 
             <div class="panel-body">
-                <form enctype="multipart/form-data"  class="form-horizontal row-border" action="" method="post">
+                <form enctype="multipart/form-data" class="form-horizontal row-border" action="" method="post">
 
 
                     <div class="form-group">
@@ -99,10 +99,7 @@ require_once "../../controller/company/bus_edit_controller.php";
                             <input type="hidden" name="vid" value="<?= $result->VEHICLE_ID ?>">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
 
-                            <form action="" method="post">
-                                <input type="hidden" name="v_delete_id" value="<?= $result->VEHICLE_ID ?>">
-                                <button type="submit" class="btn btn-danger btn-lg btn-block">Delete vehicle</button>
-                            </form>
+
 
                         </div>
                     </div>
@@ -110,7 +107,15 @@ require_once "../../controller/company/bus_edit_controller.php";
 
                 </form>
 
-
+                <div class="form-group">
+                    <label class="col-md-1 control-label">Danger</label>
+                    <div class="col-md-11">
+                        <form action="../../controller/company/bus_delete_controller.php" method="post">
+                            <input type="hidden" name="v_delete_id" value="<?= $result->VEHICLE_ID ?>">
+                            <button type="submit" class="btn btn-danger btn-lg btn-block">Delete vehicle</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -119,7 +124,6 @@ require_once "../../controller/company/bus_edit_controller.php";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
-
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -127,8 +131,8 @@ require_once "../../controller/company/bus_edit_controller.php";
             reader.onload = function(e) {
                 $('#OpenImgUpload')
                     .attr('src', e.target.result)
-                    // .width(150)
-                    // .height(200);
+                // .width(150)
+                // .height(200);
             };
 
             reader.readAsDataURL(input.files[0]);
