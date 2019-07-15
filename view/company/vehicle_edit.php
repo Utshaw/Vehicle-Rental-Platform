@@ -24,14 +24,14 @@ require_once "../../controller/company/bus_edit_controller.php";
             </div>
 
             <div class="panel-body">
-                <form class="form-horizontal row-border" action="" method="post">
+                <form enctype="multipart/form-data"  class="form-horizontal row-border" action="" method="post">
 
 
                     <div class="form-group">
                         <label class="col-md-1 control-label">Image</label>
                         <div class="col-md-11">
 
-                            <input type="file" id="imgupload" name="imgupload" style="display:none" onchange="readURL(this);" />
+                            <input type="file" id="fileToUpload" name="fileToUpload" style="display:none" onchange="readURL(this);" />
 
                             <img id="OpenImgUpload" src="../../images/<?= $result->IMAGE ?>" width="250px" />
 
@@ -135,7 +135,7 @@ require_once "../../controller/company/bus_edit_controller.php";
 
     $('#OpenImgUpload').click(function() {
 
-        $('#imgupload').trigger('click');
+        $('#fileToUpload').trigger('click');
         console.log("Utshaw");
     });
 </script>

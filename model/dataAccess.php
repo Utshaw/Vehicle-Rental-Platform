@@ -156,7 +156,6 @@ class DAO
         $mid = $v->MODEL_ID;
         $rate = $v->DAILY_RATE;
         $im = $v->IMAGE;
-        $license = $v->LICENSE_REQUIRED;
         $mcap = $v->MAX_CAPACITY;
 
 
@@ -173,7 +172,6 @@ class DAO
         $statement->execute();
 
 
-//    $results = $statement->fetchAll(PDO::FETCH_CLASS, 'License');
 
     }
 
