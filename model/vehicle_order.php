@@ -9,7 +9,9 @@ class VehicleOrder  {
     private $CUSTOMER_ID;
     private $VEHICLE_ID;
     private $BOOKING_DATE;
-
+    private $RATING;
+    private $ORDER_ID;
+    
 
 
 

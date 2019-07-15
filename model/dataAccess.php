@@ -525,4 +525,18 @@ class DAO
 
         return $id ;
     }
+
+    public function updateRating($vehicle_order)
+    {
+
+        global $pdo;
+        $sql = "UPDATE VEHICLE_ORDER SET RATING=:rating, REVIEW=:review WHERE ORDER_ID=:order_id";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':rating', $vehicle_order->RATING, PDO::PARAM_STR);
+        $statement->bindValue(':review', $vehicle_order->REVIEW, PDO::PARAM_STR);
+        $statement->bindValue(':order_id', $vehicle_order->ORDER_ID, PDO::PARAM_STR);
+        
+        $statement->execute();
+    }
 }

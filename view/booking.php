@@ -1,4 +1,7 @@
-<?php require_once  "../controller/booking_controller.php";
+<?php
+require_once  "../controller/booking_controller.php";
+require_once  "../controller/vehicle_rating_controller.php";
+
 ?>
 
 <!doctype html>
@@ -18,7 +21,18 @@
 
     <link rel="shortcut icon" type="image/png" href="../images/favicon.png" />
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+
+    <style>
+        .rating-header {
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
 
 </head>
 
@@ -60,7 +74,7 @@
                     <th scope="row">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-                            Launch demo modal
+                            Give Rating
                         </button></th>
                 </tr>
 
@@ -120,18 +134,52 @@
                     <img style="display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;" src="https://i1.rgstatic.net/ii/profile.image/595662668304389-1519028455204_Q512/Farhan_Utshaw.jpg" width="350px">
-                    <?= $vehicleOrder->ORDER_ID ?>
-                    <?= $vehicleOrder->MAKE_NAME ?>
-                    <?= $vehicleOrder->MODEL_NAME ?>
-                    <?= $vehicleOrder->BOOKING_DATE ?>
-                    <?= $vehicleOrder->MAX_CAPACITY ?>
-                    <?= $vehicleOrder->RENT_FROM ?>
-                    <?= $vehicleOrder->RENT_TO ?>
+  width: 50%;" src="../images/<?= $vehicleOrder->VEHICLE_ID ?>.jpg" width="350px">
+                    <p>Order Id: <?= $vehicleOrder->ORDER_ID ?></p>
+                    <p>Manufacturer: <?= $vehicleOrder->MAKE_NAME ?></p>
+                    <p>Model Name: <?= $vehicleOrder->MODEL_NAME ?></p>
+                    <p>Booking Date: <?= $vehicleOrder->BOOKING_DATE ?></p>
+                    <p>You rent this car from <?= $vehicleOrder->RENT_FROM ?> to <?= $vehicleOrder->RENT_TO ?></p>
+
+                </div>
+
+                <div class="form-group" id="rating-ability-wrapper">
+                    <label class="control-label" for="rating">
+                        <h4>How was your trip?</h4><br>
+
+                        <span class="field-label-info"></span>
+                        <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                    </label>
+                    <h2 class="bold rating-header" style="">
+                        <span class="selected-rating"><?= $vehicleOrder->RATING ?></span><small> / 5</small>
+                    </h2>
+                    <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div align="center">
+                <form action="" method="post">
+                <textarea rows="5" cols="50" name="review" placeholder="Give review here.."><?= $vehicleOrder->REVIEW ?></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    
+                        <input type="submit" class="btn btn-primary" name="someAction" value="Save changes" />
+                        <input type="hidden" id="order_id" name="order_id" value="<?= $vehicleOrder->ORDER_ID ?>">
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,11 +197,42 @@
 
 
 
+    <script>
+        jQuery(document).ready(function($) {
 
 
+            // var myselected_value = <?= $vehicleOrder->RATING ?>
+
+            $(".btnrating").on('click', (function(e) {
+
+                var previous_value = $("#selected_rating").val();
+
+                var selected_value = $(this).attr("data-attr");
+                document.cookie = "rating=" + selected_value;
+                $("#selected_rating").val(selected_value);
+
+                $(".selected-rating").empty();
+                $(".selected-rating").html(selected_value);
+
+                for (i = 1; i <= selected_value; ++i) {
+                    $("#rating-star-" + i).toggleClass('btn-warning');
+                    $("#rating-star-" + i).toggleClass('btn-default');
+                }
+
+                for (ix = 1; ix <= previous_value; ++ix) {
+                    $("#rating-star-" + ix).toggleClass('btn-warning');
+                    $("#rating-star-" + ix).toggleClass('btn-default');
+                }
+
+            }));
 
 
+        });
     </script>
+
+
+
+
 
 
 </body>
