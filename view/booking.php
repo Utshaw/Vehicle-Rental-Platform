@@ -122,6 +122,9 @@ require_once  "../controller/vehicle_rating_controller.php";
 
     <!-- Modal -->
     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      
+        <script>$window.location.reload();
+    </script>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -199,15 +202,32 @@ require_once  "../controller/vehicle_rating_controller.php";
 
     <script>
         jQuery(document).ready(function($) {
+            
 
+            //*
+            var previous_value = $("#selected_rating").val();
+            var selected_value = <?= $vehicleOrder->RATING ?>;
+            alert(String(selected_value));
+            $("#selected_rating").val(selected_value);
 
-            // var myselected_value = <?= $vehicleOrder->RATING ?>
+            $(".selected-rating").empty();
+            $(".selected-rating").html(selected_value);
 
+            for (i = 1; i <= selected_value; ++i) {
+                $("#rating-star-" + i).toggleClass('btn-warning');
+                $("#rating-star-" + i).toggleClass('btn-default');
+            }
+
+            for (ix = 1; ix <= previous_value; ++ix) {
+                $("#rating-star-" + ix).toggleClass('btn-warning');
+                $("#rating-star-" + ix).toggleClass('btn-default');
+            }
+            //*
             $(".btnrating").on('click', (function(e) {
 
-                var previous_value = $("#selected_rating").val();
+                previous_value = $("#selected_rating").val();
 
-                var selected_value = $(this).attr("data-attr");
+                selected_value = $(this).attr("data-attr");
                 document.cookie = "rating=" + selected_value;
                 $("#selected_rating").val(selected_value);
 
