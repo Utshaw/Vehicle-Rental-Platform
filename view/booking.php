@@ -50,7 +50,7 @@ require_once  "../controller/vehicle_rating_controller.php";
     <table class="table table-hover" id="promotion_result">
         <thead>
             <tr>
-                <th scope="col">BOOKING_ID</th>
+                <th scope="col">ORDER_ID</th>
                 <th scope="col">VEHICLE MANUFACTURER</th>
                 <th scope="col">VEHICLE MODEL</th>
                 <th scope="col">BOOKING DATE</th>
@@ -73,7 +73,17 @@ require_once  "../controller/vehicle_rating_controller.php";
                     <th scope="row"><?= $vehicleOrder->MAX_CAPACITY ?></th>
                     <th scope="row">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+                        <button 
+                                data-order_id="<?= $vehicleOrder->ORDER_ID ?>" 
+                                data-make_name="<?= $vehicleOrder->MAKE_NAME ?>" 
+                                data-model_name="<?= $vehicleOrder->MODEL_NAME ?>" 
+                                data-booking_date="<?= $vehicleOrder->BOOKING_DATE ?>" 
+                                data-max_capacity="<?= $vehicleOrder->MAX_CAPACITY ?>" 
+                                data-rent_from="<?= $vehicleOrder->RENT_FROM ?>" 
+                                data-rent_to="<?= $vehicleOrder->RENT_TO ?>" 
+                                data-rating="<?= $vehicleOrder->RATING ?>" 
+                                 
+                                onclick="showDetails(this)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
                             Give Rating
                         </button></th>
                 </tr>
@@ -120,11 +130,10 @@ require_once  "../controller/vehicle_rating_controller.php";
 
 
 
-    <!-- Modal -->
+    <!-- Modal vehicle details-->
     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       
-        <script>$window.location.reload();
-    </script>
+        <!-- <script>$window.location.reload();</script> -->
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -134,16 +143,18 @@ require_once  "../controller/vehicle_rating_controller.php";
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img style="display: block;
+                    <img style="display: block;ORDER_ID
   margin-left: auto;
   margin-right: auto;
   width: 50%;" src="../images/<?= $vehicleOrder->VEHICLE_ID ?>.jpg" width="350px">
-                    <p>Order Id: <?= $vehicleOrder->ORDER_ID ?></p>
-                    <p>Manufacturer: <?= $vehicleOrder->MAKE_NAME ?></p>
-                    <p>Model Name: <?= $vehicleOrder->MODEL_NAME ?></p>
-                    <p>Booking Date: <?= $vehicleOrder->BOOKING_DATE ?></p>
-                    <p>You rent this car from <?= $vehicleOrder->RENT_FROM ?> to <?= $vehicleOrder->RENT_TO ?></p>
-
+  
+                    <p>Order Id: <span id="details-order-id"></span> </p>
+                    <p>Manufacturer: <span id="details-make_name"></span> </p>
+                    <p>Model Name: <span id="details-model_name"></span></p>
+                    <p>Booking Date: <span id="details-booking_date"></span></p>
+                    <p>Max capacity: <span id="details-max_capacity"></span></p>
+                    <p>You rent this car from <span id="details-rent_from"></span> to <span id="details-rent_to"></span></p>
+                    
                 </div>
 
                 <div class="form-group" id="rating-ability-wrapper">
@@ -180,7 +191,7 @@ require_once  "../controller/vehicle_rating_controller.php";
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     
                         <input type="submit" class="btn btn-primary" name="someAction" value="Save changes" />
-                        <input type="hidden" id="order_id" name="order_id" value="<?= $vehicleOrder->ORDER_ID ?>">
+                        <input type="hidden" id="details-submit-order_id" name="order_id" value="<?= $vehicleOrder->ORDER_ID ?>">
 
                     </form>
                 </div>
@@ -201,13 +212,104 @@ require_once  "../controller/vehicle_rating_controller.php";
 
 
     <script>
+
+        var order_rating;
+
+
+        function showDetails(vehicle) {
+            
+
+            var orderId = vehicle.getAttribute("data-order_id");
+            document.getElementById('details-submit-order_id').value = orderId;
+            
+            document.getElementById("details-order-id").innerHTML =  orderId;
+
+            var make_name = vehicle.getAttribute("data-make_name");
+            document.getElementById("details-make_name").innerHTML =  make_name;
+
+
+            var model_name = vehicle.getAttribute("data-model_name");
+            document.getElementById("details-model_name").innerHTML =  model_name;
+
+            
+            var booking_date = vehicle.getAttribute("data-booking_date");
+            document.getElementById("details-booking_date").innerHTML =  booking_date;
+
+            var max_capacity = vehicle.getAttribute("data-max_capacity");
+            document.getElementById("details-max_capacity").innerHTML =  max_capacity;
+
+
+            var rent_from = vehicle.getAttribute("data-rent_from");
+            document.getElementById("details-rent_from").innerHTML =  rent_from;
+
+            var rent_to = vehicle.getAttribute("data-rent_to");
+            document.getElementById("details-rent_to").innerHTML =  rent_to;
+            
+            order_rating = vehicle.getAttribute("data-rating");
+
+            // alert(orderId);
+
+            foo();
+        
+
+        }
+
+        function foo() {
+
+              //*
+              var previous_value = $("#selected_rating").val();
+            var selected_value = order_rating;
+            // alert(String(selected_value));
+            $("#selected_rating").val(selected_value);
+
+            $(".selected-rating").empty();
+            $(".selected-rating").html(selected_value);
+
+            for (i = 1; i <= selected_value; ++i) {
+                $("#rating-star-" + i).toggleClass('btn-warning');
+                $("#rating-star-" + i).toggleClass('btn-default');
+            }
+
+            for (ix = 1; ix <= previous_value; ++ix) {
+                $("#rating-star-" + ix).toggleClass('btn-warning');
+                $("#rating-star-" + ix).toggleClass('btn-default');
+            }
+            //*
+            $(".btnrating").on('click', (function(e) {
+
+                previous_value = $("#selected_rating").val();
+
+                selected_value = $(this).attr("data-attr");
+                document.cookie = "rating=" + selected_value;
+                $("#selected_rating").val(selected_value);
+
+                $(".selected-rating").empty();
+                $(".selected-rating").html(selected_value);
+
+                for (i = 1; i <= selected_value; ++i) {
+                    $("#rating-star-" + i).toggleClass('btn-warning');
+                    $("#rating-star-" + i).toggleClass('btn-default');
+                }
+
+                for (ix = 1; ix <= previous_value; ++ix) {
+                    $("#rating-star-" + ix).toggleClass('btn-warning');
+                    $("#rating-star-" + ix).toggleClass('btn-default');
+                }
+
+            }));
+
+        }
+
+        
+
+
         jQuery(document).ready(function($) {
             
 
             //*
             var previous_value = $("#selected_rating").val();
-            var selected_value = <?= $vehicleOrder->RATING ?>;
-            alert(String(selected_value));
+            var selected_value = order_rating;
+            // alert(String(selected_value));
             $("#selected_rating").val(selected_value);
 
             $(".selected-rating").empty();
