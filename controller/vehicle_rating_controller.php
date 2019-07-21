@@ -28,9 +28,10 @@ if(  isset($_POST["order_id"])){
     $daoObject = DAO::getInstance();
 
    $daoObject->updateRating($vehicle_order);
+   header("location: http://localhost/VRP/view/booking.php");
 }
 else{
-    echo "here";
+  //  echo "here";
 
 }
 
