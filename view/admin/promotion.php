@@ -45,6 +45,7 @@ require_once  "../../controller/admin/promotion_controller.php";
             ?>
             <tr>
                 <th scope="row"><?= $promo->PROMOTION_ID ?></th>
+                <th scope="row"><?= $promo->MODEL_NAME ?></th>
                 <th scope="row"><?= $promo->DISCOUNT_AMOUNT ?></th>
                 <th scope="row"><?= $promo->EXPIRY_DATE ?></th>
                 <th scope="row"><a href="../../controller/admin/promotion_controller.php?promotion_id=<?= $promo->PROMOTION_ID ?>"><i class="fa fa-trash" style="font-size:24px"></i></a></th>

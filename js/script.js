@@ -43,7 +43,7 @@ $(document).ready(function () {
                             customer_id: results
                         });
 
-                    $.post("../controller/cart_post_service.php", {checkout_arr: cartArray}, function (data, status) {
+                    $.post("../controller/cart_post_service.php", { checkout_arr: cartArray }, function (data, status) {
 
 
                         if (status === "success") {
@@ -113,7 +113,7 @@ $(document).ready(function () {
                             customer_id: results
                         });
 
-                    $.post("../controller/cart_post_service.php", {checkout_arr: cartArray}, function (data, status) {
+                    $.post("../controller/cart_post_service.php", { checkout_arr: cartArray }, function (data, status) {
 
                         iteminfo.cart_id = data;
 
@@ -148,14 +148,22 @@ $(document).ready(function () {
             shoppingCart = JSON.parse(localStorage["shopCart"].toString());
 
 
+
+
+
             var total = 0;
             var cartItemCount = 0;
             var holderHTML2 = "";
             $.each(shoppingCart, function (index, value) {
-                var stotal = parseFloat(value.price);
+                const date1 = new Date(value.date_from);
+                const date2 = new Date(value.date_to);
+                const diffTime = Math.abs(date2.getTime() - date1.getTime());
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                var stotal = parseFloat(value.price) * diffDays;
                 cartItemCount += 1;
                 total += stotal;
-                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from +  '</td><td>' + value.date_to + '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>' + value.date_to + '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
             });
 
@@ -180,22 +188,29 @@ $(document).ready(function () {
                                 model: results2[i].MODEL_NAME,
                                 reqdate: results2[i].BOOKING_DATE,
                                 price: results2[i].DAILY_RATE,
-                                date_from:results2[i].DATE_FROM,
-                                date_to:results2[i].DATE_TO
+                                date_from: results2[i].DATE_FROM,
+                                date_to: results2[i].DATE_TO
                             });
                         }
 
 
                         localStorage["shopCart"] = JSON.stringify(shoppingCart);
 
+
+
                         var total = 0;
                         var cartItemCount = 0;
                         var holderHTML2 = "";
                         $.each(shoppingCart, function (index, value) {
-                            var stotal = parseFloat(value.price);
+                            const date1 = new Date(value.date_from);
+                            const date2 = new Date(value.date_to);
+                            const diffTime = Math.abs(date2.getTime() - date1.getTime());
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                            var stotal = parseFloat(value.price) * diffDays;
                             cartItemCount += 1;
                             total += stotal;
-                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from +  '</td><td>' + value.date_to +  '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>' + value.date_to + '</td><td>&#2547; ' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
                         });
 
@@ -226,7 +241,7 @@ $(document).ready(function () {
             id: shoppingCart[itemToDelete].cart_id
         });
 
-        $.post("../controller/cart_delete_service.php", {checkout_arr: cartArray}, function (data, status) {
+        $.post("../controller/cart_delete_service.php", { checkout_arr: cartArray }, function (data, status) {
 
 
         });

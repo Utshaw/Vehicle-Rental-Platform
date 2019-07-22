@@ -100,15 +100,21 @@
 
 
 
+                        <?php if($bus->DAILY_RATE != $bus->PROMOTIONAL_DAILY_RATE) { ?>
 
-                        <p class="card-text">DAILY RATE: &#2547; <?= $bus->DAILY_RATE ?></p>
+                        <p class="card-text"><s>DAILY RATE: &#2547; <?=$bus->DAILY_RATE?> </s></p>
+                        <p class="card-text">PORMO DAILY RATE: &#2547; <?=$bus->PROMOTIONAL_DAILY_RATE?> </p>
+
+                        <?php }else{  ?>
+                            <p class="card-text">DAILY RATE: &#2547; <?=$bus->DAILY_RATE?></p>
+                        <?php } ?>
                         <p>CAPACITY: <?= $bus->MAX_CAPACITY ?></p>
 
                         <p>COMPANY: <?= $bus->COMPANY_NAME ?></p>
 
 
 
-                        <p><button class="cartitem btn btn-primary" data-date_from="<?= $date_from ?>" data-date_to="<?= $date_to ?>" data-booking_date="<?= $booking_date ?>" data-id="<?= $bus->VEHICLE_ID ?>" data-make="<?= $bus->MAKE_NAME ?>" data-model="<?= $bus->MODEL_NAME ?>" data-price="<?= $bus->DAILY_RATE ?>">Add to cart</button></p>
+                        <p><button class="cartitem btn btn-primary" data-date_from="<?= $date_from ?>" data-date_to="<?= $date_to ?>" data-booking_date="<?= $booking_date ?>" data-id="<?= $bus->VEHICLE_ID ?>" data-make="<?= $bus->MAKE_NAME ?>" data-model="<?= $bus->MODEL_NAME ?>" data-price="<?= $bus->PROMOTIONAL_DAILY_RATE ?>">Add to cart</button></p>
                     </div>
                     <div class="card-footer">
                         <small><?= $bus->COMPANY_NAME ?></small> <br>

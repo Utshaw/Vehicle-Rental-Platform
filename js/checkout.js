@@ -4,7 +4,7 @@ var shoppingCart = [];
 var checkoutArray = [];
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     function outputCart() {
 
-        if(localStorage["shopCart"] != null){
+        if (localStorage["shopCart"] != null) {
             shoppingCart = JSON.parse(localStorage["shopCart"].toString());
             console.log("session storage is not null");
 
@@ -32,11 +32,16 @@ $(document).ready(function() {
             checkoutArray = [];
 
 
-            $.each(shoppingCart, function(index, value) {
-                var stotal = parseFloat (value.price);
-                cartItemCount+=1;
+            $.each(shoppingCart, function (index, value) {
+                const date1 = new Date(value.date_from);
+                const date2 = new Date(value.date_to);
+                const diffTime = Math.abs(date2.getTime() - date1.getTime());
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                var stotal = parseFloat(value.price) * diffDays;
+                cartItemCount += 1;
                 total += stotal;
-                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.date_from  + '</td><td>' + value.date_to +  '</td><td> &#2547;' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>' + value.date_to + '</td><td> &#2547;' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
                 checkoutArray.push({
 
                     id: value.id,
@@ -57,21 +62,21 @@ $(document).ready(function() {
 
 
 
-        }else{
+        } else {
             shoppingCart = [];
             checkoutArray = [];
 
 
             console.log("Session storage is null");
-            $.get("../controller/get_customer_session_id_service.php", function(results) {
-                if(results === "-1"){
+            $.get("../controller/get_customer_session_id_service.php", function (results) {
+                if (results === "-1") {
 
-                }else{
+                } else {
                     console.log(results);
-                    $.get("../controller/get_cart_items_service.php?customer_id="+results, function(results2) {
+                    $.get("../controller/get_cart_items_service.php?customer_id=" + results, function (results2) {
 
                         console.log(results2);
-                        for(var i = 0; i < results2.length; i++){
+                        for (var i = 0; i < results2.length; i++) {
 
 
                             shoppingCart.push({
@@ -80,8 +85,8 @@ $(document).ready(function() {
                                 model: results2[i].MODEL_NAME,
                                 booking_date: results2[i].BOOKING_DATE,
                                 price: results2[i].DAILY_RATE,
-                                date_from:results2[i].DATE_FROM,
-                                date_to:results2[i].DATE_TO
+                                date_from: results2[i].DATE_FROM,
+                                date_to: results2[i].DATE_TO
                             });
                         }
 
@@ -94,12 +99,18 @@ $(document).ready(function() {
                         var holderHTML2 = "";
                         console.log("Printing startA");
                         console.log(shoppingCart);
-                        $.each(shoppingCart, function(index, value) {
+                        $.each(shoppingCart, function (index, value) {
+
+                            const date1 = new Date(value.date_from);
+                            const date2 = new Date(value.date_to);
+                            const diffTime = Math.abs(date2.getTime() - date1.getTime());
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
                             console.log(value);
-                            var stotal = parseFloat(value.price);
-                            cartItemCount+=1;
+                            var stotal = parseFloat(value.price) * diffDays;
+                            cartItemCount += 1;
                             total += stotal;
-                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>'  + value.make + '</td><td>' +     value.model + '</td><td>' +  value.date_from  +  '</td><td>' + value.date_to + '</td><td>&#2547;' + value.price  +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>' + value.date_to + '</td><td>&#2547;' + value.price +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
                             checkoutArray.push({
 
@@ -130,11 +141,11 @@ $(document).ready(function() {
 
 
 
-        if(shoppingCart.length === 0){
-            $("button#submit_checkout").prop("disabled",true);
+        if (shoppingCart.length === 0) {
+            $("button#submit_checkout").prop("disabled", true);
 
-        }else{
-            $("button#submit_checkout").prop("disabled",false);
+        } else {
+            $("button#submit_checkout").prop("disabled", false);
 
         }
 
@@ -156,7 +167,7 @@ $(document).ready(function() {
             id: shoppingCart[itemToDelete].cart_id
         });
 
-        $.post("../controller/cart_delete_service.php", {checkout_arr: cartArray}, function(data, status) {
+        $.post("../controller/cart_delete_service.php", { checkout_arr: cartArray }, function (data, status) {
 
 
 
@@ -175,19 +186,19 @@ $(document).ready(function() {
 
 
 
-    $("button#submit_checkout").click(function(){
+    $("button#submit_checkout").click(function () {
 
-        $.get("../controller/get_customer_session_id_service.php", function(results) {
+        $.get("../controller/get_customer_session_id_service.php", function (results) {
 
 
-            if(results === "-1"){
+            if (results === "-1") {
 
 
                 window.location.href = "../view/login.php";
 
 
 
-            }else{
+            } else {
                 checkoutArray.push(
                     {
                         customer_id: results
@@ -196,14 +207,14 @@ $(document).ready(function() {
                 console.log("SOMEA");
                 console.log(checkoutArray);
                 console.log("SOMEB");
-                $.post("../controller/checkout_post_service.php", {checkout_arr: checkoutArray}, function(data, status) {
+                $.post("../controller/checkout_post_service.php", { checkout_arr: checkoutArray }, function (data, status) {
                     console.log(data);
 
                     var divAlert = $("div.alert");
                     divAlert.show();
                     var divAlertSpan = $("div span#home_message");
 
-                    if(data === "1"){
+                    if (data === "1") {
 
                         divAlert.attr('class', 'alert alert-success alert-dismissable');
                         divAlertSpan.html("Your order has been accepted!");
@@ -211,7 +222,7 @@ $(document).ready(function() {
                         outputCart();
 
 
-                    }else{
+                    } else {
 
                         divAlert.attr('class', 'alert alert-danger alert-dismissable');
                         divAlertSpan.html("Your order couldn't be processed. Try again later.");

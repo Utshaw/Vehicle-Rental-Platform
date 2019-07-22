@@ -102,11 +102,19 @@ class DAO
     {
 
         global $pdo;
-        $sql = "INSERT INTO PROMOTION(DISCOUNT_AMOUNT, EXPIRY_DATE) VALUES(:damount, :expiry_date)";
+        
+        $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id";
+        $statement = $pdo->prepare($sql_delete_same_model_promo);
+        $statement->bindValue(':model_id', $promo->MODEL_ID);
+        $statement->execute();
+
+
+        $sql = "INSERT INTO PROMOTION(DISCOUNT_AMOUNT, EXPIRY_DATE, MODEL_ID) VALUES(:damount, :expiry_date, :model_id)";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':damount', $promo->DISCOUNT_AMOUNT);
         $statement->bindValue(':expiry_date', $promo->EXPIRY_DATE);
+        $statement->bindValue(':model_id', $promo->MODEL_ID);
         $statement->execute();
 
 
@@ -134,7 +142,7 @@ class DAO
     {
 
         global $pdo;
-        $sql = "SELECT * FROM PROMOTION ORDER BY PROMOTION_ID DESC";
+        $sql = "SELECT * FROM PROMOTION AS P JOIN VEHICLE_MODEL AS VM ON P.MODEL_ID = VM.MODEL_ID ORDER BY PROMOTION_ID DESC";
 
         $statement = $pdo->prepare($sql);
         $statement->execute();

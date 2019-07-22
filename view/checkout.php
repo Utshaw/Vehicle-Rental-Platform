@@ -56,7 +56,7 @@ require_once "../controller/login_check.php";
                     <th scope="col">Model</th>
                     <th>Date From</th>
                     <th>Date To</th>
-                    <th scope="col">Cost</th>
+                    <th scope="col">Cost Per Day</th>
                     <th scope="col">Remove</th>
 
                 </tr>

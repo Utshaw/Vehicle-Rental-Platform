@@ -58,14 +58,14 @@
                             <div class="col-md-6 mb-3   ">
 
                                 <select name="company" class="form-control input-sm">
-                                <option value="-1">All Companies</option>
+                                    <option value="-1">All Companies</option>
                                     <?php foreach ($companies as $company) : ?>
-                                            <option value="<?= $company->COMPANY_ID ?>"><?= $company->COMPANY_NAME ?></option>
-                                    <?php endforeach; ?> 
-                                    
+                                        <option value="<?= $company->COMPANY_ID ?>"><?= $company->COMPANY_NAME ?></option>
+                                    <?php endforeach; ?>
+
                                 </select>
 
-                                    
+
                             </div>
 
 
@@ -100,7 +100,7 @@
                         </div>
 
 
-       
+
 
 
                         <input class="btn btn-primary " name="submit_search" type="submit" value="Search_for_bus" />
@@ -154,6 +154,29 @@
 
 
 
+    <!-- PROMO Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="promo_header">Modal Header</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                </div>
+                <div class="modal-body" id="promo_body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <img id="promo_car" src="../images/sample_car.jpg">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
     <?php require_once "../controller/bus_search_controller.php"; ?>
 
@@ -171,6 +194,12 @@
 
     <script type="text/javascript" src="../js/homepage_min_date.js"></script>
 
+    <script>
+        $(document).ready(function() {
+
+            
+        });
+    </script>
 
 </body>
 
