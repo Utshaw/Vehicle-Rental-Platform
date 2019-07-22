@@ -80,7 +80,7 @@ require_once  "../controller/vehicle_rating_controller.php";
                                 data-booking_date="<?= $vehicleOrder->BOOKING_DATE ?>" 
                                 data-max_capacity="<?= $vehicleOrder->MAX_CAPACITY ?>" 
                                 data-rent_from="<?= $vehicleOrder->RENT_FROM ?>" 
-                                data-rent_to="<?= $vehicleOrder->RENT_TO ?>" 
+                                data-review="<?= $vehicleOrder->REVIEW?>" 
                                 data-rating="<?= $vehicleOrder->RATING ?>" 
                                  
                                 onclick="showDetails(this)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
@@ -144,9 +144,9 @@ require_once  "../controller/vehicle_rating_controller.php";
                 </div>
                 <div class="modal-body">
                     <img style="display: block;ORDER_ID
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;" src="../images/<?= $vehicleOrder->VEHICLE_ID ?>.jpg" width="350px">
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 50%;" src="../images/<?= $vehicleOrder->VEHICLE_ID ?>.jpg" width="350px">
   
                     <p>Order Id: <span id="details-order-id"></span> </p>
                     <p>Manufacturer: <span id="details-make_name"></span> </p>
@@ -185,7 +185,7 @@ require_once  "../controller/vehicle_rating_controller.php";
                 </div>
                 <div align="center">
                 <form action="" method="post">
-                <textarea rows="5" cols="50" name="review" placeholder="Give review here.."><?= $vehicleOrder->REVIEW ?></textarea>
+                <textarea rows="5" cols="50" name="review" placeholder="Give review here.." id="details-review"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -250,7 +250,10 @@ require_once  "../controller/vehicle_rating_controller.php";
             // alert(orderId);
 
             foo();
-        
+            
+            var review = vehicle.getAttribute("data-review");
+            document.getElementById("details-review").innerHTML =  review;
+            
 
         }
 
