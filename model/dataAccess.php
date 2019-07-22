@@ -137,11 +137,20 @@ class DAO
         return $results;
     }
 
+    public function deleteOldPromotion() {
+        global $pdo;
+
+        $sql = "DELETE FROM PROMOTION WHERE EXPIRY_DATE < now()";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+
+    }
 
     public function getAllPromotions()
     {
-
+        // deleteOldPromotion();
         global $pdo;
+        
         $sql = "SELECT * FROM PROMOTION AS P JOIN VEHICLE_MODEL AS VM ON P.MODEL_ID = VM.MODEL_ID ORDER BY PROMOTION_ID DESC";
 
         $statement = $pdo->prepare($sql);

@@ -7,7 +7,10 @@ require_once '../model/dataAccess.php';
 
 $daoObject = DAO::getInstance();
 
+$daoObject->deleteOldPromotion();
+
 $promotions = $daoObject->getAllPromotions();
+
 echo json_encode($promotions);
 
 
