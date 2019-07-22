@@ -56,6 +56,10 @@
                                 </li>
 
                                 <li>
+                                    <a href="./companies.php?"><i class="fa fa-fw fa fa-dashboard"></i> All Companies</a>
+                                </li>
+
+                                <li>
                                     <a href="./dashboard.php?"><i class="fa fa-fw fa fa-dashboard"></i> All vehicles</a>
                                 </li>
 
@@ -64,22 +68,24 @@
                                     <a href="./orders.php?"><i class="fa fa-fw fa fa-dashboard"></i> All customer orders</a>
                                 </li>
 
-                                <li>
+                                <!-- <li>
                                     <a href="../controller/admin_add_make.php?"><i class="fa fa-bus"></i> Add manufacturer (Make)</a>
-                                </li>
+                                </li> -->
 
 
-                                <li>
+                                <!-- <li>
                                     <a href="../controller/admin_add_model.php?"><i class="fa fa-bus"></i> Add model</a>
-                                </li>
-
+                                </li> -->
+<!-- 
                                 <li>
                                     <a href="../controller/admin_vehicle_submit.php?"><i class="fa fa-bus"></i> Add new vehicle</a>
-                                </li>
+                                </li> -->
+
+
 
 
                                 <li>
-                                    <a href="../controller/admin_promotion.php?"><i class="fa fa-money"></i> Add promotion</a>
+                                    <a href="../admin/promotion.php?"><i class="fa fa-money"></i> Add promotion</a>
                                 </li>
 
 

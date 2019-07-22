@@ -1,7 +1,7 @@
 <?php 
 
 // require_once "../../controller/company/vehicle_submit.php";
-
+require_once "../../controller/company/login_check.php";
 
 require_once  "./header.php" ;
 

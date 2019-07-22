@@ -1,8 +1,8 @@
 <?php 
-require_once "../../controller/company/login_check.php";
+require_once "../../controller/admin/login_check.php";
 require_once  "header.php";
 
-require_once "../../controller/company/vehicle_orders.php";
+require_once "../../controller/admin/vehicle_orders.php";
 ?>
 
 <div class="col-sm-12 col-md-12 well" id="content">

@@ -29,12 +29,13 @@
             <thead>
             <tr>
                 <th scope="col">Vehicle Id</th>
+                <th scope="col">Company</th>
                 <th scope="col">Make</th>
-                <th scope="col">Model</th>
+                <th scope="col">Category</th>
                 <th scope="col">Daily Rate</th>
                 <th scope="col">Max capacity</th>
                 <th scope="col">Action</th>
-                <th scope="col">Edit</th>
+                <!-- <th scope="col">Edit</th> -->
             </tr>
             </thead>
             <tbody>
@@ -47,13 +48,14 @@
 ?>
             <tr id="vehicle-<?=$bus->VEHICLE_ID?>">
                 <th scope="row"><?=$bus->VEHICLE_ID?></th>
+                <th scope="row"><?=$bus->COMPANY_NAME?></th>
                 <th scope="row"><?=$bus->MAKE_NAME?></th>
                 <th scope="row"><?=$bus->MODEL_NAME?></th>
                 <th scope="row"><?=$bus->DAILY_RATE?></th>
                 <th scope="row"><?=$bus->MAX_CAPACITY?></th>
 
-                <th scope="row"><a href="../controller/admin_vehicle_orders.php?vehicle_id=<?=$bus->VEHICLE_ID?>">All bookings</a></th>
-                <th scope="row"><a href="../controller/admin_bus_edit.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><i class="fa fa-edit" style="font-size:24px"></i></a> </th>
+                <th scope="row"><a href="../admin/vehicle_orders.php?vehicle_id=<?=$bus->VEHICLE_ID?>">All bookings</a></th>
+                <!-- <th scope="row"><a href="../controller/admin_bus_edit.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><i class="fa fa-edit" style="font-size:24px"></i></a> </th> -->
 
 
             </tr>

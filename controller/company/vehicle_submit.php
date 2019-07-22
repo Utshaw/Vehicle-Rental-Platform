@@ -6,7 +6,7 @@ require_once '../../model/bus_make.php';
 require_once '../../model/dataAccess.php';
 
 
-session_start();
+// session_start();
 
 $daoObject = DAO::getInstance();
 

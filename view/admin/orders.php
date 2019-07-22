@@ -34,8 +34,8 @@
                 <th scope="col">Booking Date</th>
                 <th scope="col">Rent From</th>
                 <th scope="col">Rent To</th>
-                <th scope="col">Action</th>
-                <th scope="col">Edit</th>
+                <!-- <th scope="col">Action</th>
+                <th scope="col">Edit</th> -->
             </tr>
             </thead>
             <tbody>
@@ -54,8 +54,8 @@
                 <th scope="row"><?=$bus->RENT_FROM?></th>
                 <th scope="row"><?=$bus->RENT_TO?></th>
 
-                <th scope="row"><a href="../controller/admin_vehicle_orders.php?vehicle_id=<?=$bus->VEHICLE_ID?>">All bookings</a></th>
-                <th scope="row"><a href="../controller/admin_bus_edit.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><i class="fa fa-edit" style="font-size:24px"></i></a> </th>
+                <!-- <th scope="row"><a href="../controller/admin_vehicle_orders.php?vehicle_id=<?=$bus->VEHICLE_ID?>">All bookings</a></th>
+                <th scope="row"><a href="../controller/admin_bus_edit.php?vehicle_id=<?=$bus->VEHICLE_ID?>"><i class="fa fa-edit" style="font-size:24px"></i></a> </th> -->
 
 
             </tr>

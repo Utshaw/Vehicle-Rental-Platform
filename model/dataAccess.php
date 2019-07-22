@@ -86,6 +86,35 @@ class DAO
 
 
 
+    public function deletePromotion($promotion)
+    {
+
+        global $pdo;
+        $sql = "DELETE  FROM PROMOTION WHERE PROMOTION_ID = :promo_id";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':promo_id', $promotion->PROMOTION_ID, PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+
+    public function addPromotion($promo)
+    {
+
+        global $pdo;
+        $sql = "INSERT INTO PROMOTION(DISCOUNT_AMOUNT, EXPIRY_DATE) VALUES(:damount, :expiry_date)";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':damount', $promo->DISCOUNT_AMOUNT);
+        $statement->bindValue(':expiry_date', $promo->EXPIRY_DATE);
+        $statement->execute();
+
+
+        return $id = $pdo->lastInsertId();
+
+    }
+
+
     public function getAllAdmins()
     {
 
@@ -100,10 +129,42 @@ class DAO
         return $results;
     }
 
-    public function getAllCompanies()
+
+    public function getAllPromotions()
     {
 
         global $pdo;
+        $sql = "SELECT * FROM PROMOTION ORDER BY PROMOTION_ID DESC";
+
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Promotion');
+
+
+        return $results;
+    }
+
+    public function reducePrice($promotion) {
+
+        global $pdo;
+
+
+        $sql = "UPDATE VEHICLE SET PROMOTIONAL_DAILY_RATE = DAILY_RATE - DAILY_RATE* :discount_amount /100 WHERE MODEL_ID = :model_id";
+
+        $model_id = $promotion->MODEL_ID;
+        $discount_amount = $promotion->DISCOUNT_AMOUNT;
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':model_id', $model_id, PDO::PARAM_INT);
+        $statement->bindValue(':discount_amount', $discount_amount, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function getAllCompanies()
+    {
+
+        global $pdo;    
         $sql = "SELECT * FROM VEHICLE_COMPANY";
 
         $statement = $pdo->prepare($sql);
@@ -361,7 +422,7 @@ class DAO
     {
 
         global $pdo;
-        $sql = "SELECT * FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
+        $sql = "SELECT *, (SELECT AVG(RATING) AS RATING FROM VEHICLE_ORDER WHERE VEHICLE_ID=V.VEHICLE_ID) FROM `VEHICLE` AS V JOIN VEHICLE_MODEL AS VM  JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON  VMK.MAKE_ID = V.MAKE_ID AND  V.MODEL_ID = VM.MODEL_ID  AND VCM.COMPANY_ID = V.COMPANY_ID WHERE  DAILY_RATE BETWEEN :rate_min AND :rate_max AND V.MAX_CAPACITY >= :cap AND
         VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_from BETWEEN RENT_FROM AND RENT_TO)
         AND
         VEHICLE_ID NOT IN (SELECT VEHICLE_ID FROM VEHICLE_ORDER WHERE :date_to BETWEEN RENT_FROM AND RENT_TO)";
@@ -491,11 +552,14 @@ class DAO
     { }
 
 
+  
+
+
     public function getAllBuses()
     {
 
         global $pdo;
-        $statement = $pdo->query("SELECT * FROM VEHICLE AS V JOIN VEHICLE_MODEL AS VM JOIN VEHICLE_MAKE AS VMK ON V.MAKE_ID = VMK.MAKE_ID AND VM.MODEL_ID = V.MODEL_ID ");
+        $statement = $pdo->query("SELECT * FROM VEHICLE AS V JOIN VEHICLE_MODEL AS VM JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_COMPANY AS VCM ON V.MAKE_ID = VMK.MAKE_ID AND V.COMPANY_ID = VCM.COMPANY_ID AND VM.MODEL_ID = V.MODEL_ID ");
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
         return $results;

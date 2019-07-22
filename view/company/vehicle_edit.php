@@ -1,4 +1,6 @@
-<?php require_once  "./header.php";
+<?php 
+require_once "../../controller/company/login_check.php";
+require_once  "./header.php";
 // require_once "../../controller/company/bus_delete_controller.php";
 require_once "../../controller/company/bus_edit_controller.php";
 ?>
