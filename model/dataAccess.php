@@ -311,7 +311,7 @@ class DAO
         $company_id = $v->COMPANY_ID;
 
 
-        $sql = "INSERT INTO VEHICLE (MAKE_ID, MODEL_ID, DAILY_RATE, IMAGE, MAX_CAPACITY, COMPANY_ID) VALUES(:mkid, :mid, :rate, :im, :mcap, :company_id)";
+        $sql = "INSERT INTO VEHICLE (MAKE_ID, MODEL_ID, DAILY_RATE, IMAGE, MAX_CAPACITY, COMPANY_ID, PROMOTIONAL_DAILY_RATE) VALUES(:mkid, :mid, :rate, :im, :mcap, :company_id, :rate)";
 
         $statement = $pdo->prepare($sql);
 
@@ -350,7 +350,7 @@ class DAO
 
         global $pdo;
 
-        $sql = "INSERT INTO VEHICLE_ORDER(CUSTOMER_ID, VEHICLE_ID, BOOKING_DATE, RENT_FROM,  RENT_TO) VALUES(:customer_id, :vehicle_id, :booking_date, :date_from, :date_to)";
+        $sql = "INSERT INTO VEHICLE_ORDER(CUSTOMER_ID, VEHICLE_ID, BOOKING_DATE, RENT_FROM,  RENT_TO, COST) VALUES(:customer_id, :vehicle_id, :booking_date, :date_from, :date_to, :cost)";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':customer_id', $orderObj->CUSTOMER_ID, PDO::PARAM_INT);
@@ -358,6 +358,7 @@ class DAO
         $statement->bindValue(':booking_date', $orderObj->BOOKING_DATE);
         $statement->bindValue(':date_from', $orderObj->DATE_FROM);
         $statement->bindValue(':date_to', $orderObj->DATE_TO);
+        $statement->bindValue(':cost', $orderObj->COST);
 
         return $statement->execute();
     }

@@ -47,7 +47,8 @@ $(document).ready(function () {
                     id: value.id,
                     date: value.booking_date,
                     date_from: value.date_from,
-                    date_to: value.date_to
+                    date_to: value.date_to,
+                    total: total
                 });
 
 
@@ -117,7 +118,8 @@ $(document).ready(function () {
                                 id: value.id,
                                 date: value.booking_date,
                                 date_from: value.date_from,
-                                date_to: value.date_to
+                                date_to: value.date_to,
+                                total: total
                             });
 
 

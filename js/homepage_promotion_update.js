@@ -25,8 +25,8 @@ function getPromotionCallBack(results) {
 
         newrow.append("New promotional offer running. Get " + result.DISCOUNT_AMOUNT + " % discount on " + result.MODEL_NAME + " | Expiry date: " + result.EXPIRY_DATE);
 
-        if (imageShowed == 0) {
-            imageShowed = 1
+        if (localStorage["imageShowed"] == null) {
+            localStorage["imageShowed"] = 100;
 
             $("#promo_header").html("Discount on " + result.MODEL_NAME);
             $("#promo_body").html("GET " + result.DISCOUNT_AMOUNT + "% discount");

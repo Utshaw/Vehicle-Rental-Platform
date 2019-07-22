@@ -30,6 +30,7 @@ if(isset($_POST['checkout_arr'])){
         $order->BOOKING_DATE =  htmlentities($booking_date);
         $order->DATE_FROM =  htmlentities($date_from);
         $order->DATE_TO =  htmlentities($date_to);
+        $order->COST = htmlentities($checkoutArr[$i]['total']);
 
         $rslt =  $daoObject->addVehicleOrder($order);
 
