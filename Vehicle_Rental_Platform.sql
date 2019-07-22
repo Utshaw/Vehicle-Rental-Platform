@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 22, 2019 at 08:58 AM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Jul 22, 2019 at 10:49 পূর্বাহ্ণ
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -55,7 +53,7 @@ CREATE TABLE `CUSTOMERS` (
   `CONTACT_NUMBER` varchar(20) NOT NULL,
   `PASSWORD` varchar(1000) DEFAULT NULL,
   `VERIFICATION_CODE` varchar(50) DEFAULT NULL,
-  `BLOCKED` tinyint(4) NOT NULL DEFAULT 0
+  `BLOCKED` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -98,7 +96,8 @@ CREATE TABLE `PROMOTION` (
 --
 
 INSERT INTO `PROMOTION` (`PROMOTION_ID`, `DISCOUNT_AMOUNT`, `EXPIRY_DATE`, `MODEL_ID`) VALUES
-(6, 15, '2019-07-23', NULL);
+(6, 15, '2019-07-23', NULL),
+(7, 10, '2019-07-23', 1);
 
 -- --------------------------------------------------------
 
@@ -122,10 +121,13 @@ CREATE TABLE `VEHICLE` (
 --
 
 INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `MAX_CAPACITY`, `COMPANY_ID`, `PROMOTIONAL_DAILY_RATE`) VALUES
-(98718, 2, 4, 2845.00, '98718.jpg', 24, 1, 2845),
-(98720, 2, 1, 2050.00, '98720.jpg', 49, 1, 2050),
-(98721, 2, 1, 2901.00, '98721.jpg', 73, 1, 2901),
-(98749, 1, 1, 3000.00, '98749.jpg', 5, 1, 3000);
+(98718, 2, 4, 2845.00, '98718.jpg', 4, 1, 2845),
+(98720, 2, 1, 2050.00, '98720.jpg', 5, 1, 1845),
+(98721, 2, 1, 2901.00, '98721.jpg', 4, 1, 2610.9),
+(98749, 1, 1, 3000.00, '98749.jpg', 5, 1, 2700),
+(98750, 3, 15, 10000.00, '98750.jpg', 36, 1, 0),
+(98751, 1, 1, 3000.00, '98751.jpg', 5, 1, 2700),
+(98752, 3, 15, 12000.00, '98752.jpg', 30, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -147,10 +149,10 @@ CREATE TABLE `VEHICLE_COMPANY` (
 --
 
 INSERT INTO `VEHICLE_COMPANY` (`COMPANY_ID`, `COMPANY_NAME`, `EMAIL_ADDRESS`, `PASSWORD`, `ADDRESS`, `CONTACT_NUMBER`) VALUES
-(1, 'AZ Autos', 'utshaw105@gmail.com', '123456', 'dhaka', '1521332156'),
-(2, 'NR Corporation', '0', '0', '0', '0'),
-(3, 'Shuvo Enterprise', '0', '0', '0', '0'),
-(4, 'Shakil Enterprise', '0', '0', '0', '0');
+(1, 'AZ Autos', 'utshaw105@gmail.com', '123456', 'dhaka', '01521332156'),
+(2, 'NR Corporation', 'nr@gmail.com', '123456', 'chittagong', '01521332157'),
+(3, 'Shuvo Enterprise', 'shuvo@gmail.com', '123456', 'dhaka', '01521332158'),
+(4, 'Shakil Enterprise', 'shakil@gmail.com', '123456', 'dhaka', '01521332159');
 
 -- --------------------------------------------------------
 
@@ -210,7 +212,8 @@ INSERT INTO `VEHICLE_MODEL` (`MODEL_ID`, `MODEL_NAME`) VALUES
 (5, 'Pickup'),
 (6, 'Convertible'),
 (7, 'Micro Bus'),
-(14, 'Coupe');
+(14, 'Coupe'),
+(15, 'Bus');
 
 -- --------------------------------------------------------
 
@@ -234,11 +237,12 @@ CREATE TABLE `VEHICLE_ORDER` (
 --
 
 INSERT INTO `VEHICLE_ORDER` (`ORDER_ID`, `CUSTOMER_ID`, `VEHICLE_ID`, `BOOKING_DATE`, `RENT_FROM`, `RENT_TO`, `RATING`, `REVIEW`) VALUES
-(1, 1123031, 98721, '2019-02-28', '0000-00-00', '0000-00-00', 3, ''),
-(4, 1123031, 98721, '2019-02-28', '0000-00-00', '0000-00-00', 5, 'nice'),
-(7, 1123031, 98720, '2019-07-01', '2019-07-09', '2019-07-11', NULL, NULL),
-(11, 1123031, 98720, '2019-07-01', '2019-07-09', '2019-07-11', NULL, NULL),
-(15, 1123068, 98718, '2019-07-15', '2019-07-14', '2019-07-15', 5, 'good.');
+(1, 1123031, 98721, '2019-02-28', '2019-07-02', '2019-07-06', 3, 'Sit was not much comfortable'),
+(4, 1123031, 98721, '2019-02-28', '2019-07-07', '2019-07-12', 5, 'The ride was extraordinary.'),
+(7, 1123031, 98720, '2019-07-01', '2019-07-09', '2019-07-11', 2, 'Should change the break.'),
+(11, 1123031, 98720, '2019-07-01', '2019-07-09', '2019-07-11', 1, 'The engine sound is very bad.\n'),
+(15, 1123068, 98718, '2019-07-15', '2019-07-14', '2019-07-15', 5, 'good.'),
+(16, 1123031, 98752, '2019-07-22', '2019-07-22', '2019-07-27', 4, 'Enjoyed the ride very much. Seat was very comfortable.');
 
 --
 -- Indexes for dumped tables
@@ -306,49 +310,41 @@ ALTER TABLE `VEHICLE_ORDER`
 --
 ALTER TABLE `ADMIN`
   MODIFY `ADMIN_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `CUSTOMERS`
 --
 ALTER TABLE `CUSTOMERS`
   MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1123072;
-
 --
 -- AUTO_INCREMENT for table `PROMOTION`
 --
 ALTER TABLE `PROMOTION`
-  MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `VEHICLE`
 --
 ALTER TABLE `VEHICLE`
-  MODIFY `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98750;
-
+  MODIFY `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98753;
 --
 -- AUTO_INCREMENT for table `VEHICLE_COMPANY`
 --
 ALTER TABLE `VEHICLE_COMPANY`
   MODIFY `COMPANY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_MAKE`
 --
 ALTER TABLE `VEHICLE_MAKE`
   MODIFY `MAKE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `VEHICLE_MODEL`
 --
 ALTER TABLE `VEHICLE_MODEL`
-  MODIFY `MODEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `MODEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `VEHICLE_ORDER`
 --
 ALTER TABLE `VEHICLE_ORDER`
-  MODIFY `ORDER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `ORDER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
@@ -372,7 +368,6 @@ ALTER TABLE `VEHICLE`
 ALTER TABLE `VEHICLE_ORDER`
   ADD CONSTRAINT `ORDER_CUSTOMER_FK` FOREIGN KEY (`CUSTOMER_ID`) REFERENCES `CUSTOMERS` (`CUSTOMER_ID`) ON DELETE CASCADE ON UPDATE SET NULL,
   ADD CONSTRAINT `ORDER_VEHICLE_FK` FOREIGN KEY (`VEHICLE_ID`) REFERENCES `VEHICLE` (`VEHICLE_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
