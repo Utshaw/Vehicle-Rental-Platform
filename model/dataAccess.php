@@ -1,3 +1,5 @@
+
+
 <?php
 
 $connection = new DBConn();
@@ -52,7 +54,7 @@ class DAO
     }
 
 
-    
+
 
 
 
@@ -102,7 +104,7 @@ class DAO
     {
 
         global $pdo;
-        
+
         $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id";
         $statement = $pdo->prepare($sql_delete_same_model_promo);
         $statement->bindValue(':model_id', $promo->MODEL_ID);
@@ -119,7 +121,6 @@ class DAO
 
 
         return $id = $pdo->lastInsertId();
-
     }
 
 
@@ -137,20 +138,20 @@ class DAO
         return $results;
     }
 
-    public function deleteOldPromotion() {
+    public function deleteOldPromotion()
+    {
         global $pdo;
 
         $sql = "DELETE FROM PROMOTION WHERE EXPIRY_DATE < now()";
         $statement = $pdo->prepare($sql);
         $statement->execute();
-
     }
 
     public function getAllPromotions()
     {
         // deleteOldPromotion();
         global $pdo;
-        
+
         $sql = "SELECT * FROM PROMOTION AS P JOIN VEHICLE_MODEL AS VM ON P.MODEL_ID = VM.MODEL_ID ORDER BY PROMOTION_ID DESC";
 
         $statement = $pdo->prepare($sql);
@@ -161,7 +162,8 @@ class DAO
         return $results;
     }
 
-    public function reducePrice($promotion) {
+    public function reducePrice($promotion)
+    {
 
         global $pdo;
 
@@ -181,7 +183,7 @@ class DAO
     public function getAllCompanies()
     {
 
-        global $pdo;    
+        global $pdo;
         $sql = "SELECT * FROM VEHICLE_COMPANY";
 
         $statement = $pdo->prepare($sql);
@@ -193,7 +195,21 @@ class DAO
         return $results;
     }
 
+    public function getAllCompanyVehicleCount()
+    { 
+        global $pdo;
+        $sql = "SELECT VC.COMPANY_NAME, COUNT(V.VEHICLE_ID) AS VEHICLE_COUNT 
+        FROM VEHICLE_COMPANY VC LEFT JOIN VEHICLE V on VC.COMPANY_ID = V.COMPANY_ID 
+        GROUP BY VC.COMPANY_ID";
 
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
     public function getAllCustomers()
     {
 
@@ -245,15 +261,13 @@ class DAO
         $statement->bindValue(':mid', $mid, PDO::PARAM_INT);
         $statement->bindValue(':rate', $rate);
         $statement->bindValue(':mcap', $mcap, PDO::PARAM_INT);
-//    $statement->debugDumpParams();
+        //    $statement->debugDumpParams();
 
         $statement->execute();
-
-
-
     }
 
-    public function deleteVehicle($vehicle) {
+    public function deleteVehicle($vehicle)
+    {
 
         global $pdo;
         $sql = "DELETE FROM VEHICLE WHERE VEHICLE_ID=:vehicle_id";
@@ -261,10 +275,9 @@ class DAO
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':vehicle_id', $vehicle->VEHICLE_ID, PDO::PARAM_INT);
         $statement->execute();
-
     }
 
-    
+
     public function getVehicleOrders($vehicle)
     {
 
@@ -277,7 +290,6 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'VehicleOrder');
 
         return $results;
-
     }
 
     public function getSingleBus($b)
@@ -292,8 +304,6 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Bus');
 
         return $results;
-
-
     }
 
 
@@ -327,11 +337,12 @@ class DAO
         $statement->execute();
 
         $id = $pdo->lastInsertId();
-        
+
 
         return $id;
     }
-    public function updateVehicleImage($v){
+    public function updateVehicleImage($v)
+    {
         global $pdo;
 
         $sql = "UPDATE VEHICLE SET IMAGE=:image WHERE VEHICLE_ID=:vehicle_id";
@@ -342,7 +353,7 @@ class DAO
         $statement->bindValue(':vehicle_id', $v->VEHICLE_ID, PDO::PARAM_INT);
         $statement->bindValue(':image', $v->IMAGE, PDO::PARAM_STR);
         //    $statement->debugDumpParams();
-        $statement->execute();        
+        $statement->execute();
     }
 
     public function addVehicleOrder($orderObj)
@@ -570,7 +581,7 @@ class DAO
     { }
 
 
-  
+
 
 
     public function getAllBuses()
@@ -616,12 +627,12 @@ class DAO
 
     public function sendEmail($customer)
     {
-        if(get_class($customer) == "Customer") {
+        if (get_class($customer) == "Customer") {
             $email = new Email($customer->CUSTOMER_ID, $customer->EMAIL_ADDRESS, $customer->VERIFICATION_CODE, 1);
-        }else{
+        } else {
             $email = new Email($customer->COMPANY_ID, $customer->EMAIL_ADDRESS, $customer->VERIFICATION_CODE, 0);
         }
-        
+
         // var_dump($email);
         $email->sendEmail();
     }
@@ -649,7 +660,7 @@ class DAO
 
 
 
-        $customer->CUSTOMER_ID = $id ;
+        $customer->CUSTOMER_ID = $id;
         $this->sendEmail($customer);
         return $id;
     }
@@ -674,10 +685,10 @@ class DAO
 
         $id = $pdo->lastInsertId();
 
-        $company->COMPANY_ID = $id ;
+        $company->COMPANY_ID = $id;
         $this->sendEmail($company);
 
-        return $id ;
+        return $id;
     }
 
     public function updateRating($vehicle_order)
@@ -690,7 +701,7 @@ class DAO
         $statement->bindValue(':rating', $vehicle_order->RATING, PDO::PARAM_STR);
         $statement->bindValue(':review', $vehicle_order->REVIEW, PDO::PARAM_STR);
         $statement->bindValue(':order_id', $vehicle_order->ORDER_ID, PDO::PARAM_STR);
-        
+
         $statement->execute();
     }
 }

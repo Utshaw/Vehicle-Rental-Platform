@@ -8,6 +8,8 @@
     <title>MUS HIRE Ltd</title>
 
 
+    
+
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="../../css/admin-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,6 +17,58 @@
     <link rel="shortcut icon" type="image/png" href="../../images/favicon.png" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+
+<style type="text/css">
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+</style>
+
+
+
+
+
 </head>
 
 <body>
@@ -51,6 +105,9 @@
         <div class=" collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav side-nav">
 
+                                 <li>
+                                    <a href="./statistics.php?"><i class="fa fa-fw fa fa-dashboard"></i> Statistics</a>
+                                </li>
                                 <li>
                                     <a href="./customers.php?"><i class="fa fa-fw fa fa-dashboard"></i> All Customers</a>
                                 </li>
