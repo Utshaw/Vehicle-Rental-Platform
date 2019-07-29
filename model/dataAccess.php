@@ -99,12 +99,95 @@ class DAO
         $statement->execute();
     }
 
+    public function similarity_distance($matrix, $person1, $person2)
+    {
+        $similar = array();
+        $sum = 0;
 
-    public function addPromotion($promo)
+        foreach ($matrix[$person1] as $key => $value) {
+
+            if (array_key_exists($key, $matrix[$person2])) {
+
+                $similar[$key] = 1;
+            }
+        }
+
+        if ($similar == 0) {
+            return 0;
+        }
+
+        foreach ($matrix[$person1] as $key=>$value) {
+
+            if (array_key_exists($key, $matrix[$person2])) {
+
+                $sum = $sum + pow($value - $matrix[$person2][$key], 2);
+            }
+        }
+
+        return 1/(1+sqrt($sum));
+    }
+
+
+    public function getRecommendation($matrix, $person) {
+
+        foreach($matrix as $otherPerson=>$value) {
+
+            if($otherPerson != $person) {
+                $sim = $this->similarity_distance($matrix, $person, $otherPerson);
+
+                var_dump($sim);
+            }
+        }
+     } 
+
+    public function getRecommendationMatrix()
     {
         global $pdo;
 
         $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id AND COMPANY_ID = :company_id";
+
+        $matrix = array();
+
+
+        global $pdo;
+
+        $sql = "SELECT * FROM VEHICLE_ORDER";
+
+        $statement = $pdo->prepare($sql);
+        // $statement->bindValue(':company_id', $company->COMPANY_ID, PDO::PARAM_INT);
+        // $statement->bindValue(':verification_code', $company->VERIFICATION_CODE, PDO::PARAM_STR);
+        $statement->execute();
+        // $statement->debugDumpParams();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'VehicleOrder');
+
+        foreach ($results as $order) {
+
+
+            if (!is_null($order->RATING)) {
+                $matrix[$order->CUSTOMER_ID][$order->VEHICLE_ID] = $order->RATING;
+            }
+        }
+
+        print_r($matrix);
+
+
+        $customer_id = '1123031';
+        if(empty($matrix[$customer_id])){
+            return 0;
+        }
+            
+
+        var_dump($this->getRecommendation($matrix, $customer_id));
+
+        
+    }
+
+
+    public function addPromotion($promo)
+    {
+
+
+        $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id";
         $statement = $pdo->prepare($sql_delete_same_model_promo);
         $statement->bindValue(':model_id', $promo->MODEL_ID);
         $statement->bindValue(':company_id', $promo->COMPANY_ID);
