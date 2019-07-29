@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 29, 2019 at 04:34 পূর্বাহ্ণ
+-- Generation Time: Jul 29, 2019 at 10:12 পূর্বাহ্ণ
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -88,8 +88,17 @@ CREATE TABLE `PROMOTION` (
   `PROMOTION_ID` int(11) NOT NULL,
   `DISCOUNT_AMOUNT` double NOT NULL,
   `EXPIRY_DATE` date NOT NULL,
-  `MODEL_ID` int(11) DEFAULT NULL
+  `MODEL_ID` int(11) DEFAULT NULL,
+  `COMPANY_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `PROMOTION`
+--
+
+INSERT INTO `PROMOTION` (`PROMOTION_ID`, `DISCOUNT_AMOUNT`, `EXPIRY_DATE`, `MODEL_ID`, `COMPANY_ID`) VALUES
+(11, 2, '2019-07-31', 15, 1),
+(12, 2, '2019-07-31', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -114,12 +123,12 @@ CREATE TABLE `VEHICLE` (
 
 INSERT INTO `VEHICLE` (`VEHICLE_ID`, `MAKE_ID`, `MODEL_ID`, `DAILY_RATE`, `IMAGE`, `MAX_CAPACITY`, `COMPANY_ID`, `PROMOTIONAL_DAILY_RATE`) VALUES
 (98718, 2, 4, 2845.00, '98718.jpg', 4, 1, 2845),
-(98720, 2, 1, 2050.00, '98720.jpg', 5, 1, 1845),
-(98721, 2, 1, 2901.00, '98721.jpg', 4, 1, 2610.9),
-(98749, 1, 1, 3000.00, '98749.jpg', 5, 3, 2700),
+(98720, 2, 1, 2050.00, '98720.jpg', 5, 1, 2009),
+(98721, 2, 1, 2901.00, '98721.jpg', 4, 1, 2842.98),
+(98749, 1, 1, 3000.00, '98749.jpg', 5, 3, 2400),
 (98750, 3, 15, 10000.00, '98750.jpg', 36, 3, 10000),
-(98751, 1, 1, 3000.00, '98751.jpg', 5, 1, 2700),
-(98752, 3, 15, 12000.00, '98752.jpg', 30, 1, 12000),
+(98751, 1, 1, 3000.00, '98751.jpg', 5, 1, 2940),
+(98752, 3, 15, 12000.00, '98752.jpg', 30, 1, 11760),
 (98753, 1, 15, 9000.00, '98753.jpg', 30, 2, 9000);
 
 -- --------------------------------------------------------
@@ -314,7 +323,7 @@ ALTER TABLE `CUSTOMERS`
 -- AUTO_INCREMENT for table `PROMOTION`
 --
 ALTER TABLE `PROMOTION`
-  MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PROMOTION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `VEHICLE`
 --
