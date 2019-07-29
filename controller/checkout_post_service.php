@@ -48,7 +48,8 @@ if(isset($_POST['checkout_arr'])){
     // }
 
 
-    /*This echo is for communication channel with the client side*/echo $retVal;
+    /*This echo is for communication channel with the client side*/
+    echo $retVal;
 
 
 }

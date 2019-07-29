@@ -121,7 +121,7 @@
     <h2>Vehicle you might hire</h1>
 
     <!-- content changes on each page -->
-    <div class="container" id="searched_buses">
+    <div class="container" >
 
 
     <?php 

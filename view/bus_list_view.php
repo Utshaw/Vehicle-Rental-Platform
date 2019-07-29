@@ -54,9 +54,13 @@
     <!-- content changes on each page -->
     <div class="container" id="searched_buses">
 
+<?php 
 
+    if($total_result == 0) { ?>
+        <h2>No vehicle found</h2>
 
-
+  <?php  }
+?>
         <?php foreach ($results
 
             as $bus) :

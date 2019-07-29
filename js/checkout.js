@@ -111,7 +111,7 @@ $(document).ready(function () {
                             var stotal = parseFloat(value.price) * diffDays;
                             cartItemCount += 1;
                             total += stotal;
-                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>' + value.date_to + '</td><td>&#2547;' + value.price +  '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
+                            holderHTML2 += '<tr><td>' + cartItemCount + '</td><td>' + value.make + '</td><td>' + value.model + '</td><td>' + value.date_from + '</td><td>' + value.date_to + '</td><td>&#2547;' + value.price + '</td><td><span class="remove-item btn btn-danger">x</span></td></tr>';
 
                             checkoutArray.push({
 
@@ -216,20 +216,28 @@ $(document).ready(function () {
                     divAlert.show();
                     var divAlertSpan = $("div span#home_message");
 
-                    if (data === "1") {
 
-                        divAlert.attr('class', 'alert alert-success alert-dismissable');
-                        divAlertSpan.html("Your order has been accepted!");
-                        localStorage.clear();
-                        outputCart();
+                    // contingency support
+                    divAlert.attr('class', 'alert alert-success alert-dismissable');
+                    divAlertSpan.html("Your order has been accepted!");
+                    localStorage.clear();
+                    outputCart();
 
 
-                    } else {
+                    // if (data == "1") {
 
-                        divAlert.attr('class', 'alert alert-danger alert-dismissable');
-                        divAlertSpan.html("Your order couldn't be processed. Try again later.");
+                    //     divAlert.attr('class', 'alert alert-success alert-dismissable');
+                    //     divAlertSpan.html("Your order has been accepted!");
+                    //     localStorage.clear();
+                    //     outputCart();
 
-                    }
+
+                    // } else {
+
+                    //     divAlert.attr('class', 'alert alert-danger alert-dismissable');
+                    //     divAlertSpan.html("Your order couldn't be processed. Try again later.");
+
+                    // }
 
                 });
             }
