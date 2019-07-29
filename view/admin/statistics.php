@@ -160,28 +160,7 @@ require_once './header.php';
 
             <td>
                 <div id="programmatic_control_div1" style="padding-left: 2em; min-width: 250px"></div>
-                <div>
-                    <button style="margin: 1em 1em 1em 2em" onclick="changeRange1();">
-                        Select range [2, 5]
-                    </button><br />
-                    <button style="margin: 1em 1em 1em 2em" onclick="changeOptions1();">
-                        Make the pie chart 3D
-                    </button>
-                </div>
-                <script type="text/javascript">
-                    function changeRange1() {
-                        programmaticSlider1.setState({
-                            'lowValue': 2,
-                            'highValue': 5
-                        });
-                        programmaticSlider1.draw();
-                    }
-
-                    function changeOptions1() {
-                        programmaticChart1.setOption('is3D', true);
-                        programmaticChart1.draw();
-                    }
-                </script>
+                
             </td>
 
             <td>
@@ -206,28 +185,7 @@ require_once './header.php';
 
             <td>
                 <div id="programmatic_control_div2" style="padding-left: 2em; min-width: 250px"></div>
-                <div>
-                    <button style="margin: 1em 1em 1em 2em" onclick="changeRange2();">
-                        Select range [2, 5]
-                    </button><br />
-                    <button style="margin: 1em 1em 1em 2em" onclick="changeOptions2();">
-                        Make the pie chart 3D
-                    </button>
-                </div>
-                <script type="text/javascript">
-                    function changeRange2() {
-                        programmaticSlider2.setState({
-                            'lowValue': 2,
-                            'highValue': 5
-                        });
-                        programmaticSlider2.draw();
-                    }
-
-                    function changeOptions2() {
-                        programmaticChart2.setOption('is3D', true);
-                        programmaticChart2.draw();
-                    }
-                </script>
+                
             </td>
 
             <td>
