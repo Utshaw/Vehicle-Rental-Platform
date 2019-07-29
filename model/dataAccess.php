@@ -102,21 +102,22 @@ class DAO
 
     public function addPromotion($promo)
     {
-
         global $pdo;
 
-        $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id";
+        $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id AND COMPANY_ID = :company_id";
         $statement = $pdo->prepare($sql_delete_same_model_promo);
         $statement->bindValue(':model_id', $promo->MODEL_ID);
+        $statement->bindValue(':company_id', $promo->COMPANY_ID);
         $statement->execute();
 
 
-        $sql = "INSERT INTO PROMOTION(DISCOUNT_AMOUNT, EXPIRY_DATE, MODEL_ID) VALUES(:damount, :expiry_date, :model_id)";
+        $sql = "INSERT INTO PROMOTION(DISCOUNT_AMOUNT, EXPIRY_DATE, MODEL_ID, COMPANY_ID) VALUES(:damount, :expiry_date, :model_id, :company_id)";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':damount', $promo->DISCOUNT_AMOUNT);
         $statement->bindValue(':expiry_date', $promo->EXPIRY_DATE);
         $statement->bindValue(':model_id', $promo->MODEL_ID);
+        $statement->bindValue(':company_id', $promo->COMPANY_ID);
         $statement->execute();
 
 
@@ -168,13 +169,15 @@ class DAO
         global $pdo;
 
 
-        $sql = "UPDATE VEHICLE SET PROMOTIONAL_DAILY_RATE = DAILY_RATE - DAILY_RATE* :discount_amount /100 WHERE MODEL_ID = :model_id";
+        $sql = "UPDATE VEHICLE SET PROMOTIONAL_DAILY_RATE = DAILY_RATE - DAILY_RATE* :discount_amount /100 WHERE MODEL_ID = :model_id AND COMPANY_ID = :company_id";
 
         $model_id = $promotion->MODEL_ID;
+        $company_id = $promotion->COMPANY_ID;
         $discount_amount = $promotion->DISCOUNT_AMOUNT;
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':model_id', $model_id, PDO::PARAM_INT);
+        $statement->bindValue(':company_id', $company_id, PDO::PARAM_INT);
         $statement->bindValue(':discount_amount', $discount_amount, PDO::PARAM_INT);
 
         $statement->execute();

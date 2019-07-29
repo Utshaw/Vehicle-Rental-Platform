@@ -141,9 +141,9 @@
 
 
 
-                                <li>
+                                <!-- <li>
                                     <a href="../admin/promotion.php?"><i class="fa fa-money"></i> Add promotion</a>
-                                </li>
+                                </li> -->
 
 
                                 <?php if (isset($session_admin_id)) : ?>
