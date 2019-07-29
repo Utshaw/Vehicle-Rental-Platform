@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 29, 2019 at 02:20 পূর্বাহ্ণ
+-- Generation Time: Jul 29, 2019 at 04:34 পূর্বাহ্ণ
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -231,13 +231,13 @@ CREATE TABLE `VEHICLE_ORDER` (
 --
 
 INSERT INTO `VEHICLE_ORDER` (`ORDER_ID`, `CUSTOMER_ID`, `VEHICLE_ID`, `BOOKING_DATE`, `RENT_FROM`, `RENT_TO`, `RATING`, `REVIEW`, `COST`) VALUES
-(1, 1123031, 98721, '2019-02-28', '2019-07-02', '2019-07-06', 3, 'Sit was not much comfortable', 0),
-(4, 1123031, 98721, '2019-02-28', '2019-07-07', '2019-07-12', 5, 'The ride was extraordinary.', 0),
-(7, 1123031, 98720, '2019-07-01', '2019-07-09', '2019-07-11', 2, 'Should change the break.', 0),
-(11, 1123031, 98750, '2019-07-01', '2019-07-09', '2019-07-11', 1, 'The engine sound is very bad.\n', 0),
-(15, 1123068, 98718, '2019-07-15', '2019-07-14', '2019-07-15', 5, 'good.', 0),
-(16, 1123031, 98752, '2019-07-22', '2019-07-22', '2019-07-27', 4, 'Enjoyed the ride very much. Seat was very comfortable.', 0),
-(17, 1123068, 98720, '2019-07-22', '2019-07-09', '2019-07-11', NULL, NULL, 3690);
+(1, 1123031, 98721, '2019-02-28', '2019-07-02', '2019-07-06', 3, 'Sit was not much comfortable', 50000),
+(4, 1123031, 98721, '2019-02-28', '2019-07-07', '2019-07-12', 5, 'The ride was extraordinary.', 35000),
+(7, 1123031, 98720, '2019-07-01', '2019-07-09', '2019-07-11', 2, 'Should change the break.', 25000),
+(11, 1123031, 98750, '2019-07-01', '2019-07-09', '2019-07-11', 1, 'The engine sound is very bad.\n', 45000),
+(15, 1123068, 98718, '2019-07-15', '2019-07-14', '2019-07-15', 5, 'good.', 20000),
+(16, 1123031, 98752, '2019-07-22', '2019-07-22', '2019-07-27', 4, 'Enjoyed the ride very much. Seat was very comfortable.', 55000),
+(17, 1123068, 98720, '2019-07-22', '2019-07-09', '2019-07-11', NULL, NULL, 36900);
 
 --
 -- Indexes for dumped tables

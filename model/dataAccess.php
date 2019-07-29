@@ -225,6 +225,21 @@ class DAO
         return $results;
 
     }
+    public function getAllCompanyVehicleIncome(){
+        global $pdo;
+        $sql = "SELECT VC.COMPANY_NAME, NEW_TABLE.TOTAL_INCOME 
+        FROM (SELECT V.COMPANY_ID, COALESCE(SUM(V_ORDER.COST),0) AS TOTAL_INCOME FROM VEHICLE V LEFT JOIN VEHICLE_ORDER V_ORDER on V.VEHICLE_ID = V_ORDER.VEHICLE_ID GROUP BY V.COMPANY_ID) NEW_TABLE 
+        LEFT JOIN VEHICLE_COMPANY VC ON NEW_TABLE.COMPANY_ID = VC.COMPANY_ID";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+
+    }
     public function getAllCustomers()
     {
 

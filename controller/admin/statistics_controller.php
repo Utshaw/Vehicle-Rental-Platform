@@ -10,4 +10,6 @@ $daoObject = DAO::getInstance();
 
 $results1 = $daoObject->getAllCompanyVehicleCount();
 $results2 = $daoObject->getAllCompanyVehicleSoldCount();
+$results3 = $daoObject->getAllCompanyVehicleIncome();
+
 
