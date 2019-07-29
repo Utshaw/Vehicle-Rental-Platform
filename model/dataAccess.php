@@ -269,8 +269,8 @@ class DAO
     public function addPromotion($promo)
     {
 
-
-        $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id";
+        global $pdo;
+        $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id AND  COMPANY_ID = :company_id";
         $statement = $pdo->prepare($sql_delete_same_model_promo);
         $statement->bindValue(':model_id', $promo->MODEL_ID);
         $statement->bindValue(':company_id', $promo->COMPANY_ID);
