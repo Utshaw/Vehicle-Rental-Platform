@@ -23,7 +23,7 @@ function getPromotionCallBack(results) {
 
         var newrow = $("<b></b>");
 
-        newrow.append("New promotional offer running. Get " + result.DISCOUNT_AMOUNT + " % discount on " + result.MODEL_NAME + " | Expiry date: " + result.EXPIRY_DATE);
+        newrow.append("New promotional offer running. Get " + result.DISCOUNT_AMOUNT + " % discount on " + result.COMPANY_NAME + " " +result.MODEL_NAME + " | Expiry date: " + result.EXPIRY_DATE);
 
         if (localStorage["imageShowed"] == null) {
             localStorage["imageShowed"] = 100;

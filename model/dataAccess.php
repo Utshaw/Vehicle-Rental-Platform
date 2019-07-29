@@ -319,7 +319,7 @@ class DAO
         // deleteOldPromotion();
         global $pdo;
 
-        $sql = "SELECT * FROM PROMOTION AS P JOIN VEHICLE_MODEL AS VM ON P.MODEL_ID = VM.MODEL_ID ORDER BY PROMOTION_ID DESC";
+        $sql = "SELECT * FROM PROMOTION AS P JOIN VEHICLE_MODEL AS VM JOIN VEHICLE_COMPANY AS VC ON P.MODEL_ID = VM.MODEL_ID AND P.COMPANY_ID = VC.COMPANY_ID ORDER BY PROMOTION_ID DESC";
 
         $statement = $pdo->prepare($sql);
         $statement->execute();
