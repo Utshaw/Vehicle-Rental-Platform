@@ -114,7 +114,129 @@
 
 
 
+    
 
+
+    <div class="content">
+    <h2>Vehicle you might hire</h1>
+
+    <!-- content changes on each page -->
+    <div class="container" id="searched_buses">
+
+
+    <?php 
+        require_once "./test4.php";
+    ?>
+
+
+        <?php 
+
+$rec_num_buses=0;
+        foreach ($recommends
+
+            as $bus) :
+
+            ?>
+
+
+            <?php
+
+            if ($rec_num_buses % 4 == 0) :
+
+
+                ?>
+                <div class="card-group">
+
+
+                <?php
+                endif;
+                $rec_num_buses = $rec_num_buses + 1; ?>
+
+
+
+
+
+
+                <div class="card card text-white bg-dark mb-3">
+                    
+                    <img class="card-img-top" src="../images/<?= $bus->IMAGE ?>  " alt="Image of the bus" height="150">
+                    
+                    <div class="card-body">
+                        <a target="_blank" href="http://localhost/VRP/view/bus.php?vehicle_id=<?= $bus->VEHICLE_ID ?>">
+                            <h5 class="card-title"><?= $bus->MAKE_NAME ?></h5>
+                        </a>
+
+                        <!-- <p><span  class="stars-container stars-<?= ceil($bus->RATING) ?>">★★★★★</span></p> -->
+
+                        <p>Vehicle Rating: <? if(!isset($bus->RATING)){ echo "No rating found";} else {echo $bus->RATING;}?></p>
+
+
+                        <!-- <span class="stars-container stars-50">★★★★★</span> -->
+
+
+
+
+                        <?php if($bus->DAILY_RATE != $bus->PROMOTIONAL_DAILY_RATE) { ?>
+
+                        <p class="card-text"><s>DAILY RATE: &#2547; <?=$bus->DAILY_RATE?> </s></p>
+                        <p class="card-text">PORMO DAILY RATE: &#2547; <?=$bus->PROMOTIONAL_DAILY_RATE?> </p>
+
+                        <?php }else{  ?>
+                            <p class="card-text">DAILY RATE: &#2547; <?=$bus->DAILY_RATE?></p>
+                        <?php } ?>
+                        <p>CAPACITY: <?= $bus->MAX_CAPACITY ?></p>
+
+                        <p>COMPANY: <?= $bus->COMPANY_NAME ?></p>
+
+
+
+                        <p><button class="cartitem btn btn-primary" data-date_from="<?= $date_from ?>" data-date_to="<?= $date_to ?>" data-booking_date="<?= $booking_date ?>" data-id="<?= $bus->VEHICLE_ID ?>" data-make="<?= $bus->MAKE_NAME ?>" data-model="<?= $bus->MODEL_NAME ?>" data-price="<?= $bus->PROMOTIONAL_DAILY_RATE ?>">Add to cart</button></p>
+                    </div>
+                    <div class="card-footer">
+                        <small><?= $bus->COMPANY_NAME ?></small> <br>
+
+                        <small style="color: bisque"><?= $bus->MODEL_NAME ?></small>
+                    </div>
+                    
+                </div>
+
+
+                <?php
+                if ($rec_num_buses % 4 == 0) {
+
+
+                    ?>
+                </div>
+
+            <?php } if ($rec_num_buses == $total_rec_result) : ?>
+
+                <?php while (($rec_num_buses % 4) != 0) : ?>
+
+                    <div class="card card text-white bg-dark mb-3" style="visibility: hidden;">
+                        <img class="card-img-top" src="../images/<?= $bus->IMAGE ?>  " alt="Image of the bus" height="150">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $bus->MAKE ?></h5>
+                            <p class="card-text">DAILY RATE:<?= $bus->DAILY_RATE ?></p>
+                        </div>
+
+                        <div class="card-footer">
+                            <span style="color: red"><?= $bus->MODEL_NAME ?></span>
+                        </div>
+                    </div>
+
+                    <?php
+                    $rec_num_buses++;
+                endwhile;
+            endif;
+            ?>
+
+
+        <?php endforeach; ?>
+
+
+
+    </div>
+</div>
 
 
 

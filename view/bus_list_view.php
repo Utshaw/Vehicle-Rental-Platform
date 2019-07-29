@@ -49,6 +49,8 @@
 
 
 <div class="content">
+
+    <h2>Search result: </h2>
     <!-- content changes on each page -->
     <div class="container" id="searched_buses">
 
@@ -60,7 +62,6 @@
             as $bus) :
 
             ?>
-
 
 
             <?php

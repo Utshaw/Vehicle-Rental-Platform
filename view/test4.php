@@ -13,7 +13,7 @@ $daoObject = DAO::getInstance();
 
 $customer = new Customer();
 $customer->CUSTOMER_ID=1123031;
-var_dump($daoObject->getRecommendationMatrix($customer));
-
+$recommends = $daoObject->getRecommendationMatrix($customer);
+$total_rec_result = count($recommends );
 
 ?>

@@ -255,7 +255,7 @@ class DAO
         //CC
 
         global $pdo;
-        $sql = "SELECT * FROM VEHICLE AS V JOIN VEHICLE_ORDER AS VOR ON V.VEHICLE_ID=VOR.VEHICLE_ID  WHERE CUSTOMER_ID = :customer_id LIMIT 3";
+        $sql = "SELECT * FROM VEHICLE AS V JOIN VEHICLE_ORDER AS VOR JOIN VEHICLE_MAKE AS VMK JOIN VEHICLE_MODEL AS VM ON V.MAKE_ID = VMK.MAKE_ID  AND V.VEHICLE_ID = VOR.VEHICLE_ID AND   V.MODEL_ID=VM.MODEL_ID  WHERE CUSTOMER_ID = :customer_id LIMIT 4";
 
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
@@ -275,7 +275,7 @@ class DAO
         $statement->bindValue(':model_id', $promo->MODEL_ID);
         $statement->bindValue(':company_id', $promo->COMPANY_ID);
         $statement->execute();
-
+//cc
 
         $sql = "INSERT INTO PROMOTION(DISCOUNT_AMOUNT, EXPIRY_DATE, MODEL_ID, COMPANY_ID) VALUES(:damount, :expiry_date, :model_id, :company_id)";
 
