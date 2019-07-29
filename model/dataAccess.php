@@ -1,3 +1,5 @@
+
+
 <?php
 
 $connection = new DBConn();
@@ -145,6 +147,7 @@ class DAO
 
 
         global $pdo;
+
         $sql = "SELECT * FROM VEHICLE_ORDER";
 
         $statement = $pdo->prepare($sql);
@@ -180,7 +183,6 @@ class DAO
     public function addPromotion($promo)
     {
 
-        global $pdo;
 
         $sql_delete_same_model_promo = "DELETE FROM PROMOTION WHERE MODEL_ID = :model_id";
         $statement = $pdo->prepare($sql_delete_same_model_promo);
@@ -272,7 +274,51 @@ class DAO
         return $results;
     }
 
+    public function getAllCompanyVehicleCount()
+    { 
+        global $pdo;
+        $sql = "SELECT VC.COMPANY_NAME, COUNT(V.VEHICLE_ID) AS VEHICLE_COUNT 
+        FROM VEHICLE_COMPANY VC LEFT JOIN VEHICLE V on VC.COMPANY_ID = V.COMPANY_ID 
+        GROUP BY VC.COMPANY_ID";
 
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
+    public function getAllCompanyVehicleSoldCount(){
+        global $pdo;
+        $sql = "SELECT VC.COMPANY_NAME, NEW_TABLE.ORDER_COUNT 
+            FROM (SELECT V.COMPANY_ID, COUNT(V_ORDER.ORDER_ID) AS ORDER_COUNT FROM VEHICLE V LEFT JOIN VEHICLE_ORDER V_ORDER on V.VEHICLE_ID = V_ORDER.VEHICLE_ID GROUP BY V.COMPANY_ID) NEW_TABLE 
+            LEFT JOIN VEHICLE_COMPANY VC ON NEW_TABLE.COMPANY_ID = VC.COMPANY_ID";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+
+    }
+    public function getAllCompanyVehicleIncome(){
+        global $pdo;
+        $sql = "SELECT VC.COMPANY_NAME, NEW_TABLE.TOTAL_INCOME 
+        FROM (SELECT V.COMPANY_ID, COALESCE(SUM(V_ORDER.COST),0) AS TOTAL_INCOME FROM VEHICLE V LEFT JOIN VEHICLE_ORDER V_ORDER on V.VEHICLE_ID = V_ORDER.VEHICLE_ID GROUP BY V.COMPANY_ID) NEW_TABLE 
+        LEFT JOIN VEHICLE_COMPANY VC ON NEW_TABLE.COMPANY_ID = VC.COMPANY_ID";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+
+    }
     public function getAllCustomers()
     {
 
