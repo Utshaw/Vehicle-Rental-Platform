@@ -8,5 +8,6 @@ require_once '../../model/dataAccess.php';
 
 $daoObject = DAO::getInstance();
 
-$results = $daoObject->getAllCompanyVehicleCount();
+$results1 = $daoObject->getAllCompanyVehicleCount();
+$results2 = $daoObject->getAllCompanyVehicleSoldCount();
 
