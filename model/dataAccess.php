@@ -106,7 +106,17 @@ class DAO
 
         foreach ($matrix[$person1] as $key => $value) {
 
+            // echo $key . ' -- ' . $value;
+
+            // var_dump($matrix[$person2]);
+
+            // echo "<br>";
+
             if (array_key_exists($key, $matrix[$person2])) {
+
+
+
+                // echo "JJUI";
 
                 $similar[$key] = 1;
             }
@@ -116,29 +126,92 @@ class DAO
             return 0;
         }
 
-        foreach ($matrix[$person1] as $key=>$value) {
+        foreach ($matrix[$person1] as $key => $value) {
 
             if (array_key_exists($key, $matrix[$person2])) {
+
+
 
                 $sum = $sum + pow($value - $matrix[$person2][$key], 2);
             }
         }
 
-        return 1/(1+sqrt($sum));
+        return 1 / (1 + sqrt($sum));
     }
 
 
-    public function getRecommendation($matrix, $person) {
+    public function getRecommendation($matrix, $person)
+    {
 
-        foreach($matrix as $otherPerson=>$value) {
+        $total = array();
+        $simsums = array();
+        $ranks = array();
 
-            if($otherPerson != $person) {
+
+        $similarMatrix=array();
+
+        foreach ($matrix as $otherPerson => $value) {
+
+            // var_dump($otherPerson);
+            // var_dump($person);
+            // echo $otherPerson;
+            // print_r($value);
+
+
+
+            if ($otherPerson != $person) {
                 $sim = $this->similarity_distance($matrix, $person, $otherPerson);
 
-                var_dump($sim);
+                $similarMatrix[$otherPerson]=$sim;
+
+                // foreach ($matrix[$otherPerson] as $key => $value) {
+                //     if (!array_key_exists($key, $matrix[$person])) {
+
+
+                //         if (!array_key_exists($key, $total)) {
+
+                //             $total[$key] = 0;
+                //         }
+
+
+
+                //         $total[$key] += $matrix[$otherPerson][$key] * $sim;
+
+                //         if (!array_key_exists($key, $simsums)) {
+                //             $simsums[$key] = 0;
+                //         }
+
+                //         $simsums[$key] += $sim;
+                //     }
+                // }
+
+
             }
         }
-     } 
+
+        $max = 0.0;
+        $maxCustomer = -1;
+        foreach($similarMatrix as $eachCustomer=>$value) {
+            // echo $eachCustomer. '-' . $value;
+
+            if($value > $max) {
+                $max = $value;
+                $maxCustomer = $eachCustomer;
+            }
+        }
+
+        return $maxCustomer;
+
+        // print_r($similarMatrix);
+
+
+        // foreach($total as $key=>$value) {
+        //     $ranks[$key]=$value/$simsums[$key];
+        // }
+
+        // array_multisort($similarMatrix, SORT_DESC);
+        return $similarMatrix;
+    }
 
     public function getRecommendationMatrix()
     {
@@ -165,18 +238,28 @@ class DAO
             }
         }
 
-        print_r($matrix);
+        // print_r($matrix);
 
 
         $customer_id = '1123031';
-        if(empty($matrix[$customer_id])){
+        if (empty($matrix[$customer_id])) {
             return 0;
         }
-            
 
-        var_dump($this->getRecommendation($matrix, $customer_id));
+        // var_dump($matrix['1123068']); echo "<br>";
+        $max_customer_id =  $this->getRecommendation($matrix, $customer_id);
 
-        
+        //CC
+
+        global $pdo;
+        $sql = "SELECT * FROM VEHICLE AS V JOIN VEHICLE_ORDER AS VOR ON V.VEHICLE_ID=VOR.VEHICLE_ID  WHERE CUSTOMER_ID = :customer_id LIMIT 3";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':customer_id', $customer->CUSTOMER_ID, PDO::PARAM_INT);
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Customer');
+        return $results;
     }
 
 
@@ -275,7 +358,7 @@ class DAO
     }
 
     public function getAllCompanyVehicleCount()
-    { 
+    {
         global $pdo;
         $sql = "SELECT VC.COMPANY_NAME, COUNT(V.VEHICLE_ID) AS VEHICLE_COUNT 
         FROM VEHICLE_COMPANY VC LEFT JOIN VEHICLE V on VC.COMPANY_ID = V.COMPANY_ID 
@@ -289,7 +372,8 @@ class DAO
 
         return $results;
     }
-    public function getAllCompanyVehicleSoldCount(){
+    public function getAllCompanyVehicleSoldCount()
+    {
         global $pdo;
         $sql = "SELECT VC.COMPANY_NAME, NEW_TABLE.ORDER_COUNT 
             FROM (SELECT V.COMPANY_ID, COUNT(V_ORDER.ORDER_ID) AS ORDER_COUNT FROM VEHICLE V LEFT JOIN VEHICLE_ORDER V_ORDER on V.VEHICLE_ID = V_ORDER.VEHICLE_ID GROUP BY V.COMPANY_ID) NEW_TABLE 
@@ -302,9 +386,9 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
 
         return $results;
-
     }
-    public function getAllCompanyVehicleIncome(){
+    public function getAllCompanyVehicleIncome()
+    {
         global $pdo;
         $sql = "SELECT VC.COMPANY_NAME, NEW_TABLE.TOTAL_INCOME 
         FROM (SELECT V.COMPANY_ID, COALESCE(SUM(V_ORDER.COST),0) AS TOTAL_INCOME FROM VEHICLE V LEFT JOIN VEHICLE_ORDER V_ORDER on V.VEHICLE_ID = V_ORDER.VEHICLE_ID GROUP BY V.COMPANY_ID) NEW_TABLE 
@@ -317,7 +401,6 @@ class DAO
         $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
 
         return $results;
-
     }
     public function getAllCustomers()
     {
