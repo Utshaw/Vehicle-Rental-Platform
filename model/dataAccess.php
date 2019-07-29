@@ -213,7 +213,7 @@ class DAO
         return $similarMatrix;
     }
 
-    public function getRecommendationMatrix()
+    public function getRecommendationMatrix($customer)
     {
         global $pdo;
 

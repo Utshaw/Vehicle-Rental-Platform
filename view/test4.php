@@ -12,12 +12,8 @@ require_once '../model/dataAccess.php';
 $daoObject = DAO::getInstance();
 
 $customer = new Customer();
-var_dump($daoObject->getRecommendationMatrix());
-
-
-
-
-
+$customer->CUSTOMER_ID=1123031;
+var_dump($daoObject->getRecommendationMatrix($customer));
 
 
 ?>
