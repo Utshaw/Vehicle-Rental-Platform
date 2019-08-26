@@ -5,6 +5,8 @@ require_once './header.php';
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<h1 style="color: black;">Total Revenue : <?php echo $results4[0]->TOTAL_REVENUE ?></h1>
+<h1 style="color: black;">Total Revenue this month : <?php echo $results5[0]->REVENUE_THIS_MONTH ?></h1>
 
 <script type="text/javascript">
     google.charts.load('current', {

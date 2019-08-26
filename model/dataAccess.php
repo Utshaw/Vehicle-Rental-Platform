@@ -409,6 +409,30 @@ class DAO
 
         return $results;
     }
+    public function getTotalRevenue(){
+        global $pdo;
+        $sql = "SELECT sum(COST) AS TOTAL_REVENUE FROM VEHICLE_ORDER";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
+    public function getRevenueThisMonth(){
+        global $pdo;
+        $sql = "SELECT sum(COST) AS REVENUE_THIS_MONTH FROM VEHICLE_ORDER WHERE MONTH(BOOKING_DATE) = MONTH(CURRENT_DATE()) AND YEAR(BOOKING_DATE) = YEAR(CURRENT_DATE())";
+
+        $statement = $pdo->prepare($sql);
+
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, 'Company');
+
+        return $results;
+    }
     public function getAllCustomers()
     {
 
