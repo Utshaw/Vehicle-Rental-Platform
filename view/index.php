@@ -103,7 +103,7 @@
 
 
 
-                        <input class="btn btn-primary " name="submit_search" type="submit" value="Search_for_bus" />
+                        <input class="btn btn-primary " name="submit_search" type="submit" value="Search" />
                     </form>
 
                 </div>
